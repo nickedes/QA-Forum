@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>403 Forbidden</title>
+</head>
+<style>
+.error {color:#FF0000;}
+</style>
+<body >
+
+<h1>Hello world</h1>
+<div id = '1'>
+
+<a href ="dpaste.com">Link</a>
+<p> Ordered List</p>
+<ol>
+	<li>Name: Farheen Nilofer</li>
+	<li>Work: Training</li>
+</ol>
+
+<p> Unordered List</p>
+<ul>
+	<li>Name: Farheen Nilofer</li>
+	<li>Work: Training</li>
+</ul>
+
+</div>
+<!-- <p>Directory access is forbidden.</p> -->
+<div id = "2">
+	<table border = "1">
+	<tr>
+		<td> Sr No.</td>
+		<td>A</td>
+		<td>B</td>
+	</tr>
+	
+	<tr>
+		<td>a.</td>
+		<td>1</td>
+		<td>1</td>
+	</tr>
+
+	<tr>
+		<td>b.</td>
+		<td>2</td>
+		<td>2</td>
+	</tr>
+	
+	<tr>
+		<td>c.</td>
+		<td>3</td>
+		<td>3</td>
+	</tr>
+	</table>
+<br>
+
+<div id = "3">
+	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+	<br><br><br><br>
+	First Name:<br> <input type="text" name="name">
+	<br><br><br>
+	Second Name:<br> <input type="text" name="name">
+	<br><br><br>
+	EMail:<br> <input type="text" name="email">
+	<br><br><br>
+	Password:<br><br> <input type="password" name="password">
+	<br><br><br>
+	Gender:<br>
+	<input type="radio" name="gender" value="female"> Female
+	<br><br>
+	<input type="radio" name="gender" value="male"> Male
+	<br><br><br>
+	Checkbox:<br>
+	<input type="checkbox" name="Type" value="One"> One
+	<br><br>
+	<input type="checkbox" name="Type" value="Two"> Two
+	<br><br>
+	<input type="checkbox" name="Type" value="Three"> Three
+	<br><br><br>
+</form>
+</div>
+<p> This is the CSS file link:</p>
+<a href = "stylesheet.css">CSS</a>	
+
+</body>
+</html>
