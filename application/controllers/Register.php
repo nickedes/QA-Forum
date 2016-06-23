@@ -9,13 +9,11 @@
 		{	
 			parent::__construct();
 			$this->load->library('form_validation');
-
-			
+			$this->load->model('Users');
 		}
 		
 		function index()
 		{
-			$this->load->model('Users');
 			if (isset($_POST['submit']))
 			{
 				echo "string";
