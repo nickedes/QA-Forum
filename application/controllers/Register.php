@@ -8,31 +8,50 @@
 		function __construct()
 		{	
 			parent::__construct();
+			$this->load->library('form_validation');
+
 			
 		}
 		
 		function index()
 		{
 			$this->load->model('Users');
-			if ( isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['confirm_password']) && isset($_POST['mobileno']))
+			if (isset($_POST['submit']))
 			{
-				// $data = $this->input->post();
-				$data = array(
-					$_POST['name'],
-					$_POST['email'],
-					$_POST['mobileno'],
-					'/',
-					$_POST['password'],
-					md5($_POST['password'])
-					);
+				echo "string";
+				// Validations here
+				// TODO: Add validations in a Libraray.
 
-				if ($this->Users->insert($data))
-				{
-					return "the user is entered successfully.";
-				}		
+ 				$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean|callback_check_database|unique');
+   				
+   				$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean|callback_check_database');
+
+				$this->form_validation->set_rules('name', 'text', 'trim|required|valid_email|xss_clean');
+   				
+   				$this->form_validation->set_rules('mobileno', 'Mobile', 'trim|required|length[10]');
+
+   				$this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
+
+   				if($this->form_validation->run() == TRUE)
+   				{
+					$data = array(
+						$_POST['name'],
+						$_POST['email'],
+						$_POST['mobileno'],
+						'/',
+						md5($_POST['password']),
+						md5(rand(1, 1000))
+						);
+
+					if ($this->Users->insert($data))
+					{
+						return "the user is entered successfully.";
+					}		
+				}
 				else
 				{
-					return "the user is wrong";
+					echo "Registration failed";
+					$this->load->view('register');
 				}
 			}
 			else

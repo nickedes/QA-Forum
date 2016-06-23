@@ -4,7 +4,6 @@
 	*/
 	class Users extends MY_Model
 	{
-		$this->conn_id = parent::get_pdo();
 
 		// private $table_name = "users";
 		function __construct()
@@ -19,13 +18,19 @@
 			$sth = $this->conn_id->prepare("INSERT INTO users(name, email, mobileno, profilepic, passwd, hash_key) VALUES (?,?,?,?,?,?)");
 			$sth->execute($data);
 			$affected_rows = $sth->rowCount();
-			print_r($affected_rows);
+			/*
+				returns 1 if entry in table
+				else 0
+			*/
 			return $affected_rows;
 		}
 
 		function check($data)
 		{
-			$sql = $this->conn_id->query('select * from '.$this->table_name. ' WHERE email = '.$data['email'] ' and passwd = '.$data['password']);
+			$data['email'] = "'".$data['email']."'";
+			$data['password'] = "'".$data['password']."'";
+
+			$sql = $this->conn_id->query('select * from '.$this->table_name. ' WHERE email = '.$data['email'].' and passwd = '.$data['password']);
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 			return $r;
 		}

@@ -4,7 +4,13 @@
 	<title>QA-Forum</title>
 </head>
 <body>
-<form method="POST" action="index.php/register">	
+
+<?php
+	$this->load->library('form_validation');
+	echo validation_errors(); 
+	echo form_open('register'); 
+?>  
+
 	<label>Name</label>
 	<input type="text" name="name"><br>
 	<label>Email id</label>
