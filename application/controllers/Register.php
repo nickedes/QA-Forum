@@ -43,7 +43,7 @@
 
 					if ($this->Users->insert($data))
 					{
-						return "the user is entered successfully.";
+						echo "the user is entered successfully.";
 					}		
 				}
 				else

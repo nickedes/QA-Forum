@@ -15,9 +15,9 @@
 		function insert($data)
 		{
 
-			$sth = $this->conn_id->prepare("INSERT INTO users(name, email, mobileno, profilepic, passwd, hash_key) VALUES (?,?,?,?,?,?)");
-			$sth->execute($data);
-			$affected_rows = $sth->rowCount();
+			$sql = $this->conn_id->prepare("INSERT INTO users(name, email, mobileno, profilepic, passwd, hash_key) VALUES (?,?,?,?,?,?)");
+			$sql->execute($data);
+			$affected_rows = $sql->rowCount();
 			/*
 				returns 1 if entry in table
 				else 0
@@ -33,6 +33,17 @@
 			$sql = $this->conn_id->query('select * from '.$this->table_name. ' WHERE email = '.$data['email'].' and passwd = '.$data['password']);
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 			return $r;
+		}
+
+		function update($value)
+		{
+			$value = "'".$value."'";
+			// Todo: Where clause to include user_id
+			$sql = $this->conn_id->prepare("UPDATE users SET profilepic = ".$value." where user_id = 1");
+			$sql->execute();
+			$affected_rows = $sql->rowCount();
+			echo $affected_rows;
+			return $affected_rows;
 		}
 	}
 ?>

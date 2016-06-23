@@ -40,6 +40,16 @@
 			   print_r($file_info);
 			   echo '</pre>';
 
+			   $this->load->model('Users');
+			   if($this->Users->update($file_info['full_path']))
+			   {
+					echo "Profile pic uploaded successfully.";
+			   }
+			   else
+			   {
+					echo "Upload failed";
+					$this->load->view('upload');
+			   }
 			}
 		}
 	}
