@@ -1,6 +1,6 @@
 <?php
 
-	class Test extends  CI_Controller {
+	class Home extends  CI_Controller {
 
 	    function __construct() {
 	        parent::__construct();
@@ -9,7 +9,8 @@
 	    }
 
 	   	function index() {
-	   		print_r($this->Users->get_data());
+	   		// print_r($this->Users->get_data());
+	   		$this->load->view('register');
 	   	}
 	    
 	}

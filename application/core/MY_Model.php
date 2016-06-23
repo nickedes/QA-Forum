@@ -26,5 +26,14 @@
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 			return $r;
 		}
+
+		// function insert($field, $values)
+		// {
+
+		// 	print_r("INSERT INTO ".$this->table_name."  ".$field." VALUES ".$values);
+		// 	$sql = $this->conn_id->exec("INSERT INTO ".$this->table_name."  ".$field." VALUES ".$values);
+		// 	$r = $sql->rowCount();
+		// 	return 1;
+		// }
 	};
 ?>

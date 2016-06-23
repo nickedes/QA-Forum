@@ -10,13 +10,13 @@
 	<label>Email id</label>
 	<input type="email" name="email"><br>
 	<label>Mobile no.</label>
-	<input type="text" name="mobile"><br>
+	<input type="text" name="mobileno"><br>
 	<label>About</label>
-	<input type="text" name="bout"><br>
+	<input type="text" name="about"><br>
 	<label>Password</label>
 	<input type="password" name="password"><br>
 	<label>Confirm Password</label>
-	<input type="password" name="confirm_password">
+	<input type="password" name="confirm_password"><br>
 	<button type="submit" name="submit">Register</button>
 </form>
 </body>
