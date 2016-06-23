@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class UserFactory {
+class UsersFactory {
 
     private $_ci;
 
@@ -10,7 +10,7 @@ class UserFactory {
         //When the class is constructed get an instance of codeigniter so we can access it locally
         $this->_ci =& get_instance();
         //Include the user_model so we can use it
-        $this->_ci->load->model("user_model");
+        $this->_ci->load->model("users_model");
     }
 
     public function getUser($id = 0) {

@@ -4,12 +4,14 @@
 
 	    function __construct() {
 	        parent::__construct();
-	        $this->pdo = $this->load->database('pdo', true);
+	        $this->load->helper('url');
+	        $this->load->model('Users');
 	    }
 
-	    function index(){
-	    	var_dump($this->pdo->conn_id); 
-	    }
-	};
+	   	function index() {
+	   		print_r($this->Users->get_data());
+	   	}
+	    
+	}
 
 ?>
