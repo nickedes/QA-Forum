@@ -11,8 +11,6 @@
 			parent::__construct();
 			$this->load->helper(array('form'));
 			$this->load->library('form_validation');
-			$this->load->helper('url');
-			$this->load->helper('security');
 			$this->load->model('Questions');
 			$this->load->model('Answers');
 		}
