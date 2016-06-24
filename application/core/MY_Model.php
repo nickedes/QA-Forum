@@ -5,7 +5,7 @@
 	class MY_Model extends CI_Model {
 		private $table_name = "";
 		private $field_keys = array("Fields");
-		private $conn_id;
+		protected $conn_id;
 
 		function __construct($table_name) {
 			parent::__construct();

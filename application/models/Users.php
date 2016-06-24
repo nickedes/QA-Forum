@@ -4,7 +4,7 @@
 	*/
 	class Users extends MY_Model
 	{
-		$this->conn_id = parent::get_pdo();
+		// $this->conn_id = parent::get_pdo();
 
 		// private $table_name = "users";
 		function __construct()
@@ -25,9 +25,24 @@
 
 		function check($data)
 		{
-			$sql = $this->conn_id->query('select * from '.$this->table_name. ' WHERE email = '.$data['email'] ' and passwd = '.$data['password']);
-			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			return $r;
+			$this->load->library('form_validation');
+ 
+   			$this->form_validation->set_rules('email', 'Email', 'valid_email|trim|required');
+   			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+ 
+
+			$email = "'".$data['email']."'";
+			$passwrd = "'".$data['password']."'";
+			
+
+			$sql = $this->conn_id->query("select * from users where email = ".$email ." and passwd= ".$passwrd);
+				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			
+			if($this->form_validation->run() ==TRUE && !empty($r))
+				return TRUE;
+			else
+				return FALSE;
+			
 		}
 	}
 ?>
