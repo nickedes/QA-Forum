@@ -4,7 +4,10 @@
 	*/
 	class Users extends MY_Model
 	{
-		$this->conn_id = parent::get_pdo();
+<<<<<<< HEAD
+=======
+		// $this->conn_id = parent::get_pdo();
+>>>>>>> 7cb28024e97908ca09bfee38e22bd26c9b8d06dc
 
 		// private $table_name = "users";
 		function __construct()
@@ -28,6 +31,14 @@
 
 		function check($data)
 		{
+<<<<<<< HEAD
+			$data['email'] = "'".$data['email']."'";
+			$data['password'] = "'".$data['password']."'";
+
+			$sql = $this->conn_id->query('select * from '.$this->table_name. ' WHERE email = '.$data['email'].' and passwd = '.$data['password']);
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			return $r;
+=======
 			$this->load->library('form_validation');
  
    			$this->form_validation->set_rules('email', 'Email', 'valid_email|trim|required');
@@ -46,6 +57,21 @@
 			else
 				return FALSE;
 			
+>>>>>>> 7cb28024e97908ca09bfee38e22bd26c9b8d06dc
+		}
+
+		function update($value)
+		{
+			$value = "'".$value."'";
+			// Todo: Where clause to include user_id
+			$sql = $this->conn_id->query('select * from users ORDER BY user_id DESC LIMIT 1');
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			// print_r($r[0]['user_id']);
+			$sql = $this->conn_id->prepare("UPDATE users SET profilepic = ".$value." where user_id = ?");
+			$sql->execute(array($r[0]['user_id']));
+			$affected_rows = $sql->rowCount();
+			echo $affected_rows;
+			return $affected_rows;
 		}
 	}
 ?>
