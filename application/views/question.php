@@ -13,15 +13,17 @@
 		<input type="text" name="title">
 		<br>
 		<label>Description</label>
-		<input type="text" name="describe">
+		<input type="text" name="description">
 		<br>
-		<label>Tags</label>
-		<input type="text" name="tags1">
-		<br>
-		<label>Tags</label>
-		<input type="text" name="tags2">
-		<br>
+		<div id="tags">	
+			<label>Tags</label>
+			<input type="text" name="tag1">
+			<br>
+		</div>
+		<button id="addTag">add</button>
 		<button type="submit" name="submit">POST</button>
 	</form>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/addtags.js"></script>
 </body>
 </html>
