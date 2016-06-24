@@ -16,7 +16,6 @@
 		{
 			if (isset($_POST['submit']))
 			{
-				echo "string";
 				// Validations here
 				// TODO: Add validations in a Libraray.
 
