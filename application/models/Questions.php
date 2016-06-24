@@ -7,7 +7,7 @@
 		
 		function __construct()
 		{	
-			parent::__construct('questions');
+			parent::__construct('questions','q_id');
 		}
 
 		function insert($data)

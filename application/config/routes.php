@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['register'] = 'register';
 $route['upload'] = 'upload';
 $route['question'] = 'question_controller';
+$route['question/get'] = 'question_controller/get';
 $route['success'] = 'success';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';

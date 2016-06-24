@@ -4,36 +4,59 @@
 	*/
 	class MY_Model extends CI_Model {
 		private $table_name = "";
-		private $field_keys = array("Fields");
+		private $primary_key;
 		protected $conn_id;
 
-		function __construct($table_name) {
+		function __construct($table_name, $primary_key) {
 			parent::__construct();
 			$this->table_name = $table_name;
+			$this->primary_key = $primary_key;
 			$this->load->library('Connection');
 			$this->conn_id = $this->connection->get_conn();
-
 		}
 
-		public function get_pdo()
+		function get($id = 0)
 		{
-			return $this->conn_id;
+			try 
+			{
+				// it means we need to display all data from table.
+				if ( $id == 0 )
+				{
+
+					$sql = $this->conn_id->query('select * from '.$this->table_name);
+
+					$result = $sql -> fetchAll(PDO::FETCH_ASSOC);
+
+					return $result;
+
+				} 
+				// now user passes a particular id to the table.
+				else
+				{
+					// $q_id = ".$id.";
+					$sql = $this->conn_id->query("select * from ".$this->table_name." where ".$this->primary_key ." = '".$id."'");
+
+					// echo "select * from ".$this->table_name." where ".$this->primary_key ." = '".$id."'";
+
+					if ( $result = $sql -> fetchAll(PDO::FETCH_ASSOC) )
+					{
+						return $result;
+					}
+					else
+					{
+						// echo "there are not results with id: ".$id;
+						return 0;
+					}
+				}
+
+
+			}
+			catch (Exception $e) 
+			{
+				return 0;
+			}
 		}
 
-		function get_data($id = 0)
-		{
-			$sql = $this->conn_id->query('select * from '.$this->table_name);
-			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			return $r;
-		}
-
-		// function insert($field, $values)
-		// {
-
-		// 	print_r("INSERT INTO ".$this->table_name."  ".$field." VALUES ".$values);
-		// 	$sql = $this->conn_id->exec("INSERT INTO ".$this->table_name."  ".$field." VALUES ".$values);
-		// 	$r = $sql->rowCount();
-		// 	return 1;
-		// }
+		
 	};
 ?>

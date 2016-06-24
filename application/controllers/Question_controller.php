@@ -30,9 +30,6 @@
 
 				if($this->form_validation->run() == TRUE)
 				{
-
-
-
 					$tags = array();
 					try 
 					{
@@ -61,7 +58,6 @@
 						//show error messages.	
 					}
 
-					var_dump($tags);
 					$data = array(
 						$title,
 						$description,
@@ -69,7 +65,6 @@
 						1
 						);
 
-					// $tags = array();
 					$request = $this->Questions->insert($data);
 					if ($request[0]==1)
 					{
@@ -111,6 +106,28 @@
 			{
 				// echo ;
 				$this->load->view('question');
+			}
+		}
+		function get()
+		{
+			if (isset($_GET['id']))
+			{
+
+				$result = $this->Questions->get($_GET['id']);
+				$data = array('result' => $result);
+				if (!$result)
+				{
+					echo "You supplied wrong question id.";
+				}
+				else
+				{
+					$this->load->view('question_details', $data);
+					// var_dump($result);
+				}
+			}
+			else
+			{
+				$this->Questions->get();
 			}
 		}
 	}
