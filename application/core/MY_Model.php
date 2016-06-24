@@ -33,10 +33,7 @@
 				// now user passes a particular id to the table.
 				else
 				{
-					// $q_id = ".$id.";
 					$sql = $this->conn_id->query("select * from ".$this->table_name." where ".$this->primary_key ." = '".$id."'");
-
-					// echo "select * from ".$this->table_name." where ".$this->primary_key ." = '".$id."'";
 
 					if ( $result = $sql -> fetchAll(PDO::FETCH_ASSOC) )
 					{

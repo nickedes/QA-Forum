@@ -14,6 +14,7 @@
 			$this->load->helper('url');
 			$this->load->helper('security');
 			$this->load->model('Questions');
+			$this->load->model('Answers');
 		}
 		function index()
 		{
@@ -114,13 +115,18 @@
 			{
 
 				$result = $this->Questions->get($_GET['id']);
-				$data = array('result' => $result);
+				
 				if (!$result)
 				{
 					echo "You supplied wrong question id.";
 				}
 				else
 				{
+					$answers = $this->Answers->get_byQId($_GET['id']);
+					$data = array(
+						'result' => $result,
+						'answers' => $answers
+						);
 					$this->load->view('question_details', $data);
 					// var_dump($result);
 				}
