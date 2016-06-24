@@ -15,5 +15,6 @@
 		Password : <input type="password" name="password" id="password"><br>
 		<button name="submit" type="submit">Login</button>
 	</form>
+	<a href="valid">Forgot Password?</a>
 </body>
 </html>
