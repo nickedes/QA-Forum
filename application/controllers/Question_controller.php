@@ -37,9 +37,28 @@
 							$_POST['describe'],
 							1
 							);
-					if ($this->Questions->insert($data))
+
+					$tags = array();
+					$request = $this->Questions->insert($data);
+					if ($request[0]==1)
 					{
-							echo "the user is entered successfully.";
+							echo "the Question is entered successfully.";
+							$q_id = $request[1];
+							// doubt : should load here or not
+							$this->load->model('Tags');
+							// Todo : insert new tags in tags table.
+							$request = $this->Tags->insert($tags);
+							if($request[0] == 1) // if tags inserted.
+							{
+								echo "tags inserted";
+								$this->load->model('Question_tags');
+								$tag_ids = $request[1];
+								
+								if($this->Question_tags->insert($q_id, $tag_ids))
+								{
+									echo "tags - question relation done."
+								}
+							}
 					}
 				}
 				else

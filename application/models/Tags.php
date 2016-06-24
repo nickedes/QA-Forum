@@ -2,20 +2,20 @@
 	/**
 	* 
 	*/
-	class Questions extends MY_Model
+	class Tags extends MY_Model
 	{
 		
 		function __construct()
 		{	
-			parent::__construct('questions');
+			parent::__construct('tags');
 		}
 
-		function insert($data)
+		function insert($tag)
 		{
 			try
 			{
-				$sql = $this->conn_id->prepare("INSERT INTO questions(title, description, user_id) VALUES (?,?,?)");
-				$sql->execute($data);
+				$sql = $this->conn_id->prepare("INSERT INTO tags(name) VALUES (?)");
+				$sql->execute($tag);
 				$affected_rows = $sql->rowCount();
 				return array($affected_rows, $this->conn_id->lastInsertId());
 			}
