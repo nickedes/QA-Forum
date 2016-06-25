@@ -41,7 +41,7 @@
 			   echo '</pre>';
 
 			   $this->load->model('Users');
-			   if($this->Users->update($file_info['full_path']))
+			   if($this->Users->update($file_info['file_name']))
 			   {
 					echo "Profile pic uploaded successfully.";
 			   }

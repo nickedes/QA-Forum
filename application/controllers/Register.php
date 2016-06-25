@@ -1,6 +1,6 @@
 <?php 
 	/**
-	* 
+		* 
 	*/
 	class Register extends CI_Controller
 	{
@@ -21,7 +21,6 @@
 			{
 				// Validations here
 				// TODO: Add validations in a Libraray.
-
  				$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
    				
    				$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
@@ -46,6 +45,7 @@
 					if ($this->Users->insert($data))
 					{
 						echo "the user is entered successfully.";
+						$this->load->view('upload');
 					}		
 				}
 				else

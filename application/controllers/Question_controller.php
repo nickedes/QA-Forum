@@ -12,6 +12,7 @@
 			$this->load->helper(array('form'));
 			$this->load->library('form_validation');
 			$this->load->model('Questions');
+			$this->load->model('Users');
 			$this->load->model('Answers');
 		}
 		function index()
@@ -61,7 +62,7 @@
 						$title,
 						$description,
 						//Todo: User_id from session 
-						1
+						12
 						);
 
 					$request = $this->Questions->insert($data);
@@ -113,7 +114,9 @@
 			{
 
 				$result = $this->Questions->get($_GET['id']);
-				
+				$pic_path = $this->Users->get_Pic($result[0]['user_id']);
+				// print_r($pic_path);
+
 				if (!$result)
 				{
 					echo "You supplied wrong question id.";
@@ -123,7 +126,8 @@
 					$answers = $this->Answers->get_byQId($_GET['id']);
 					$data = array(
 						'result' => $result,
-						'answers' => $answers
+						'answers' => $answers,
+						'profile' => $pic_path
 						);
 					$this->load->view('question_details', $data);
 					// var_dump($result);

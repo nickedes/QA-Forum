@@ -50,15 +50,21 @@
 		function update($value)
 		{
 			$value = "'".$value."'";
-			// Todo: Where clause to include user_id
 			$sql = $this->conn_id->query('select * from users ORDER BY user_id DESC LIMIT 1');
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			// print_r($r[0]['user_id']);
+			// Todo: Where clause to include user_id
 			$sql = $this->conn_id->prepare("UPDATE users SET profilepic = ".$value." where user_id = ?");
 			$sql->execute(array($r[0]['user_id']));
 			$affected_rows = $sql->rowCount();
 			echo $affected_rows;
 			return $affected_rows;
+		}
+		function get_Pic($id)
+		{
+			$sql = $this->conn_id->query('select profilepic from users where user_id ='.$id);
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			// print_r($r[0]);
+			return $r;
 		}
 	}
 ?>
