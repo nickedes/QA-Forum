@@ -4,11 +4,12 @@
 	<title>Question Detail page</title>
 </head>
 <body>
-	<!-- <?php var_dump($answers)?> -->
+	<!-- <?php var_dump($profile[0]['profilepic']);?> -->
+	<img src="<?php echo base_url()."/application/uploads/".$profile[0]['profilepic'] ?>" width="80" height="60" />
 	<h1>Title: <?php echo $result[0]['title'] ?></h1>
 	<h2>Description: <?php echo $result[0]['description'] ?></h2>
 	<h3>Created by: <?php echo $result[0]['user_id'] ?></h3>
-	<form method="POST" action="<?php base_url(); ?>/codeigniter/index.php/answer/post_answer" id="post_answer">
+	<form method="POST" action="<?php echo site_url(); ?>/answer/post_answer" id="post_answer">
 		<textarea name="textarea" id="answer" rows="10" cols="30">Post Answer</textarea>
 		<!-- Get session user id -->
 		<input type="hidden" id="user_id" name="user_id" value="1">
@@ -18,13 +19,16 @@
 	</form>
 	Answers:
 	<?php
-		echo "<div>";
-		foreach ($answers as $answer) {
-			echo "User : ".$answer['user_id']."<br>";
-			echo "Answered at : ".$answer['answer_time']."<br>";
-			echo "Answer: ".$answer['answer_text']."<br> <br>";
+		if($answers)
+		{
+			echo "<div>";
+			foreach ($answers as $answer) {
+				echo "User : ".$answer['user_id']."<br>";
+				echo "Answered at : ".$answer['answer_time']."<br>";
+				echo "Answer: ".$answer['answer_text']."<br> <br>";
+			}
+			echo "</div>";
 		}
-		echo "</div>";
 		echo "<div id='result'>";
 		echo "</div>"
 	?>

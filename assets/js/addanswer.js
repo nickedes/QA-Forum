@@ -18,11 +18,13 @@ $('#answer_submit').click(function (e) {
         	{
         		var text = "User : " + user_id + "<br>" + "Answer: " + answer + "<br>";
         		jQuery("div#result").html(text);
+                $("#answer").val('Post Answer');
         	}
             console.log(response);
         },
         error: function(response) {
             console.log(response);
+            alert("Fail");
         }
 });
 
