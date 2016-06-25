@@ -52,6 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['register'] = 'register';
 $route['upload'] = 'upload';
 $route['question'] = 'question_controller';
+$route['tag'] = 'tag_controller';
+$route['tag/get'] = 'tag_controller/get';
 $route['answer'] = 'answer_controller';
 $route['answer/post_answer'] = 'answer_controller/post_answer';
 $route['question/get'] = 'question_controller/get';
