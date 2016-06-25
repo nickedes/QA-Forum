@@ -9,7 +9,7 @@
 		function __construct()
 		{	
 			// parent::__construct($this->table_name);
-			parent::__construct('users');
+			parent::__construct('users', 'user_id');
 		}
 
 		function insert($data)

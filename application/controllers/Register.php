@@ -50,13 +50,13 @@
 				}
 				else
 				{
-					echo "Question failed";
-					$this->load->view('question');
+					echo "Registeration failed";
+					$this->load->view('register');
 				}
 			}
 			else
 			{
-				$this->load->view('question');
+				$this->load->view('register');
 			}
 		}
 	}
