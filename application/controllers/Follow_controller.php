@@ -12,18 +12,33 @@
 		}
 		function index()
 		{
-			echo "in";
-		}
-		function follow()
-		{
-			if(isset($_POST['user_id']))
+			if(isset($_POST['user_id']) && $_POST['name'] == 'follow')
 			{
-				var_dump($_POST);
+				$data = array($_POST['tag_id'], $_POST['user_id']);
+				if($this->Follows->insert($data))
+					echo "Followed";
+				else
+					echo "Follow failed";
+			}
+			elseif (isset($_POST['user_id']) && $_POST['name'] == 'unfollow') {
+				$data = array(
+					'tag_id' => $_POST['tag_id'],
+					'user_id' => $_POST['user_id']
+					);
+				if($this->Follows->delete($data))
+				{
+					echo "Unfollowed";
+				}
+				else
+					echo "UnFollow failed";	
 			}
 			else
 			{
 				echo ":(";
 			}
+		}
+		function add_follow()
+		{
 		}
 	}
 ?>

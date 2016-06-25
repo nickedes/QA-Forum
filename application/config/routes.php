@@ -53,6 +53,7 @@ $route['register'] = 'register';
 $route['upload'] = 'upload';
 $route['question'] = 'question_controller';
 $route['tag'] = 'tag_controller';
+$route['follow'] = 'follow_controller';
 $route['tag/get'] = 'tag_controller/get';
 $route['answer'] = 'answer_controller';
 $route['answer/post_answer'] = 'answer_controller/post_answer';
