@@ -1,7 +1,8 @@
 $('#follow').click(function (e) {
 	var user_id = $('#user_id').val();
 	var tag_id = $('#tag_id').val();
-	var name = $("#follow").val();
+    var name = $("#follow").val();
+	var users = $("#users").val();
 
 	$.ajax({
         type: "POST",
@@ -14,6 +15,8 @@ $('#follow').click(function (e) {
         success: function(response) {
         	$("#follow").attr("disabled", true);
         	$("#unfollow").attr("disabled", false);
+            $("#users").val(parseInt($("#users").val()) + 1);
+            console.log($("#users").val());
             console.log(response);
         },
         error: function(response) {

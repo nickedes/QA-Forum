@@ -14,6 +14,8 @@ $('#unfollow').click(function (e) {
         success: function(response) {
             $("#unfollow").attr("disabled", true);
             $("#follow").attr("disabled", false);
+            $("#users").val($("#users").val()-1);
+            console.log($("#users").val());
             console.log(response);
         },
         error: function(response) {

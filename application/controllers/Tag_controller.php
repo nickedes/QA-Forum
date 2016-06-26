@@ -23,6 +23,7 @@
 					'user_id' => 12
 					);
 				$relation = $this->Follows->check($data);
+				$users = $this->Follows->count($data['tag_id']);
 				if (!$result)
 				{
 					echo "You supplied wrong Tag id.";
@@ -31,7 +32,8 @@
 				{
 					$data = array(
 						'result' => $result,
-						'relation' => $relation
+						'relation' => $relation,
+						'users' => $users
 						);
 					$this->load->view('tag_details', $data);
 					// var_dump($result);

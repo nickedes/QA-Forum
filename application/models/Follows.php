@@ -51,5 +51,22 @@
 				return 0;
 			}
 		}
+
+		// get no. of Users for the tag id.
+		function count($tag_id)
+		{
+			try {
+				$sql = $this->conn_id->query("SELECT count(user_id) FROM follows where tag_id=".$tag_id." group by tag_id");
+				$row = $sql->fetchALL(PDO::FETCH_ASSOC);
+				// print_r($row[0]['count(user_id)']);
+				if(count($row) > 0)
+					return $row[0]['count(user_id)'];
+				else
+					return 0;
+				
+			} catch (PDOException $e) {
+				
+			}
+		}
 	}
 ?>
