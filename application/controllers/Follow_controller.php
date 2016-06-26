@@ -8,6 +8,8 @@
 		function __construct()	
 		{
 			parent::__construct();
+			// http://stackoverflow.com/a/27280939
+			header('Access-Control-Allow-Origin: *');
 			$this->load->model('Follows');
 		}
 		function index()

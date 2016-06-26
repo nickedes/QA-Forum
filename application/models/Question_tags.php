@@ -24,5 +24,17 @@
 				// Todo
 			}
 		}
+		function get_ByTagID($tag_id)
+		{
+			try {
+				$sql = $this->conn_id->query("select q_id from question_tags where tag_id = ".$tag_id);
+				if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
+					return $result;
+				else
+					return 0;				
+			} catch (PDOException $e) {
+				return 0;	
+			}
+		}
 	}
 	?>

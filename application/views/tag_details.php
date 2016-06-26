@@ -15,6 +15,7 @@
 	 	<button type="submit" id="follow" name="link" value="follow" <?php if($relation) echo "disabled"?>>Follow</button> 
 	 	<button type="submit" id="unfollow" name="link" value="unfollow" <?php if(!$relation) echo "disabled"?>>Unfollow</button>
 	</form>
+	
 </body>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/follow.js"></script>
