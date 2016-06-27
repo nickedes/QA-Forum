@@ -12,12 +12,12 @@
 			$this->load->model('Questions');
 			$this->load->model('Question_tags');
 		}
-		function get()
+		function get($id = NULL)
 		{
-			if (isset($_GET['id']))
+			if ($id != NULL)
 			{
 				// get tag by id
-				$result = $this->Tags->get($_GET['id']);
+				$result = $this->Tags->get($id);
 				if (!$result)
 				{
 					echo "You supplied wrong Tag id.";
@@ -26,9 +26,9 @@
 				{
 					// get follow relations with the tag_id
 					$data = array(
-						'tag_id' => $_GET['id'],
+						'tag_id' => $id,
 						// Todo: take user_id from session
-						'user_id' => 12
+						'user_id' => $this->session->userdata('user_id')
 						);
 					$relation = $this->Follows->check($data);
 					$users = $this->Follows->count($data['tag_id']);
