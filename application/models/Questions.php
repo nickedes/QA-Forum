@@ -27,6 +27,8 @@
 		function get_sorted($questions)
 		{
 			print_r($questions);
+			$sql = $this->conn_id->query("select * from questions order by created_time DESC");
+			// ..
 			return 0;
 		}
 	}

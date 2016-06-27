@@ -9,11 +9,15 @@ class success extends CI_Controller {
 
  function index()
  {  echo "asdasd";
-   if($this->session->userdata('logged_in'))
+ //echo $this->session->userdata('name');
+   if($this->session->userdata('email'))
    {
-     $session_data = $this->session->userdata('logged_in');
-     $data['email'] = $session_data['email'];
-     $this->load->view('success_view', $data);
+   //  $session_data = $this->session->userdata('logged_in');
+     //$data['name'] = $this->session->userdata('name');
+     $this->load->view('profile_self_view');
+    // $this->load->helper('url');
+     //If no session, redirect to login page
+    // redirect('profilepage', 'refresh');
    }
    else
    { $this->load->helper('url');

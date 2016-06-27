@@ -3,32 +3,36 @@
 class valid extends CI_Controller{
 
 	function __construct()
-   {  
-      parent::__construct();
-   }
+ {  
+  parent::__construct();
+}
 
 function index()
 { 
  $data = array(
   "email" => $_POST['email'],
-  'password' => $_POST['password']
+  'password' => md5($_POST['password'])
   );
  
 
  $this->load->model("users");
  if($this->users->check($data)== TRUE)
  {
-  
-   $this->session->set_userdata('logged_in', $data);
-    $this->load->helper('url');
+   $sess_data = $this->users->getuser($data['email']);
+   print_r($sess_data[0]);
+   $this->session->set_userdata($sess_data[0]);
+   $this->load->helper('url');
    redirect('success');
-}
-else
+ }
+ else
  { 
 
-/*Redirect the user to some site*/ 
-$this->load->view('form');
+  /*Redirect the user to some site*/ 
+  $this->load->view('form');
 }
 
+
 }
+
+
 }
