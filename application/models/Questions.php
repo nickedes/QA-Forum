@@ -26,9 +26,20 @@
 		}
 		function get_sorted($questions)
 		{
-			print_r($questions);
-			$sql = $this->conn_id->query("select * from questions order by created_time DESC");
-			// ..
+			$q_ids = array();
+			foreach ($questions as $q_id) {
+				array_push($q_ids, $q_id['q_id']);
+			}
+			$questionMarks = join(",", array_pad(array(), count($q_ids), "?"));
+			$sql = $this->conn_id->prepare("SELECT * FROM questions WHERE q_id IN ($questionMarks) order by creation_time DESC");
+			$sql->execute($q_ids);
+			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
+			{
+				// print_r($result);
+				return $result;
+			}
+			else
+				return 0;
 			return 0;
 		}
 	}

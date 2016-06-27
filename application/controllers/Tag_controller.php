@@ -36,10 +36,6 @@
 					$ques_data = array();
 					if($questions)
 						$ques_data = $this->Questions->get_sorted($questions);
-					// foreach ($questions as $question) {
-					// 	$ques_data[$question['q_id']] = $this->Questions->get($question['q_id'])[0];
-					// }
-					// print_r($ques_data);
 					$data = array(
 						'result' => $result,
 						'relation' => $relation,

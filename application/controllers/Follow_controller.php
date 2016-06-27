@@ -39,8 +39,5 @@
 				echo ":(";
 			}
 		}
-		function add_follow()
-		{
-		}
 	}
 ?>
