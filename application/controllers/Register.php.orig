@@ -1,6 +1,6 @@
 <?php 
 	/**
-	* 
+		* 
 	*/
 	class Register extends CI_Controller
 	{
@@ -22,7 +22,6 @@
 			{
 				// Validations here
 				// TODO: Add validations in a Libraray.
-
  				$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
    				
    				$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
@@ -53,6 +52,9 @@
 					if ($this->Users->insert($data))
 					{
 						echo "the user is entered successfully.";
+<<<<<<< HEAD
+						$this->load->view('upload');
+=======
 						if ($this -> send_verification_mail($name,$email,$hash_key))
 						{
 							echo "The mail has been sent to your email ".$email.". Please verify your email to proceed.";
@@ -61,11 +63,16 @@
 						{
 							echo "Something went wrong while sending you a mail.";
 						}
+>>>>>>> 1c3447d4346f6d1d9dd7a550aa01f9f09bc53477
 					}		
 				}
 				else
 				{
+<<<<<<< HEAD
+					echo "Registeration failed";
+=======
 					echo "Registration failed";
+>>>>>>> 1c3447d4346f6d1d9dd7a550aa01f9f09bc53477
 					$this->load->view('register');
 				}
 			}
