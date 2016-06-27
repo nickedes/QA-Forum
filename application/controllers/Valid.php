@@ -18,8 +18,9 @@ function index()
  $this->load->model("users");
  if($this->users->check($data)== TRUE)
  {
-
-   $this->session->set_userdata('logged_in', $data);
+   $sess_data = $this->users->getuser($data['email']);
+   print_r($sess_data[0]);
+   $this->session->set_userdata($sess_data[0]);
    $this->load->helper('url');
    redirect('success');
  }
@@ -31,10 +32,6 @@ function index()
 }
 
 
-    function new_password()
-    {
-      echo "helloo new password";
-    }
 }
 
 

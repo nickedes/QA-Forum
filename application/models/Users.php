@@ -4,11 +4,14 @@
 	*/
 	class Users extends MY_Model
 	{
+
 		// private $table_name = "users";
 		function __construct()
 		{	
+
 			// parent::__construct($this->table_name);
 			parent::__construct('users');
+			$this->load->library('Connection');
 		}
 
 		function insert($data)
@@ -46,11 +49,50 @@
 			
 		}
 
-		 function verify_success($user_id)
+		function update($value)
+		{
+			$value = "'".$value."'";
+			// Todo: Where clause to include user_id
+			$sql = $this->conn_id->query('select * from users ORDER BY user_id DESC LIMIT 1');
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			// print_r($r[0]['user_id']);
+			$sql = $this->conn_id->prepare("UPDATE users SET profilepic = ".$value." where user_id = ?");
+			$sql->execute(array($r[0]['user_id']));
+			$affected_rows = $sql->rowCount();
+			echo $affected_rows;
+			return $affected_rows;
+		}
+        
+        function reset_pass($email,$pass)
+		{
+			$statement = $this->conn_id->prepare("update users set passwd  = :pass_id where email = :email_id");
+			return $statement->execute(array(':pass_id' => md5($pass),':email_id' => $email));
+		}
+
+		function verify_success($user_id)
 		{
 			$statement = $this->conn_id->prepare("update users set is_active = 1 where user_id = :user_id");
 			return $statement->execute(array(':user_id' => $user_id));
 		}
+
+		function userexist($email) //for forgot password
+		{
+			$email = "'".$email."'";
+			
+			$sql = $this->conn_id->query("select * from users where email = ".$email );
+				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			if(!empty($r))
+				{
+					$sql = $this->conn_id->query("select name,hash_key from users where email = ".$email );
+				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+		return $r;
+
+				}
+			else
+				return FALSE;
+
+		}
+
 
 
 		function check_hash_key($hash_key)
@@ -82,6 +124,74 @@
 			}
 		}
 
-		
+		function getuser($email)
+		{
+				$email = "'".$email."'";
+			
+			$sql = $this->conn_id->query("select * from users where email = ".$email );
+				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+				return $r;
+		}
+
+		function get_questions($user_id)
+		{
+
+			$user_id = "'".$user_id."'";
+			
+			$sql = $this->conn_id->query("select * from questions where user_id = ".$user_id );
+				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+				//return $r;
+				return($r);
+
+		}
+
+		function get_answers($user_id)
+		{
+
+			$user_id = "'".$user_id."'";
+			
+			$sql = $this->conn_id->query("select * from answers where user_id = ".$user_id );
+				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+				//return $r;
+				return($r);
+
+		}
+
+		function get_tags($user_id)
+		{
+echo "JOIN not working";
+			$user_id = "'".$user_id."'";
+			
+			$sql = $this->conn_id->query("select * from follows join tags  where user_id = ".$user_id);
+				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+				//return $r;
+				return($r);
+
+		}
+
+		function edit_details($data)
+		{
+			////echo "haa aaya";
+			//echo $this->session->userdata['email'];
+			 $email = $this->session->userdata['email'];
+			//print_r($data);
+			$value = "'".$data['name']."'";
+			$sql = $this->conn_id->prepare("UPDATE users SET name = ".$value." where email = ?");
+			$sql->execute(array($email));
+
+			$value = "'".$data['mobileno']."'";
+			$sql = $this->conn_id->prepare("UPDATE users SET mobileno = ".$value." where email = ?");
+			$sql->execute(array($email));
+
+			$value = "'".$data['password']."'";
+			$sql = $this->conn_id->prepare("UPDATE users SET password = ".$value." where email = ?");
+			$sql->execute(array($email));
+
+			$value = "'".$data['about']."'";
+			$sql = $this->conn_id->prepare("UPDATE users SET about = ".$value." where email = ?");
+			$sql->execute(array($email));
+			echo "Profile Details Updated";
+			
+		}
 	}
 ?>

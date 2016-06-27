@@ -2,13 +2,18 @@
 	/**
 	* 
 	*/
-	class Question extends CI_Controller
+	class Question_controller extends CI_Controller
 	{
 		
 		function __construct()	
 		{
+
 			parent::__construct();
+			$this->load->helper(array('form'));
 			$this->load->library('form_validation');
+			$this->load->helper('url');
+			$this->load->helper('security');
+			$this->load->model('Questions');
 		}
 		function index()
 		{
@@ -24,6 +29,30 @@
 				$this->form_validation->set_rules('tags1', 'Tag 1', 'trim|required|min_length[1]');
 
 				$this->form_validation->set_rules('tags2', 'Tag 2', 'trim|required|min_length[1]');
+
+				if($this->form_validation->run() == TRUE)
+   				{
+					$data = array(
+							$_POST['title'],
+							$_POST['describe'],
+							1
+							);
+					if ($this->Questions->insert($data))
+					{
+							echo "the user is entered successfully.";
+					}
+				}
+				else
+				{
+					// echo "Registration failed";
+					echo "string";
+					$this->load->view('question');
+				}
+			}
+			else
+			{
+				echo "Registration failed";
+				$this->load->view('question');
 			}
 		}
 	}

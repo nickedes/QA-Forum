@@ -4,7 +4,11 @@
 	<title>POST A QUESTION</title>
 </head>
 <body>
-	<form method="POST" action="<?php echo site_url(); ?>/question">
+<?php
+	$this->load->library('form_validation');
+	echo validation_errors();
+	echo form_open('question'); 
+?>
 		<label>Title</label>
 		<input type="text" name="title">
 		<br>
@@ -17,7 +21,7 @@
 		<label>Tags</label>
 		<input type="text" name="tags2">
 		<br>
-		<button type="button" name="Submit">POST</button>
+		<button type="submit" name="submit">POST</button>
 	</form>
 </body>
 </html>

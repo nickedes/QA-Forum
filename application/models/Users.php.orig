@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 	/**
 	* 
 	*/
@@ -6,9 +6,8 @@
 	{
 <<<<<<< HEAD
 =======
-		// $this->conn_id = parent::get_pdo();
->>>>>>> 7cb28024e97908ca09bfee38e22bd26c9b8d06dc
 
+>>>>>>> 5b5ee84ce59d8e325e3cc376e27501087c75e630
 		// private $table_name = "users";
 		function __construct()
 		{	
@@ -31,14 +30,6 @@
 
 		function check($data)
 		{
-<<<<<<< HEAD
-			$data['email'] = "'".$data['email']."'";
-			$data['password'] = "'".$data['password']."'";
-
-			$sql = $this->conn_id->query('select * from '.$this->table_name. ' WHERE email = '.$data['email'].' and passwd = '.$data['password']);
-			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			return $r;
-=======
 			$this->load->library('form_validation');
  
    			$this->form_validation->set_rules('email', 'Email', 'valid_email|trim|required');
@@ -57,9 +48,47 @@
 			else
 				return FALSE;
 			
->>>>>>> 7cb28024e97908ca09bfee38e22bd26c9b8d06dc
 		}
 
+<<<<<<< HEAD
+		 function verify_success($user_id)
+		{
+			$statement = $this->conn_id->prepare("update users set is_active = 1 where user_id = :user_id");
+			return $statement->execute(array(':user_id' => $user_id));
+		}
+
+
+		function check_hash_key($hash_key)
+		{
+			$statement = $this->conn_id->prepare("select user_id,is_active from users where hash_key = :hash_key");
+			$statement->execute(array(':hash_key' => $hash_key));
+			$row = $statement->fetch(); // Use fetchAll() if you want all results, or just iterate over the statement, since it implements Iterator	
+			if (isset($row['user_id']))
+			{
+				if ( $row['is_active'] == 1 )
+				{
+					echo "You are already a verified user.";
+				}
+				else
+				{
+					if ( $this->verify_success($row['user_id']) == TRUE )
+					{
+						echo "Now you are verified user.";
+					}
+					else
+					{
+						echo "Something went wrong man.";
+					}
+				}
+			}
+			else
+			{
+				echo "Looks like the key doesn't exist.";
+			}
+		}
+
+		
+=======
 		function update($value)
 		{
 			$value = "'".$value."'";
@@ -73,5 +102,6 @@
 			echo $affected_rows;
 			return $affected_rows;
 		}
+>>>>>>> 5b5ee84ce59d8e325e3cc376e27501087c75e630
 	}
 ?>
