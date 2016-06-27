@@ -5,6 +5,11 @@ class Profilepage extends CI_Controller{
 	function __construct()
 	{
 		parent::__construct();
+		if(!isset($this->session->userdata['email']))
+ {
+ 	$this->load->helper('url');
+ 	redirect('login');
+ }
 		$this->load->model('users');
 	}
 
@@ -25,7 +30,10 @@ class Profilepage extends CI_Controller{
 		$questions= $this->users->get_questions($this->session->userdata['user_id']);
 		//print_r($questions);
 		$answers= $this->users->get_answers($this->session->userdata['user_id']);
+		//print_r($answers);
+		//echo "<br><br>";
   		$tags= $this->users->get_tags($this->session->userdata['user_id']);
+  		//print_r($tags);
   		$data = array(
   			'questions' => $questions,
   			'answers' => $answers,

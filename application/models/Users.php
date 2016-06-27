@@ -148,24 +148,26 @@
 		function get_answers($user_id)
 		{
 
-			$user_id = "'".$user_id."'";
-			
-			$sql = $this->conn_id->query("select * from answers where user_id = ".$user_id );
-				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-				//return $r;
-				return($r);
+		
+				$query = "SELECT q.title, q.description, q.creation_time,a.answer_text,a.answer_time FROM questions as q ";
+$query .= "LEFT JOIN answers as a ON a.q_id=q.q_id  ";
+$query .= "where a.user_id=".$user_id;
+$sql = $this->conn_id->prepare($query);
+  $sql->execute();
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			//print_r($r);
+return($r);
 
 		}
 
 		function get_tags($user_id)
 		{
-echo "JOIN not working";
-			$user_id = "'".$user_id."'";
-			
+
 			$query = "SELECT f.user_id, f.tag_id, t.name FROM follows as f ";
 $query .= "LEFT JOIN tags AS t ON f.tag_id=t.tag_id ";
 $sql = $this->conn_id->prepare($query);
  echo $sql->execute();
+
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 				
 return($r);

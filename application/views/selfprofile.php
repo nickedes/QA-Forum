@@ -57,9 +57,13 @@ $link= site_url('question/get/'.$qid);
 <?php
     
 foreach($answers as $answer) {
- $aid = $answer['a_id'];
-$link= site_url('answer/get/'.$aid);
-        echo "<a href='$link'>"."<strong>Answer : ".$answer['answer_text']."</strong><br></a>";
+ $qid = $question['q_id'];
+$link= site_url('question/get/'.$qid);
+        echo "<a href='$link'>"."<strong>Title : ".$question['title']."</strong><br></a>";
+        echo "Description : ".$question['description']."<br>";
+        echo "Creation time: ".$question['creation_time']."<br> ";
+
+      echo "<strong>Answer : ".$answer['answer_text']."</strong><br>";
        echo "Answer time: ".$answer['answer_time']."<br> <br>";
       } 
 
