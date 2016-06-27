@@ -12,7 +12,7 @@
 	<form method="POST" action="<?php echo site_url(); ?>/answer/post_answer" id="post_answer">
 		<textarea name="textarea" id="answer" rows="10" cols="30">Post Answer</textarea>
 		<!-- Get session user id -->
-		<input type="hidden" id="user_id" name="user_id" value="1">
+		<input type="hidden" id="user_id" name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
 		<input type="hidden" id="q_id" name="q_id" value="<?php echo $result[0]['q_id'] ?>">
 		<br>
 		<button type="submit" id="answer_submit">Submit</button>
