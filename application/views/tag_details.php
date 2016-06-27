@@ -23,9 +23,14 @@
 				# code...
 				// print_r($q);
 				echo "<div id=".$q['q_id'].">";
+				echo "<a href=".site_url()."/question/get/".$q['q_id'].">";
 				echo "<p>".$q['title']."</p>";
-				echo "</div>";
+				echo "</a> </div>";
 			}
+		}
+		else
+		{
+			echo "<br><br> No questions..";
 		}
 	 ?>
 	

@@ -50,20 +50,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['profile_self_view'] = 'profile_self_view';
+
+$route['users'] = 'users';
+
+$route['register'] = 'register';
+
 $route['email'] = 'sendMail/sendTestMail';
 $route['verifyemail']= 'verifyemail';
-$route['register'] = 'register';
-$route['upload'] = 'upload';
+
 $route['question'] = 'question_controller';
+$route['question/get'] = 'question_controller/get';
+$route['question/get/(:num)'] = 'question_controller/get/$1';
+
+$route['upload'] = 'upload';
+
 $route['tag'] = 'tag_controller';
-$route['follow'] = 'follow_controller';
 $route['tag/get'] = 'tag_controller/get';
+$route['tag/get/(:num)'] = 'tag_controller/get/$1';
+
+$route['follow'] = 'follow_controller';
+
 $route['answer'] = 'answer_controller';
 $route['answer/post_answer'] = 'answer_controller/post_answer';
-$route['question/get'] = 'question_controller/get';
+
 $route['success'] = 'success';
+
 $route['default_controller'] = 'home';
+
 $route['404_override'] = '';
+
 $route['forgotpassword'] = 'Forgotpassword';
+
 $route['translate_uri_dashes'] = FALSE;
-$route['users'] = 'users';

@@ -19,7 +19,7 @@ class success extends CI_Controller {
    {
    //  $session_data = $this->session->userdata('logged_in');
      //$data['name'] = $this->session->userdata('name');
-     $this->load->view('profile_self_view');
+     $this->load->view('question');
     // $this->load->helper('url');
      //If no session, redirect to login page
     // redirect('profilepage', 'refresh');

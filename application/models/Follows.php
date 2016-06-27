@@ -41,7 +41,7 @@
 			try
 			{
 				$sql = $this->conn_id->prepare("DELETE FROM follows WHERE tag_id = '".$data['tag_id']."' and user_id = '".$data['user_id']."'");
-				$sql->execute($data);
+				$sql->execute();
 				$affected_rows = $sql->rowCount();
 				return $affected_rows;
 			}

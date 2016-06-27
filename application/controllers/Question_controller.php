@@ -62,7 +62,7 @@
 						$title,
 						$description,
 						//Todo: User_id from session 
-						12
+						$this->session->userdata('user_id')
 						);
 
 					$request = $this->Questions->insert($data);
@@ -108,22 +108,20 @@
 				$this->load->view('question');
 			}
 		}
-		function get()
+		function get($id = NULL)
 		{
-			if (isset($_GET['id']))
+			if ($id != NULL)
 			{
-
-				$result = $this->Questions->get($_GET['id']);
+				$result = $this->Questions->get($id);
 				$pic_path = $this->Users->get_Pic($result[0]['user_id']);
 				// print_r($pic_path);
-
 				if (!$result)
 				{
 					echo "You supplied wrong question id.";
 				}
 				else
 				{
-					$answers = $this->Answers->get_byQId($_GET['id']);
+					$answers = $this->Answers->get_byQId($id);
 					$data = array(
 						'result' => $result,
 						'answers' => $answers,

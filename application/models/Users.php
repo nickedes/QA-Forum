@@ -205,7 +205,7 @@ return($r);
 
 		function get_Pic($id)
 		{
-			$sql = $this->conn_id->query('select profilepic from users where user_id ='.$id);
+			$sql = $this->conn_id->query('select profilepic from users where user_id ='.(int)$id);
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 			// print_r($r[0]);
 			return $r;
