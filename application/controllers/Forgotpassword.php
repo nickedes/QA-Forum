@@ -54,7 +54,7 @@ class Forgotpassword extends CI_Controller {
 
 		}
 		else
-		{echo "sadasd";
+		{echo "Errrrrorrrrrr!!!!!!!!!!!!!";
 			//$this->load->view('forgotpassword');
 		}
 
