@@ -162,10 +162,17 @@
 echo "JOIN not working";
 			$user_id = "'".$user_id."'";
 			
-			$sql = $this->conn_id->query("select * from follows join tags  where user_id = ".$user_id);
+			$query = "SELECT f.user_id, f.tag_id, t.name FROM follows as f ";
+$query .= "LEFT JOIN tags AS t ON f.tag_id=t.tag_id ";
+$sql = $this->conn_id->prepare($query);
+ echo $sql->execute();
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+				
+return($r);
+			/*$sql = $this->conn_id->query("select * from follows join tags  where user_id = ".$user_id);
 				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 				//return $r;
-				return($r);
+				return($r);*/
 
 		}
 
@@ -200,6 +207,12 @@ echo "JOIN not working";
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 			// print_r($r[0]);
 			return $r;
+		}
+
+
+		function questionpage($q_id)
+		{
+			echo "give question id ";
 		}
 	}
 ?>

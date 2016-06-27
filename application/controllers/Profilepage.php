@@ -21,7 +21,28 @@ class Profilepage extends CI_Controller{
 
 	function self()
 	{
-		$this->load->view('selfprofile');
+		$this->load->model('users');
+		$questions= $this->users->get_questions($this->session->userdata['user_id']);
+		//print_r($questions);
+		$answers= $this->users->get_answers($this->session->userdata['user_id']);
+  		$tags= $this->users->get_tags($this->session->userdata['user_id']);
+  		$data = array(
+  			'questions' => $questions,
+  			'answers' => $answers,
+  			'tags' => $tags
+  			);
+  		print_r($tags);
+  		// $data = array(
+  		// 	'title' => $questions['title'],
+  		// 	'description' => $questions['title'],
+  		// 	'creation_time' => $questions['creation_time'],
+  		// 	'answer_text' => $answers['answer_text'],
+  		// 	'answer_time' => $answers['answer_time'],
+  		// 	'tag_name' => $tags['name']
+  		// 	);
+  		// print_r($data);
+ 
+		$this->load->view('selfprofile',$data);
 	}		
 
 	function update_details()
@@ -30,6 +51,14 @@ if( $formSubmit == 'cancel' )
     {
     	$this->load->helper('url');
          	redirect('success');
+    }
+    else 
+    if ( $formSubmit == 'logout')
+    {echo "ABout to logout !!!";
+    	 $this->session->unset_userdata('email');
+   session_destroy();
+    $this->load->helper('url');
+   redirect('login', 'refresh');
     }
 	//echo $this->session->userdata('email');
 		$data = array(

@@ -11,7 +11,7 @@ $this->load->library('form_validation');
 echo validation_errors(); 
    echo form_open('profilepage/update_details');
    ?>
-
+<button name="submitform" value="logout">LOGOUT</button>
 <form >
 User Name&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  : &nbsp; &nbsp;  <input type="text"  value="<?php echo $this->session->userdata['name'] ?>" name="name" ><br>
 
@@ -32,52 +32,51 @@ About Me&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; &nbsp; <input type="text" 
 
 <h1>Activities</h1>
 
+
+
 <div>
 <h2>Questions</h2>
-<?php
-	$this->load->model('users');
-	$data= $this->users->get_questions($this->session->userdata['user_id']);
-  ?>
-
 
 <?php
-    foreach($data as $item) {
-        echo "<strong>".$item['title']."</strong><br>".$item['description']."<br> ".$item['creation_time']."<br><br>";
-    }
+    
+foreach($questions as $question) {
+ $qid = $question['q_id'];
+$link= site_url('question/get/'.$qid);
+        echo "<a href='$link'>"."<strong>Title : ".$question['title']."</strong><br></a>";
+        echo "Description : ".$question['description']."<br>";
+        echo "Creation time: ".$question['creation_time']."<br> <br>";
+      } 
+
 ?>
  </div>
 
+
 <div>
 <h2>Answers</h2>
-<?php
-	$this->load->model('users');
-	$data= $this->users->get_answers($this->session->userdata['user_id']);
-  ?>
-
 
 <?php
-    foreach($data as $item) {
-        echo $item['answer_text']."<br> ".$item['answer_time']."<br><br>";
-    }
+    
+foreach($answers as $answer) {
+ $aid = $answer['a_id'];
+$link= site_url('answer/get/'.$aid);
+        echo "<a href='$link'>"."<strong>Answer : ".$answer['answer_text']."</strong><br></a>";
+       echo "Answer time: ".$answer['answer_time']."<br> <br>";
+      } 
+
 ?>
 </div>
-
-
 
 <div>
 <h2>Tags</h2>
 <?php
-	$this->load->model('users');
-	$data= $this->users->get_tags($this->session->userdata['user_id']);
-  ?>
+	foreach($tags as $tag) {
+ $tag_id = $tag['tag_id'];
+$link= site_url('tag/get/'.$tag_id);
+        echo "<a href='$link'>"."<strong>".$tag['name']."</strong><br><br></a>";
+     } 
 
-
-<?php
-    foreach($data as $item) {
-        echo $item['tag_name']."<br><br>";
-    }
-?>
+?> 
 </div>
-
+ 
 </body>
 </html>
