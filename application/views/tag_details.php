@@ -15,6 +15,19 @@
 	 	<button type="submit" id="follow" name="link" value="follow" <?php if($relation) echo "disabled"?>>Follow</button> 
 	 	<button type="submit" id="unfollow" name="link" value="unfollow" <?php if(!$relation) echo "disabled"?>>Unfollow</button>
 	</form>
+	<?php
+		if($questions)
+		{
+			echo "Questions : ";
+			foreach ($questions as $q) {
+				# code...
+				// print_r($q);
+				echo "<div id=".$q['q_id'].">";
+				echo "<p>".$q['title']."</p>";
+				echo "</div>";
+			}
+		}
+	 ?>
 	
 </body>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>

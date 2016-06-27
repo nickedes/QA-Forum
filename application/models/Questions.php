@@ -24,5 +24,10 @@
 				// Todo
 			}
 		}
+		function get_sorted($questions)
+		{
+			print_r($questions);
+			return 0;
+		}
 	}
 ?>
