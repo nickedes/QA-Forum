@@ -10,7 +10,39 @@
 
 	   	function index() {
 	   		// print_r($this->Users->get_data());
-	   		$this->load->view('register');
+	   		//$data = 
+	   		$this->load->model('questions');
+	   		$this->load->model('answers');
+	   		$rec_questions= $this->questions->get_allq_sorted();
+	   		$int_questions= $this->questions->get_all_interestedq($this->session->userdata['user_id']);
+	   		//$this->answers->get_byQId();
+	   		//echo "rahul";
+
+	   		//print_r($int_questions);
+	   		$r = array(
+	   			"rec_questions" => $rec_questions,
+	   			"int_questions" => $int_questions
+	   			);
+	   		$this->load->view('homeview',$r);
+	   	
+	   	}
+
+
+	   	function butn_redirection() {
+		$formSubmit = $this->input->post('submitform');
+		if( $formSubmit == 'edit' )
+  		  {
+   		 	$this->load->helper('url');
+         	redirect('profilepage/self');
+  		  }
+  	  else 
+    if ( $formSubmit == 'logout')
+    {echo "ABout to logout !!!";
+    	 $this->session->unset_userdata('email');
+   session_destroy();
+    $this->load->helper('url');
+   redirect('login', 'refresh');
+    }
 	   	}
 	    
 	}

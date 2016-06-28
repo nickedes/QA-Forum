@@ -16,13 +16,12 @@ class success extends CI_Controller {
  {  echo "asdasd";
  //echo $this->session->userdata('name');
    if($this->session->userdata('email'))
-   {
-   //  $session_data = $this->session->userdata('logged_in');
-     //$data['name'] = $this->session->userdata('name');
-     $this->load->view('question');
-    // $this->load->helper('url');
+   {$this->load->helper('url');
      //If no session, redirect to login page
-    // redirect('profilepage', 'refresh');
+     redirect('home', 'refresh');
+  
+   //  $this->load->view('profile_self_view');
+    
    }
    else
    { $this->load->helper('url');

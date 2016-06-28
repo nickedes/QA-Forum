@@ -20,6 +20,7 @@
 		Password : <input type="password" name="password" id="password"><br>
 		<button name="submit" type="submit">Login</button>
 	</form>
-	<a href="forgotpassword">Forgot Password?</a>
+	<a href="forgotpassword">Forgot Password?</a><br>
+	<a href="register">Register</a>
 </body>
 </html>

@@ -39,7 +39,7 @@ class Profilepage extends CI_Controller{
   			'answers' => $answers,
   			'tags' => $tags
   			);
-  		print_r($tags);
+  		//print_r($tags);
   		// $data = array(
   		// 	'title' => $questions['title'],
   		// 	'description' => $questions['title'],

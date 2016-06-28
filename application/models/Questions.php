@@ -42,5 +42,31 @@
 				return 0;
 			return 0;
 		}
+
+		function get_allq_sorted()
+		{
+			$sql = $this->conn_id->prepare("SELECT * FROM questions order by creation_time DESC");
+			$sql->execute();
+			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
+			{
+				// print_r($result);
+				return $result;
+			}
+			else
+				return 0;
+		}
+
+		function get_all_interestedq($user_id)
+		{
+			$query = "SELECT q.title,q.description, q.creation_time,t.name as tagname,u.name as username,q.q_id FROM questions as q ";
+			$query .= "INNER JOIN follows as f INNER JOIN question_tags as qt  INNER JOIN tags as t INNER JOIN users as u ON f.tag_id=qt.tag_id and qt.q_id = q.q_id and t.tag_id = f.tag_id and u.user_id = f.user_id ";
+			$query .= "where f.user_id=".$user_id ;
+			$sql = $this->conn_id->prepare($query);
+			$sql->execute();
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			print_r($r);
+			echo "rahul";
+			return($r);
+		}
 	}
-?>
+	?>

@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['profile_self_view'] = 'profile_self_view';
 
 $route['users'] = 'users';
+$route['home'] = 'home';
 
 $route['register'] = 'register';
 
