@@ -21,7 +21,8 @@
 			if (isset($_POST['submit']))
 			{
 				// Validations from library
-				if($this->validation->register_validations() == TRUE)
+				var_dump($_POST);
+				if($this->validation->register_validations($_POST) == TRUE)
    				{
    					$email = $_POST['email'];
 					$name = $_POST['name'];

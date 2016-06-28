@@ -4,11 +4,8 @@
 	<title>Question Detail page</title>
 </head>
 <body>
-	<!-- <?php var_dump($profile[0]['profilepic']);?> -->
 	<?php
-		$data = $this->Users->get($this->Questions->get($result[0]['q_id'])[0]['user_id']);
-		
-		$this->load->view('thumbnail_view.php', array('data'=> $data));
+		$this->load->view('thumbnail_view.php');
 	 ?>
 	<h1>Title: <?php echo $result[0]['title'] ?></h1>
 	<h2>Description: <?php echo $result[0]['description'] ?></h2>

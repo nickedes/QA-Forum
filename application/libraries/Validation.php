@@ -17,41 +17,36 @@
 
         }
 
-        public function Email()
+        public function Email($email)
         {
-            $this->CI->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
+            $this->CI->form_validation->set_rules($email, 'email', 'trim|required|valid_email|xss_clean');
 			return $this->CI->form_validation->run();
         }
 
-        public function password()
+        public function password($password)
         {
-			$this->CI->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
+			$this->CI->form_validation->set_rules($password, 'Password', 'trim|min_length[6]|required|xss_clean');
         	return $this->CI->form_validation->run();
         }
 
-        public function Username()
+        public function Username($name)
         {
-			$this->CI->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]');
+			$this->CI->form_validation->set_rules($name, 'Name', 'trim|required|min_length[1]');
 			return $this->CI->form_validation->run();
         }
 		
-		public function Mobile()
+		public function Mobile($mobileno)
 		{
-			$this->CI->form_validation->set_rules('mobileno', 'Mobile', 'required|exact_length[10]');
+			$this->CI->form_validation->set_rules($mobileno, 'Mobile', 'required|exact_length[10]');
 			return $this->CI->form_validation->run();
-		}
-		public function confirm_password()
-		{
-			$this->CI->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
-			return $this->CI->form_validation->run();			
 		}        
-        public function register_validations()
+        public function register_validations($data)
         {
-			$this->CI->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
-			$this->CI->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
-			$this->CI->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]');
-			$this->CI->form_validation->set_rules('mobileno', 'Mobile', 'required|exact_length[10]');
-			$this->CI->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
+			$this->CI->form_validation->set_rules($data['email'], 'email', 'trim|required|valid_email|xss_clean');
+			$this->CI->form_validation->set_rules($data['password'], 'Password', 'trim|min_length[6]|required|xss_clean');
+			$this->CI->form_validation->set_rules($data['name'], 'Name', 'trim|required|min_length[1]');
+			$this->CI->form_validation->set_rules($data['mobileno'], 'Mobile', 'required|exact_length[10]');
+			$this->CI->form_validation->set_rules($data['confirm_password'], 'Confirm password', 'trim|required|matches[password]');
         	return $this->CI->form_validation->run();
         }
 

@@ -113,8 +113,6 @@
 			if ($id != NULL)
 			{
 				$result = $this->Questions->get($id);
-				$pic_path = $this->Users->get_Pic($result[0]['user_id']);
-				// print_r($pic_path);
 				if (!$result)
 				{
 					echo "You supplied wrong question id.";
@@ -122,10 +120,13 @@
 				else
 				{
 					$answers = $this->Answers->get_byQId($id);
+					// data of profile photo and name
+					$original_question_poster = $this->Users->get($result[0]['user_id']);
 					$data = array(
 						'result' => $result,
 						'answers' => $answers,
-						'profile' => $pic_path
+						// 'profile' => $pic_path,
+						'original_question_poster' => $original_question_poster
 						);
 					$this->load->view('question_details', $data);
 					// var_dump($result);
