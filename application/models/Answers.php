@@ -12,7 +12,7 @@
 
 		function get_byQId($q_id)
 		{
-			$sql = $this->conn_id->query("select * from answers where q_id = '".$q_id."' ORDER BY answer_time");
+			$sql = $this->conn_id->query("select * from answers where q_id = '".$q_id."' ORDER BY answer_time DESC");
 			if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
 				return $result;
 			else

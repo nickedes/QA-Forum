@@ -33,9 +33,9 @@
 				// now user passes a particular id to the table.
 				else
 				{
-					$sql = $this->conn_id->query("select * from ".$this->table_name." where ".$this->primary_key ." = '".$id."'");
+					$sql = $this->conn_id->query("select * from ".$this->table_name." where ".$this->primary_key ." = '".(int)$id."'");
 
-					if ( $result = $sql -> fetchAll(PDO::FETCH_ASSOC) )
+					if ( $result = $sql->fetchAll(PDO::FETCH_ASSOC) )
 					{
 						return $result;
 					}

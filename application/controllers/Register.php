@@ -11,29 +11,17 @@
 			$this->load->helper('url');
 			$this->load->helper(array('form'));
 			$this->load->helper('security');
-			$this->load->library('form_validation');
 			$this->load->model('Users');
 			$this->load->library('email');
+			$this->load->library('validation');
 		}
 		
 		function index()
 		{
 			if (isset($_POST['submit']))
 			{
-				// Validations here
-				// TODO: Add validations in a Libraray.
-
- 				$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
-   				
-   				$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
-
-				$this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]');
-   				
-   				$this->form_validation->set_rules('mobileno', 'Mobile', 'required|exact_length[10]');
-
-   				$this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
-
-   				if($this->form_validation->run() == TRUE)
+				// Validations from library
+				if($this->validation->register_validations() == TRUE)
    				{
    					$email = $_POST['email'];
 					$name = $_POST['name'];

@@ -41,6 +41,7 @@
 			else
 				return 0;
 			return 0;
+<<<<<<< HEAD
 		}
 
 		function get_allq_sorted()
@@ -68,5 +69,8 @@
 			echo "rahul";
 			return($r);
 		}
+=======
+		}	
+>>>>>>> f1b48d72707561bdf93c36e5f96db0dcf67bfe2b
 	}
-?>
+	?>
