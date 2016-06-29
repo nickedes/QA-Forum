@@ -4,8 +4,9 @@
 			</p>
 		</div>
 	</div>
-	<script type="text/javascript" href="<?php echo base_url();?>/assets/js/jquery.js"></script>
-	<script type="text/javascript" href="<?php echo base_url();?>/assets/js/login.js"></script>
-	<script type="text/javascript" href="<?php echo base_url();?>/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/validate.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/login.js"></script>
 </html>

@@ -5,28 +5,66 @@ class valid extends CI_Controller{
     function __construct()
     {  
         parent::__construct();
-        $this->load->helper('cookie');
+        $this->load->model("users");
+        $this->load->library('form_validation');
     }
 
-function index()
-{ 
-    $data = array(
-    "email" => $_POST['email'],
-    'password' => md5($_POST['password'])
-    );
-    
-    $this->load->model("users");
-    if($this->users->check($data)== TRUE)
+    function index()
     {
-        $sess_data = $this->users->getuser($data['email']);
-        print_r($sess_data[0]);
-        $this->session->set_userdata($sess_data[0]);
-        redirect('success');
+        if(($this->input->post('email') != NULL) && ($this->input->post('password') != NULL))
+        {
+            $data = array(
+            "email" => $_POST['email'],
+            'password' => md5($_POST['password'])
+            );
+            
+            // validations of email and password
+            $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
+            $this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
+
+            // when validations are true
+            if($this->form_validation->run()==TRUE)
+            {
+                if($this->users->check($data)== TRUE)
+                {
+                    // login is successful.
+
+                    // set session
+                    $sess_data = $this->users->getuser($data['email']);
+                    $this->session->set_userdata($sess_data[0]);
+                    
+                    $response = array(
+                        'email' => $this->input->post('email'),
+                        'password' => $this->input->post('password'),
+                        'success' => 1
+                    );
+
+                }
+                else
+                { 
+                    $response = array(
+                        'message' => 'Email id and password donot exist.',
+                        'success' => 0
+                    );
+                }
+            }
+            else
+            {
+                $response = array(
+                    'email' => form_error('email'),
+                    'password' => form_error('password'),
+                    'success' => 0
+                );
+
+            }
+        }
+        else
+        {
+            $response = array(
+                'success' => 0,
+                'message' => 'Email and password is not set.'
+                );
+        }
+        echo json_encode($response);
     }
-    else
-    { 
-        /*Redirect the user to some site*/ 
-        $this->load->view('form');
-    }
-}
 }
