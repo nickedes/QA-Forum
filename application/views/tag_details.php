@@ -12,21 +12,21 @@
 		<input type="hidden" id="user_id" name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
 		<input type="hidden" id="tag_id" name="tag_id" value="<?php echo $result[0]['tag_id'] ?>">
 		<br><br>
-	 	<button type="submit" id="follow" name="link" value="follow" <?php if($relation) echo "disabled"?>>Follow</button> 
-	 	<button type="submit" id="unfollow" name="link" value="unfollow" <?php if(!$relation) echo "disabled"?>>Unfollow</button>
+		<button type="submit" id="follow" name="link" value="follow" <?php if($relation) echo "disabled"?>>Follow</button> 
+		<button type="submit" id="unfollow" name="link" value="unfollow" <?php if(!$relation) echo "disabled"?>>Unfollow</button>
 	</form>
 	<?php
 		if($questions)
-		{
-			echo "Questions : ";
+		{ //print_r($questions);
+			echo "Questions : <br><br>";
 			foreach ($questions as $q) {
-				# code...
-				// print_r($q);
-				echo "<div id=".$q['q_id'].">";
-				echo "<a href=".site_url()."/question/get/".$q['q_id'].">";
-				echo "<p>".$q['title']."</p>";
-				echo "</a> </div>";
-			}
+				$qid = $q['q_id'];
+ $link= site_url('question/get/'.$qid);
+
+        echo "<a href='$link'>"."<strong>Title : ".$q['title']."</strong><br></a>";
+        echo "Description : ".$q['description']."<br>";
+        echo "Creation time: ".$q['creation_time']."<br><br>";
+      }
 		}
 		else
 		{

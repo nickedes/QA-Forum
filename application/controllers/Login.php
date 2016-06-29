@@ -7,16 +7,17 @@ class login extends CI_Controller{
 
 
 		parent::__construct();
-if(isset($this->session->userdata['email']))
- {
- 	$this->load->helper('url');
- 	redirect('profilepage/self');
- }
+		if(isset($this->session->userdata['email']))
+		{
+		 	$this->load->helper('url');
+		 	redirect('profilepage/self');
+		}
 	}
 
 	function index()
 	{ 
+		$this->load->view('templates/header');
 		$this->load->view('form');
-
+		$this->load->view('templates/footer');
 	}
 }

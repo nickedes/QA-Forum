@@ -8,6 +8,7 @@ class Forgotpassword extends CI_Controller {
 		
 			$this->load->model('Users');
 			$this->load->library('email');
+			$this->load->library('Validation');
 	}
 
 	function index()
@@ -15,14 +16,9 @@ class Forgotpassword extends CI_Controller {
 		$this->load->view('forgot_pass');
 		if (isset($_POST['forgot_submit']))
 		{
-			
-			$this->load->library('form_validation');
- 
-   			$this->form_validation->set_rules('forgot_email', 'Forgot_Email', 'valid_email|trim|required');
-			
-				if ($this->form_validation->run() == TRUE)
+   			// $this->form_validation->set_rules('forgot_email', 'Forgot_Email', 'valid_email|trim|required');
+			if ($this->validation->Email($_POST['forgot_email']) == TRUE)
 			{
-
 				$em = $_POST['forgot_email'];
 
 			 		// generating a random hash key for the activation of the link.

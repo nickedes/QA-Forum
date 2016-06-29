@@ -3,7 +3,7 @@
 
 <body>
 <?php
-error_reporting(0);
+//error_reporting(0);
 echo "Welcome ".$this->session->userdata['name'];
 $this->load->library('form_validation');
 echo validation_errors(); 
@@ -31,7 +31,7 @@ $link= site_url('question/get/'.$qid);
         echo "Creation time: ".$rec_question['creation_time']."<br>";
         echo "Asked by : <a href='$userlink'>".$rec_question['username']."</a><br>";
         echo "Tag : <a href='$link1'>".$rec_question['tagname']."</a><br>";
-        if(!($answers[$qid]))
+        if(!isset($answers[$qid]))
             echo "Answers(0)<br><br><br><br>";
       else
         echo "Answers(".$answers[$qid].")<br><br><br><br>";
@@ -42,15 +42,15 @@ $link= site_url('question/get/'.$qid);
 <?php
 foreach($int_questions as $int_question) {
  $qid = $int_question['q_id'];
- $tagid = $rec_question['tag_id'];
+ $tagid = $int_question['tag_id'];
  $link1=  site_url('tag/get/'.$tagid);
 $link= site_url('question/get/'.$qid);
         echo "<a href='$link'>"."<strong>Title : ".$int_question['title']."</strong><br></a>";
         echo "Description : ".$int_question['description']."<br>";
         echo "Creation time: ".$int_question['creation_time']."<br>";
         echo "Asked by : ".$int_question['username']."<br>";
-        echo "Tag : <a href='$link1'>".$rec_question['tagname']."</a><br>";
-        if(!($answers[$qid]))
+        echo "Tag : <a href='$link1'>".$int_question['tagname']."</a><br>";
+        if(!isset($answers[$qid]))
             echo "Answers(0)<br><br><br><br>";
       else
         echo "Answers(".$answers[$qid].")<br><br><br><br>";
