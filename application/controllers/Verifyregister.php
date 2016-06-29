@@ -1,0 +1,117 @@
+<?php 
+	/**
+	* 
+	*/
+	class Verifyregister extends CI_Controller
+	{
+		
+		function __construct()
+		{	
+			parent::__construct();
+			$this->load->helper(array('form'));
+			$this->load->model('Users');
+			$this->load->library('email');
+			$this->load->library('form_validation');
+		}
+		
+		function index()
+		{
+			if(($this->input->post('email') != NULL) && ($this->input->post('password') != NULL) && ($this->input->post('name') != NULL) && ($this->input->post('mobileno') != NULL) && ($this->input->post('confirm_password') != NULL))
+			{
+				// Validations from library
+				$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
+		        $this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
+		        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]');
+		        $this->form_validation->set_rules('mobileno', 'Mobile', 'required|exact_length[10]');
+		        $this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
+
+				if($this->form_validation->run() == TRUE)
+   				{
+   					$email = $_POST['email'];
+					$name = $_POST['name'];
+					
+					// generating a random hash key for the activation of the link.
+					$hashkey = md5(rand(1,100000));
+
+					$data = array(
+						$this->input->post('name'),
+						$this->input->post('email'),
+						$this->input->post('mobileno'),
+						'/',
+						// password is hashed
+						md5($this->input->post('password')),
+						$hashkey
+						);
+
+					$response = array('success' => 0);
+					if($this->Users->userexist($this->input->post('email')) == FALSE)
+					{
+						// insert data in database.
+						if ($this->Users->insert($data))
+						{
+							$response['success'] = 1;
+							// send activation link
+							if ($this -> send_verification_mail($name,$email,$hash_key))
+							{
+								// set to check if verification sent or not
+								$response['email'] = $email;
+							}
+						}		
+						else
+						{
+								$response['success'] = 0;
+								$response['message'] = "The email id already exists";
+						}
+					}
+					else
+					{
+						// email already exists in db.
+						$response['message'] = "The email id already exists";
+					}
+				}
+				else
+				{
+					$response = array(
+						'name' => form_error('name'),
+						'email' => form_error('email'),
+						'mobileno' => form_error('mobileno'),
+						'password' => form_error('password'),
+						'confirm_password' => form_error('confirm_password'),
+						'success' => 0
+						);
+				}
+				echo json_encode($response);
+			}
+			else
+			{
+				$this->load->view('templates/header');
+				$this->load->view('register_view');
+				$this->load->view('templates/footer');
+			}
+		}
+		function send_verification_mail($username,$address,$hash_key)
+		{
+			// first create the link to be send to the user.
+			$link = "http://localhost/codeigniter/index.php" . '/verifyemail?key='. $hash_key;
+
+			// subject to be send at the particular email ids
+			$subject = 'Verify your email id for project.com';
+			// message in which the link will be mentioned
+
+			$message = 'Hi '.$username.'! Welcome to the MyForum. Please verify your email by clicking the link: '.$link;
+
+			$result = $this->email
+			->from('jamiamentors@gmail.com')
+			->to($address)
+			->subject($subject)
+			->message($message)
+			->send();
+
+              //  var_dump($result);
+               // echo '<br />';
+               // echo $this->email->print_debugger();
+			return $result;
+
+		}
+	}
+?>

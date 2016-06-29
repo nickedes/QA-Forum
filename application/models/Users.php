@@ -82,12 +82,11 @@
 			$sql = $this->conn_id->query("select * from users where email = ".$email );
 				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 			if(!empty($r))
-				{
-					$sql = $this->conn_id->query("select name,hash_key from users where email = ".$email );
+			{
+				$sql = $this->conn_id->query("select name,hash_key from users where email = ".$email );
 				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-		return $r;
-
-				}
+				return $r;
+			}
 			else
 				return FALSE;
 

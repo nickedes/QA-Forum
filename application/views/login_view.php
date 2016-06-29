@@ -1,7 +1,6 @@
 <?php 
 	 if(isset($this->session->userdata['email']))
 	 {
-	 	$this->load->helper('url');
 	 	redirect('profilepage/self');
 	 }
 	 $this->load->library('form_validation');
