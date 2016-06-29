@@ -17,14 +17,15 @@ $('#answer_submit').click(function (e) {
         	if(response)
         	{
         		var text = "User : " + user_id + "<br>" + "Answer: " + answer + "<br>";
-        		jQuery("div#result").html(text);
-                $("#answer").val('Post Answer');
+        		// jQuery("div#result").html(text);
+                //$("#answer").val('Post Answer');
+                location.reload();
         	}
             console.log(response);
         },
         error: function(response) {
             console.log(response);
-            alert("Fail");
+            // alert("Fail");
         }
 });
 
