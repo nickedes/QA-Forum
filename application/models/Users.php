@@ -132,6 +132,16 @@
 				return $r;
 		}
 
+
+		function getuserdetails($user_id)
+		{
+				$user_id = "'".$user_id."'";
+			
+			$sql = $this->conn_id->query("select * from users where user_id = ".$user_id );
+				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+				return $r;
+		}
+
 		function get_questions($user_id)
 		{
 

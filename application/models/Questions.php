@@ -24,6 +24,8 @@
 				// Todo
 			}
 		}
+
+
 		function get_sorted($questions)
 		{
 			$q_ids = array();
@@ -45,7 +47,11 @@
 
 		function get_allq_sorted()
 		{
-			$sql = $this->conn_id->prepare("SELECT * FROM questions order by creation_time DESC");
+			$query = "SELECT u.user_id,q.title,q.description, q.creation_time,t.name as tagname,u.name as username,q.q_id,t.tag_id FROM questions as q ";
+			$query .= "INNER JOIN question_tags as qt  INNER JOIN tags as t INNER JOIN users as u ON  qt.q_id = q.q_id and t.tag_id = qt.tag_id and u.user_id = q.user_id order by q.creation_time DESC ";
+			$query .= "order by q.creation_time DESC ";
+			$sql = $this->conn_id->prepare($query);
+		
 			$sql->execute();
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
 			{
@@ -56,16 +62,78 @@
 				return 0;
 		}
 
+		function get_ques_user()
+		{
+			$query = "SELECT u.user_id,u.name,q.title,q.description, q.creation_time,q.q_id FROM questions as q INNER JOIN users as u ON  q.user_id = u.user_id order by q.creation_time DESC";
+			//$query .= "order by q.creation_time DESC ";
+			$sql = $this->conn_id->prepare($query);
+		
+			$sql->execute();
+			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
+			{
+				// print_r($result);
+				return $result;
+			}
+			else
+				return 0;
+		}
+
+		function get_ques_tag()
+		{
+			$query = "SELECT t.name,t.tag_id,q.title,q.description, q.creation_time,q.q_id FROM questions as q INNER JOIN tags as t ON  q.Q_id = t.tag_id order by q.creation_time DESC";
+			//$query .= "order by q.creation_time DESC ";
+			$sql = $this->conn_id->prepare($query);
+		
+			$sql->execute();
+			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
+			{
+				// print_r($result);
+				return $result;
+			}
+			else
+				return 0;
+		}
+
+
+		//questions of user followed links
 		function get_all_interestedq($user_id)
 		{
-			$query = "SELECT q.title,q.description, q.creation_time,t.name as tagname,u.name as username,q.q_id FROM questions as q ";
+			$query = "SELECT u.user_id,q.title,q.description, q.creation_time,t.name as tagname,u.name as username,q.q_id,t.tag_id FROM questions as q ";
 			$query .= "INNER JOIN follows as f INNER JOIN question_tags as qt  INNER JOIN tags as t INNER JOIN users as u ON f.tag_id=qt.tag_id and qt.q_id = q.q_id and t.tag_id = f.tag_id and u.user_id = f.user_id ";
-			$query .= "where f.user_id=".$user_id ;
+			$query .= "where f.user_id=".$user_id." order by q.creation_time DESC" ;
 			$sql = $this->conn_id->prepare($query);
 			$sql->execute();
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			print_r($r);
-			echo "rahul";
+			//print_r($r);
+			//echo "rahul";
+			return($r);
+		}
+
+		//questions under a particular tag
+		function get_all_tagq($tag_id)
+		{
+			$query = "SELECT u.user_id,q.title,q.description, q.creation_time,t.name as tagname,u.name as username,q.q_id,t.tag_id FROM questions as q ";
+			$query .= "INNER JOIN follows as f INNER JOIN question_tags as qt  INNER JOIN tags as t INNER JOIN users as u ON f.tag_id=qt.tag_id and qt.q_id = q.q_id and t.tag_id = f.tag_id and q.user_id = u.user_id ";
+			$query .= "where f.tag_id=".$tag_id." order by q.creation_time DESC" ;
+			$sql = $this->conn_id->prepare($query);
+			$sql->execute();
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			//print_r($r);
+			//echo "rahul";
+			return($r);
+		}
+
+
+
+
+		function get_anscount()
+		{
+			$query = "SELECT q_id ,count(a_id) as count from answers  group by q_id";
+			$sql = $this->conn_id->prepare($query);
+			$sql->execute();
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			//print_r($r);
+			//echo "rahul";
 			return($r);
 		}
 	}
