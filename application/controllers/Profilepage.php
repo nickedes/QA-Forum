@@ -25,14 +25,14 @@
 			// Get all tags followed by this user
 			$tags = $this->follows->get_tags($user_id);
 			// Get user details
-			$user_pic = $this->users->get($user_id);
+			$user_details = $this->users->get($user_id);
 			// collect all the above information in array
 			$data = array(
 				'questions' => $questions,
 				'answers' => $answers,
 				'tags' => $tags,
 				'user_id' => $user_id,
-				'user_pic' => $user_pic
+				'user_details' => $user_details
 				);
 
 			// load self-profile page
@@ -42,7 +42,8 @@
 		}		
 
 		function update_details()
-		{	$formSubmit = $this->input->post('submitform');
+		{	
+			$formSubmit = $this->input->post('submitform');
 			if($formSubmit == 'cancel')
 			{
 				$this->load->helper('url');
@@ -73,17 +74,21 @@
 			{
 				redirect('profilepage/self');
 			}
-			$userdetails = $this->users->getuserdetails($user_id);
-			$questions= $this->users->get_questions($user_id);
-			$answers= $this->users->get_answers($user_id);
-			$tags= $this->users->get_tags($user_id);
+			// Get user details
+			$user_details = $this->users->get($user_id);
+			// Get all questions asked by this user
+			$questions = $this->questions->get_questions($user_id);
+			// Get all answers given this user
+			$answers = $this->answers->get_answers($user_id);
+			// Get all tags followed by this user
+			$tags = $this->follows->get_tags($user_id);
+
 			$data = array(
-				'userdetails' => $userdetails,
+				'user_details' => $user_details,
 				'questions' => $questions,
 				'answers' => $answers,
 				'tags' => $tags
 				);
-			print_r($data);
 			$this->load->view('publicprofile',$data);
 		}
 	}

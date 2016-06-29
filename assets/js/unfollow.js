@@ -17,6 +17,7 @@ $('#unfollow').click(function (e) {
             $("#users").val($("#users").val()-1);
             console.log($("#users").val());
             console.log(response);
+            location.reload();
         },
         error: function(response) {
             console.log(response);
