@@ -19,7 +19,7 @@
 			if ($id != NULL)
 			{
 				// get tag by id
-				$result = $this->Tags->get($id);
+				$result = $this->tags->get($id);
 				if (!$result)
 				{
 					echo "You supplied wrong Tag id.";
@@ -29,10 +29,11 @@
 					// get follow relations with the tag_id
 
 					
+					$user_id = $this->session->userdata('user_id');
 					$data = array(
 						'tag_id' => $id,
-						// Todo: take user_id from session
-						'user_id' => $this->session->userdata('user_id')
+						// take user_id from session
+						'user_id' => $user_id
 						);
 					$relation = $this->follows->check($data);
 					$users = $this->follows->count($data['tag_id']);
@@ -40,14 +41,12 @@
 					$ques_data = array();
 					if($questions)
 						$ques_data = $this->questions->get_sorted($questions);
-					//print_r($ques_data);
-					//$questions = $this->questions->get_all_tagq($id);
-					//$ques_data = array();
 					$data = array(
 						'result' => $result,
 						'relation' => $relation,
 						'users' => $users,
-						'questions' => $ques_data
+						'questions' => $ques_data,
+						'user_id' => $user_id
 						);
 						$this->load->view('tag_details', $data);
 					}

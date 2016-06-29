@@ -9,7 +9,7 @@
 	<form method="POST" action="<?php echo site_url(); ?>/follow" id="follow_unfollow">
 		No. of users following :
 		<input id="users" value="<?php echo $users; ?>" disabled>
-		<input type="hidden" id="user_id" name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
+		<input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>">
 		<input type="hidden" id="tag_id" name="tag_id" value="<?php echo $result[0]['tag_id'] ?>">
 		<br><br>
 		<button type="submit" id="follow" name="link" value="follow" <?php if($relation) echo "disabled"?>>Follow</button> 

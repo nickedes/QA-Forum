@@ -6,10 +6,10 @@ class Profilepage extends CI_Controller{
 	{
 		parent::__construct();
 		if(!isset($this->session->userdata['email']))
- {
- 	$this->load->helper('url');
- 	redirect('login');
- }
+		{
+			$this->load->helper('url');
+			redirect('login');
+		}
 		$this->load->model('users');
 	}
 
@@ -32,34 +32,32 @@ class Profilepage extends CI_Controller{
 		$answers= $this->users->get_answers($this->session->userdata['user_id']);
 		//print_r($answers);
 		//echo "<br><br>";
-  		$tags= $this->users->get_tags($this->session->userdata['user_id']);
+		$tags= $this->users->get_tags($this->session->userdata['user_id']);
   		//print_r($tags);
-  		$data = array(
-  			'questions' => $questions,
-  			'answers' => $answers,
-  			'tags' => $tags
-  			);
-  		
- 
+		$data = array(
+			'questions' => $questions,
+			'answers' => $answers,
+			'tags' => $tags
+			);
+
+
 		$this->load->view('selfprofile',$data);
 	}		
 
 	function update_details()
 	{	$formSubmit = $this->input->post('submitform');
-if( $formSubmit == 'cancel' )
-    {
-    	$this->load->helper('url');
-         	redirect('success');
-    }
-    else 
-    if ( $formSubmit == 'logout')
-    {echo "ABout to logout !!!";
-    	 $this->session->unset_userdata('email');
-   session_destroy();
- // $this->load->helper('url');
-   redirect('login', 'refresh');
-    }
-	//echo $this->session->userdata('email');
+		if($formSubmit == 'cancel')
+		{
+			$this->load->helper('url');
+			redirect('success');
+		}
+		elseif( $formSubmit == 'logout')
+		{
+			echo "ABout to logout !!!";
+			$this->session->unset_userdata('email');
+			session_destroy();
+			redirect('login', 'refresh');
+		}
 		$data = array(
 			'name'=> $_POST['name'],
 			'email' => $this->session->userdata('email'),
@@ -67,8 +65,8 @@ if( $formSubmit == 'cancel' )
 			'password' => md5($_POST['password']),
 			'about' => $_POST['about']
 			);
-			$this->session->set_userdata($data);
-			$this->users->edit_details($data);
+		$this->session->set_userdata($data);
+		$this->users->edit_details($data);
 	}
 
 	function get($user_id)
@@ -80,19 +78,15 @@ if( $formSubmit == 'cancel' )
 		}
 		$userdetails = $this->users->getuserdetails($user_id);
 		$questions= $this->users->get_questions($user_id);
-		//print_r($questions);
 		$answers= $this->users->get_answers($user_id);
-		//print_r($answers);
-		//echo "<br><br>";
-  		$tags= $this->users->get_tags($user_id);
-  		//print_r($tags);
-  		$data = array(
-  			'userdetails' => $userdetails,
-  			'questions' => $questions,
-  			'answers' => $answers,
-  			'tags' => $tags
-  			);
-print_r($data);
-	$this->load->view('publicprofile',$data);
+		$tags= $this->users->get_tags($user_id);
+		$data = array(
+			'userdetails' => $userdetails,
+			'questions' => $questions,
+			'answers' => $answers,
+			'tags' => $tags
+			);
+		print_r($data);
+		$this->load->view('publicprofile',$data);
 	}
 }
