@@ -2,37 +2,31 @@
 
 class valid extends CI_Controller{
 
-	function __construct()
- {  
-  parent::__construct();
-}
+    function __construct()
+    {  
+        parent::__construct();
+        $this->load->helper('cookie');
+    }
 
 function index()
 { 
- $data = array(
-  "email" => $_POST['email'],
-  'password' => md5($_POST['password'])
-  );
- 
-
- $this->load->model("users");
- if($this->users->check($data)== TRUE)
- {
-   $sess_data = $this->users->getuser($data['email']);
-   print_r($sess_data[0]);
-   $this->session->set_userdata($sess_data[0]);
-   $this->load->helper('url');
-   redirect('success');
- }
- else
- { 
-
-  /*Redirect the user to some site*/ 
-  $this->load->view('form');
+    $data = array(
+    "email" => $_POST['email'],
+    'password' => md5($_POST['password'])
+    );
+    
+    $this->load->model("users");
+    if($this->users->check($data)== TRUE)
+    {
+        $sess_data = $this->users->getuser($data['email']);
+        print_r($sess_data[0]);
+        $this->session->set_userdata($sess_data[0]);
+        redirect('success');
+    }
+    else
+    { 
+        /*Redirect the user to some site*/ 
+        $this->load->view('form');
+    }
 }
-
-
-}
-
-
 }
