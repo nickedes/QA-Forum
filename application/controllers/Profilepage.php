@@ -39,16 +39,7 @@ class Profilepage extends CI_Controller{
   			'answers' => $answers,
   			'tags' => $tags
   			);
-  		//print_r($tags);
-  		// $data = array(
-  		// 	'title' => $questions['title'],
-  		// 	'description' => $questions['title'],
-  		// 	'creation_time' => $questions['creation_time'],
-  		// 	'answer_text' => $answers['answer_text'],
-  		// 	'answer_time' => $answers['answer_time'],
-  		// 	'tag_name' => $tags['name']
-  		// 	);
-  		// print_r($data);
+  		
  
 		$this->load->view('selfprofile',$data);
 	}		
@@ -65,7 +56,7 @@ if( $formSubmit == 'cancel' )
     {echo "ABout to logout !!!";
     	 $this->session->unset_userdata('email');
    session_destroy();
-    $this->load->helper('url');
+ // $this->load->helper('url');
    redirect('login', 'refresh');
     }
 	//echo $this->session->userdata('email');
@@ -80,9 +71,28 @@ if( $formSubmit == 'cancel' )
 			$this->users->edit_details($data);
 	}
 
-	function pub()
-	{
-		echo "rahul";
-		//$this->load->view('publicprofile');
+	function get($user_id)
+	{	
+		$this->load->model('users');
+		if($user_id == $this->session->userdata('user_id'))
+		{
+			redirect('profilepage/self');
+		}
+		$userdetails = $this->users->getuserdetails($user_id);
+		$questions= $this->users->get_questions($user_id);
+		//print_r($questions);
+		$answers= $this->users->get_answers($user_id);
+		//print_r($answers);
+		//echo "<br><br>";
+  		$tags= $this->users->get_tags($user_id);
+  		//print_r($tags);
+  		$data = array(
+  			'userdetails' => $userdetails,
+  			'questions' => $questions,
+  			'answers' => $answers,
+  			'tags' => $tags
+  			);
+print_r($data);
+	$this->load->view('publicprofile',$data);
 	}
 }

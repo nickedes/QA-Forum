@@ -59,6 +59,10 @@ $route['register'] = 'register';
 $route['email'] = 'sendMail/sendTestMail';
 $route['verifyemail']= 'verifyemail';
 
+$route['profile'] = 'profilepage';
+$route['profile/get'] = 'profilepage/get';
+$route['profile/get/(:num)'] = 'profilepage/get/$1';
+
 $route['question'] = 'question_controller';
 $route['question/get'] = 'question_controller/get';
 $route['question/get/(:num)'] = 'question_controller/get/$1';
