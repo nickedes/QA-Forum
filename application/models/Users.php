@@ -132,7 +132,6 @@
 				return $r;
 		}
 
-
 		function getuserdetails($user_id)
 		{
 				$user_id = "'".$user_id."'";
@@ -140,51 +139,6 @@
 			$sql = $this->conn_id->query("select * from users where user_id = ".$user_id );
 				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 				return $r;
-		}
-
-		function get_questions($user_id)
-		{
-
-			$user_id = "'".$user_id."'";
-			
-			$sql = $this->conn_id->query("select * from questions where user_id = ".$user_id );
-				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-				//return $r;
-				return($r);
-
-		}
-
-		function get_answers($user_id)
-		{
-
-		
-				$query = "SELECT * FROM questions as q ";
-$query .= "INNER JOIN answers as a ON a.q_id=q.q_id  ";
-$query .= "where a.user_id=".$user_id ;
-$sql = $this->conn_id->prepare($query);
-  $sql->execute();
-			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			//print_r($r);
-return($r);
-
-		}
-
-		function get_tags($user_id)
-		{
-
-			$query = "SELECT f.user_id, f.tag_id, t.name FROM follows as f ";
-$query .= "INNER JOIN tags AS t ON f.tag_id=t.tag_id ";
-$sql = $this->conn_id->prepare($query);
-  $sql->execute();
-
-			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-				
-return($r);
-			/*$sql = $this->conn_id->query("select * from follows join tags  where user_id = ".$user_id);
-				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-				//return $r;
-				return($r);*/
-
 		}
 
 		function edit_details($data)

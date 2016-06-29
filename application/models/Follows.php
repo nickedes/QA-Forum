@@ -68,5 +68,18 @@
 				
 			}
 		}
+
+		function get_tags($user_id)
+		{
+
+			$query = "SELECT f.user_id, f.tag_id, t.name FROM follows as f ";
+			$query .= "INNER JOIN tags AS t ON f.tag_id = t.tag_id ";
+			$sql = $this->conn_id->prepare($query);
+			$sql->execute();
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			return $r;
+		}
+
+
 	}
 ?>

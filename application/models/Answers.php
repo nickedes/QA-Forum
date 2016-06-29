@@ -34,5 +34,19 @@
 				return 0;
 			}
 		}
+
+		function get_answers($user_id)
+		{			
+			$query = "SELECT * FROM questions as q ";
+			$query .= "INNER JOIN answers as a ON a.q_id=q.q_id  ";
+			$query .= "where a.user_id=".$user_id ;
+			$sql = $this->conn_id->prepare($query);
+			$sql->execute();
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			//print_r($r);
+			return $r;
+
+		}
+
 	}
 ?>

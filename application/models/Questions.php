@@ -136,5 +136,14 @@
 			//echo "rahul";
 			return($r);
 		}
+
+		function get_questions($user_id)
+		{
+			$user_id = "'".$user_id."'";
+			
+			$sql = $this->conn_id->query("select * from questions where user_id = ".$user_id );
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			return $r;
+		}
 	}
 ?>

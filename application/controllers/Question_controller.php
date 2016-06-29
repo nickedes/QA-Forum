@@ -121,12 +121,12 @@
 				{
 					$answers = $this->Answers->get_byQId($id);
 					// data of profile photo and name
-					$original_question_poster = $this->Users->get($result[0]['user_id']);
+					$user_pic = $this->Users->get($result[0]['user_id']);
 					$data = array(
 						'result' => $result,
 						'answers' => $answers,
 						// 'profile' => $pic_path,
-						'original_question_poster' => $original_question_poster
+						'user_pic' => $user_pic
 						);
 					$this->load->view('question_details', $data);
 					// var_dump($result);
