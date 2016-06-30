@@ -10,25 +10,30 @@ class Home extends  CI_Controller {
 			redirect('login');
 		}
 		$this->load->helper('url');
-		$this->load->model('Users');
+		$this->load->model('users');
+		$this->load->model('tags');
 		$this->load->model('answers');
 		$this->load->model('questions');
 	}
 
 	function index() {
-		$this->load->model('questions');
-		$this->load->model('answers');
+		// Get info about users and questions
 		$ques_user = $this->questions->get_ques_user();
-		$ques_tag = $this->questions->get_ques_tag();
-		print_r($ques_user);
-		echo "<br><br>";
-		print_r($ques_tag);
-		
-		//$rec_questions= $this->questions->get_allq_sorted();
+		$ques_user_details = array();
+		foreach ($ques_user as $q) {
+			$ques_user_details[$q['q_id']] = $q;
+		}
+		$ques_tags = $this->questions->get_ques_tag();
+
+		$rec_questions= $this->questions->get_allq_sorted();
 		$int_questions= $this->questions->get_all_interestedq($this->session->userdata['user_id']);
-	//	print_r($int_questions);
-		$ans_count= $this->questions->get_anscount();
-		
+		$ans_count= $this->answers->get_anscount();
+
+		$get_tags = $this->tags->get();
+		$tag_details = array();
+		foreach ($get_tags as $tag) {
+			$tag_details[$tag['tag_id']] = $tag['name'];
+		}
 		$answers = array();
 		foreach ($ans_count as $key ) {
 			$answers[$key['q_id']] = $key['count'];
@@ -36,13 +41,15 @@ class Home extends  CI_Controller {
 		$r = array(
 			"rec_questions" => $rec_questions,
 			"int_questions" => $int_questions,
+			'ques_tags' => $ques_tags,
+			'ques_user_details' => $ques_user_details,
+			'tag_details' => $tag_details,
 			"answers" => $answers
 			);
 
 		$this->load->view('templates/header');
 		$this->load->view('homeview',$r);
 		$this->load->view('templates/footer');
-
 	}
 
 

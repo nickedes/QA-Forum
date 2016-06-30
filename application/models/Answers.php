@@ -48,5 +48,14 @@
 
 		}
 
+		function get_anscount()
+		{
+			$query = "SELECT q_id ,count(a_id) as count from answers  group by q_id";
+			$sql = $this->conn_id->prepare($query);
+			$sql->execute();
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			return($r);
+		}
+
 	}
 ?>
