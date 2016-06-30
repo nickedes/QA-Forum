@@ -28,13 +28,19 @@
 			// Get user details
 			$user_details = $this->users->get($user_id);
 			// collect all the above information in array
+			
 			$data = array(
-				'questions' => $questions,
-				'answers' => $answers,
-				'tags' => $tags,
-				'user_id' => $user_id,
-				'user_details' => $user_details
-				);
+			'ques_res' => $questions['result'],
+			'ques_query' => $questions['query'],
+			'ques_rec_record_per_page' => $questions['record_per_page'],
+			'ans_res' => $answers['result'],
+			'ans_query' => $answers['query'],
+			'ans_rec_record_per_page' => $answers['record_per_page'],
+
+			'tags' => $tags,
+			'user_id' => $user_id,
+			'user_details' => $user_details
+			);
 
 			// load self-profile page
 			$this->load->view('templates/header');

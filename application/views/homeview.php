@@ -19,6 +19,7 @@
 
     <?php
     foreach($rec_questions as $rec_question) {
+
         $q_id = $rec_question['q_id'];
         $userid = $rec_question['user_id'];
         $userlink = site_url('profile/get/'.$userid);
@@ -37,10 +38,13 @@
             echo "<a href='$tag_link'>".$tag_details[$tag]."</a><br>";
         }
         if(!isset($answers[$q_id]))
-            echo "Answers(0)<br>";
+            echo "Answers(0)<br><br><br>";
         else
-            echo "Answers(".$answers[$q_id].")<br>";
+            echo "Answers(".$answers[$q_id].")<br><br><br>";
     }
+   echo $this->pagingclass->paginglink($rec_query,$rec_record_per_page);
+
+
     ?>
 
     <h2>My Interests</h2>
@@ -61,10 +65,12 @@
             echo "<a href='$tag_link'>".$tag_details[$tag]."</a><br>";
         }
        if(!isset($answers[$q_id]))
-            echo "Answers(0)<br><br><br><br>";
+            echo "Answers(0)<br><br><br>";
         else
-            echo "Answers(".$answers[$q_id].")<br><br><br><br>";
+            echo "Answers(".$answers[$q_id].")<br><br><br>";
     }
+    echo $this->pagingclass->paginglink($int_query,$int_record_per_page)."<br><br><br><br>";
+
     ?>
 </body>
 </html>

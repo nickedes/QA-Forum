@@ -5,6 +5,7 @@
 <div>
     <?php
         $this->load->library('form_validation');
+        $this->load->model('pagingclass');
         echo validation_errors(); 
         echo form_open('profilepage/update_details');
     ?>
@@ -27,29 +28,34 @@
     <!-- Info about qustions posted by user -->
     <h2>Questions</h2>
     <?php
-        foreach($questions as $question) {
-            $qid = $question['q_id'];
+        foreach($ques_res as $ques_res) {
+            $qid = $ques_res['q_id'];
             $link= site_url('question/get/'.$qid);
-            echo "<a href='$link'>"."<strong>Title : ".$question['title']."</strong><br></a>";
-            echo "Description : ".$question['description']."<br>";
-            echo "Creation time: ".$question['creation_time']."<br> <br>";
+            echo "<a href='$link'>"."<strong>Title : ".$ques_res['title']."</strong><br></a>";
+            echo "Description : ".$ques_res['description']."<br>";
+            echo "Creation time: ".$ques_res['creation_time']."<br> <br>";
         } 
+        echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
+
+
     ?>
 </div>
 <div>
     <!-- Displays info about answers by user -->
     <h2>Answers</h2>
     <?php
-        foreach($answers as $answer) {
-            $qid = $answer['q_id'];
+        foreach($ans_res as $ans_res) {
+            $qid = $ans_res['q_id'];
             $link= site_url('question/get/'.$qid);
-            echo "<a href='$link'>"."<strong>Title : ".$answer['title']."</strong><br></a>";
-            echo "Description : ".$answer['description']."<br>";
-            echo "Creation time: ".$answer['creation_time']."<br> ";
+            echo "<a href='$link'>"."<strong>Title : ".$ans_res['title']."</strong><br></a>";
+            echo "Description : ".$ans_res['description']."<br>";
+            echo "Creation time: ".$ans_res['creation_time']."<br> ";
 
-            echo "<strong>Answer : ".$answer['answer_text']."</strong><br>";
-            echo "Answer time: ".$answer['answer_time']."<br> <br>";
+            echo "<strong>Answer : ".$ans_res['answer_text']."</strong><br>";
+            echo "Answer time: ".$ans_res['answer_time']."<br> <br>";
         }
+          echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+    
     ?>
 </div>
 <div>

@@ -40,11 +40,30 @@
 			$query = "SELECT * FROM questions as q ";
 			$query .= "INNER JOIN answers as a ON a.q_id=q.q_id  ";
 			$query .= "where a.user_id=".$user_id ;
-			$sql = $this->conn_id->prepare($query);
+
+			
+			$record_per_page=3;
+		//	echo $query."$$$$$$".$record_per_page;
+			$new_query = $this->pagingclass->paging($query,$record_per_page);
+//echo $new_query;
+			$sql = $this->conn_id->prepare($new_query);
 			$sql->execute();
-			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			//print_r($r);
-			return $r;
+			//$result = $sql->fetchALL(PDO::FETCH_ASSOC);
+			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
+			{
+				$data = array(
+					'query' => $query,
+					'record_per_page' => $record_per_page,
+					'result' => $result
+					);
+
+				//print_r($result);
+				return $data;
+			}
+			else
+			{
+				return 0;
+			}
 
 		}
 
