@@ -3,6 +3,7 @@
         <form method="POST" role="form" action="verifyregister" id="register_form">
             <div class="col-lg-6">
                 <div class="well well-sm"><strong>Fill registration details:</strong></div>
+                <span id="register_on"></span>
                 <div class="form-group">
                     <label for="name">Enter Name</label>
                     <div class="input-group">

@@ -57,6 +57,8 @@
 							{
 								// set to check if verification sent or not
 								$response['email'] = $email;
+								$response['success_message'] = 'Registration complete. Please complete registration by clicking link';
+
 							}
 						}		
 						else

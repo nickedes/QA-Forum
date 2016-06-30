@@ -14,14 +14,16 @@
 
 		function index()
 		{
+			$this->load->view('templates/header');
 			$this->load->view('upload');
+			$this->load->view('templates/footer');
 		}
 
 		function uploadImage()
  		{
 			$config['upload_path']   =   "./application/uploads/";
 			$config['allowed_types'] =   "gif|jpg|jpeg|png"; 
-			$config['max_size']      =   "1024*4";
+			$config['max_size']      =   "1024*1024*4";
 			// $config['max_width']     =   "";
 			// $config['max_height']    =   "";
 			$this->load->library('upload',$config);

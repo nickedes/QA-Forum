@@ -6,6 +6,7 @@ class valid extends CI_Controller{
     {  
         parent::__construct();
         $this->load->model("users");
+        $this->load->library('Sessionlibrary');
         $this->load->library('form_validation');
     }
 
@@ -25,13 +26,13 @@ class valid extends CI_Controller{
             // when validations are true
             if($this->form_validation->run()==TRUE)
             {
+                // when login is successful.
                 if($this->users->check($data)== TRUE)
                 {
-                    // login is successful.
-
-                    // set session
+                    // get user data to create session
                     $sess_data = $this->users->getuser($data['email']);
-                    $this->session->set_userdata($sess_data[0]);
+                    // set session
+                    $this->sessionlibrary->set_session($sess_data[0]);
                     
                     $response = array(
                         'email' => $this->input->post('email'),

@@ -13,6 +13,7 @@
 			$this->load->model('answers');
 			$this->load->model('questions');
 			$this->load->model('follows');
+			$this->load->library('Sessionlibrary');
 		}
 
 		function self()
@@ -63,7 +64,8 @@
 				'password' => md5($_POST['password']),
 				'about' => $_POST['about']
 				);
-			$this->session->set_userdata($data);
+			$this->sessionlibrary->set_session($data);
+			// $this->session->set_userdata($data);
 			$this->users->edit_details($data);
 		}
 

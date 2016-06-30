@@ -19,7 +19,6 @@
 
     <?php
     foreach($rec_questions as $rec_question) {
-        print_r($rec_question);
         $q_id = $rec_question['q_id'];
         $userid = $rec_question['user_id'];
         $userlink = site_url('profile/get/'.$userid);
