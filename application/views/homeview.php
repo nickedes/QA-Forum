@@ -7,6 +7,7 @@
     <?php
         echo "Welcome ".$this->session->userdata['name'];
         $this->load->library('form_validation');
+        $this->load->model('pagingclass');
         echo validation_errors(); 
         echo form_open('home/butn_redirection');
     ?>
@@ -19,7 +20,7 @@
 
     <?php
     foreach($rec_questions as $rec_question) {
-        print_r($rec_question);
+       // print_r($rec_question);
         $q_id = $rec_question['q_id'];
         $userid = $rec_question['user_id'];
         $userlink = site_url('profile/get/'.$userid);
@@ -38,15 +39,20 @@
             echo "<a href='$tag_link'>".$tag_details[$tag]."</a><br>";
         }
         if(!isset($answers[$q_id]))
-            echo "Answers(0)<br>";
+            echo "Answers(0)<br><br><br>";
         else
-            echo "Answers(".$answers[$q_id].")<br>";
+            echo "Answers(".$answers[$q_id].")<br><br><br>";
     }
+   echo $this->pagingclass->paginglink($rec_query,$rec_record_per_page);
+
+
     ?>
 
     <h2>My Interests</h2>
     <?php
     foreach($int_questions as $int_question) {
+      // print_r($int_question);
+        //echo $int_query."$".$int_record_per_page;
        $q_id = $int_question['q_id'];
        // $tagid = $int_question['tag_id'];
        // $link1=  site_url('tag/get/'.$tagid);
@@ -62,10 +68,12 @@
             echo "<a href='$tag_link'>".$tag_details[$tag]."</a><br>";
         }
        if(!isset($answers[$q_id]))
-            echo "Answers(0)<br><br><br><br>";
+            echo "Answers(0)<br><br><br>";
         else
-            echo "Answers(".$answers[$q_id].")<br><br><br><br>";
+            echo "Answers(".$answers[$q_id].")<br><br><br>";
     }
+    echo $this->pagingclass->paginglink($int_query,$int_record_per_page)."<br><br><br><br>";
+
     ?>
 </body>
 </html>

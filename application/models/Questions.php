@@ -8,6 +8,8 @@
 		function __construct()
 		{	
 			parent::__construct('questions','q_id');
+			$this->load->model('pagingclass');
+
 		}
 
 		function insert($data)
@@ -47,14 +49,24 @@
 
 		function get_allq_sorted()
 		{
-			$query = "SELECT * from questions order by creation_time DESC LIMIT 5";
-			$sql = $this->conn_id->prepare($query);
-		
+			$query = "SELECT * from questions order by creation_time DESC";
+			$record_per_page=2;
+			$new_query = $this->pagingclass->paging($query,$record_per_page);
+      		$sql = $this->conn_id->prepare($new_query);
+
 			$sql->execute();
+
+
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
 			{
-				print_r($result);
-				return $result;
+				$data = array(
+					'query' => $query,
+					'record_per_page' => $record_per_page,
+					'result' => $result
+					);
+
+				//print_r($result);
+				return $data;
 			}
 			else
 				return 0;
@@ -65,7 +77,7 @@
 			$query = "SELECT u.user_id,u.name,q.title,q.description, q.creation_time,q.q_id FROM questions as q INNER JOIN users as u ON  q.user_id = u.user_id order by q.creation_time DESC";
 			//$query .= "order by q.creation_time DESC ";
 			$sql = $this->conn_id->prepare($query);
-		
+
 			$sql->execute();
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
 			{
@@ -81,7 +93,7 @@
 			$query = "SELECT * FROM questions as q INNER JOIN question_tags as t ON  q.q_id = t.q_id order by q.creation_time DESC";
 			//$query .= "order by q.creation_time DESC ";
 			$sql = $this->conn_id->prepare($query);
-		
+
 			$sql->execute();
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
 			{
@@ -107,13 +119,25 @@
 		//questions of user followed links
 		function get_all_interestedq($user_id)
 		{
+			
 			$query = "SELECT * FROM follows as f INNER JOIN question_tags as qt INNER JOIN questions as q WHERE qt.tag_id = f.tag_id and qt.q_id = q.q_id and f.user_id = ".(int)$user_id." order by q.creation_time DESC";
-			$sql = $this->conn_id->prepare($query);
+			$record_per_page=2;
+			$new_query = $this->pagingclass->paging($query,$record_per_page);
+
+//echo $this->pagingclass->paginglink($query,$record_per_page);
+			$sql = $this->conn_id->prepare($new_query);
 			$sql->execute();
-			$result = $sql->fetchALL(PDO::FETCH_ASSOC);
-			if(!empty($result))
+			//$result = $sql->fetchALL(PDO::FETCH_ASSOC);
+			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
 			{
-				return $result;
+				$data = array(
+					'query' => $query,
+					'record_per_page' => $record_per_page,
+					'result' => $result
+					);
+
+				//print_r($result);
+				return $data;
 			}
 			else
 			{
@@ -138,10 +162,29 @@
 		function get_questions($user_id)
 		{
 			$user_id = "'".$user_id."'";
-			
-			$sql = $this->conn_id->query("select * from questions where user_id = ".$user_id );
-			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			return $r;
+			$query = "select * from questions where user_id = ".$user_id." order by creation_time DESC" ;
+			$record_per_page=3;
+		//	echo $query."$$$$$$".$record_per_page;
+			$new_query = $this->pagingclass->paging($query,$record_per_page);
+echo $new_query;
+		$sql = $this->conn_id->prepare($new_query);
+			$sql->execute();
+			//$result = $sql->fetchALL(PDO::FETCH_ASSOC);
+			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
+			{
+				$data = array(
+					'query' => $query,
+					'record_per_page' => $record_per_page,
+					'result' => $result
+					);
+
+				//print_r($result);
+				return $data;
+			}
+			else
+			{
+				return 0;
+			}return $r;
 		}
 	}
-?>
+	?>
