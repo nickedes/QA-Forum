@@ -20,18 +20,18 @@
 			{
 				// Validations from library
 				$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
-		        $this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
-		        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]');
-		        $this->form_validation->set_rules('mobileno', 'Mobile', 'required|exact_length[10]');
-		        $this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
+				$this->form_validation->set_rules('password', 'Password', 'trim|min_length[6]|required|xss_clean');
+				$this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]');
+				$this->form_validation->set_rules('mobileno', 'Mobile', 'required|exact_length[10]');
+				$this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
 
 				if($this->form_validation->run() == TRUE)
-   				{
-   					$email = $_POST['email'];
+				{
+					$email = $_POST['email'];
 					$name = $_POST['name'];
 					
 					// generating a random hash key for the activation of the link.
-					$hashkey = md5(rand(1,100000));
+					$hash_key = md5(rand(1,100000));
 
 					$data = array(
 						$this->input->post('name'),
@@ -40,11 +40,13 @@
 						'/',
 						// password is hashed
 						md5($this->input->post('password')),
-						$hashkey
+						$hash_key
 						);
 
 					$response = array('success' => 0);
-					if($this->Users->userexist($this->input->post('email')) == FALSE)
+					$email_exists = $this->Users->userexist('email', $this->input->post('email'));
+					$mobile_exists = $this->Users->userexist('mobileno', $this->input->post('mobileno'));
+					if($email_exists == FALSE && $mobile_exists == FALSE)
 					{
 						// insert data in database.
 						if ($this->Users->insert($data))
@@ -59,14 +61,19 @@
 						}		
 						else
 						{
-								$response['success'] = 0;
-								$response['message'] = "The email id already exists";
+							$response['success'] = 0;
+							$response['message'] = "Unable to insert in database";
 						}
 					}
 					else
 					{
-						// email already exists in db.
-						$response['message'] = "The email id already exists";
+						$response['success'] = 0;
+						// email id already exists in db.
+						if($email_exists)
+							$response['email'] = "The email id already exists. Please sign up with a different email id.";
+						// if mobile no already exists in db
+						if($mobile_exists)
+							$response['mobileno'] = 'The mobile no already exists. Please sign up with a different mobile no.';
 					}
 				}
 				else
@@ -114,4 +121,4 @@
 
 		}
 	}
-?>
+	?>

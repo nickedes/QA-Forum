@@ -12,10 +12,16 @@
             <h1 class="text-center login-title">Sign in</h1>
             <div class="account-wall">
                 <form class="form-signin" method="POST" action="valid" id="login_form">
-                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" >
-                    <span id="email_error"></span>
-                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" >
-                    <span id="password_error"></span>
+                    <div class="form-group">
+                        <label for="name">Enter Name</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="email" >
+                        <span id="email_error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Enter Name</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password" id="password" >
+                        <span id="password_error"></span>
+                    </div>
                     <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
                     <span id="form_error"></span>
                 </form>
