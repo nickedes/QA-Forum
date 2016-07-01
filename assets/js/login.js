@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $(function() {
-
+    $('#resend_link').hide();
     highlight_errors_validate();
     // Setup form validation on the element
     $("#login_form").validate({
@@ -29,30 +29,41 @@ $(document).ready(function () {
                     $('#form_error').html('');
                     $('#email_error').html('');
                     $('#password_error').html('');
-
+                    $('resend_error').html('');
                     if (data.success){
-                        // login successful -> redirect to home.
+                        // user is not verified
+                        if(!data.is_active)
+                        {
+                            $('#resend_error').html('<div class="alert alert-danger col-sm-8">You have not verified. Please verify'+
+                                '</div><br>');
+                            $('#resend_link').show();
+                      }     
+                      else
+                      {
+
+                        // When user is active and login is successful -> redirect to home.
                         window.location.href = "home";
+                    }
+                }
+                else
+                {
+                    if(data.message != null)
+                    {
+                        $('#form_error').text(data.message);
                     }
                     else
                     {
-                        if(data.message != null)
-                        {
-                            $('#form_error').text(data.message);
-                        }
-                        else
-                        {
-                            if(typeof(data.email) != "undefined" && data.email != "" )
-                                $('#email_error').html('<br><div class="alert alert-danger">' + data.email + '</div>');
-                            if(typeof(data.password) != "undefined" && data.password != "" )
-                                $('#password_error').html('<br><div class="alert alert-danger">' + data.password + '</div>');
-                        }
+                        if(typeof(data.email) != "undefined" && data.email != "" )
+                            $('#email_error').html('<br><div class="alert alert-danger">' + data.email + '</div>');
+                        if(typeof(data.password) != "undefined" && data.password != "" )
+                            $('#password_error').html('<br><div class="alert alert-danger">' + data.password + '</div>');
                     }
-                },
-                error: function(data) {
-                    console.log(data);
                 }
-            });
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
             return false;
         },
     });
@@ -98,6 +109,26 @@ $(document).ready(function () {
             });
             return false;
         },
+    });
+
+    $("#resend_link").click(function(){
+        // console.log("here");
+        $.ajax
+        ({
+            type: 'POST',
+            // send ajax request to register/resend_verification_link
+            url: 'verifyregister/resend_verification_mail',
+            data: {'email' :$('#email').val()},
+            dataType: "json",
+            success: function(data){
+                if(data.success)
+                    console.log("calling");                
+            },
+            error: function(data){
+                console.log(data);
+            }
+
+        })
     });
 });
 

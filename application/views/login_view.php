@@ -4,10 +4,16 @@
 	 	redirect('profilepage/self');
 	 }
 	 $this->load->library('form_validation');
-	 echo validation_errors(); 
+	 echo validation_errors();
+     // if($this->session->userdata('is_active'))
+     var_dump($this->session->userdata('is_active'));
  ?>
 	<div class="container">
     <div class="row">
+        <div>
+            <span id="resend_error"></span>
+            <button class="btn btn-success" id="resend_link">Send</button>
+        </div>
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             <h1 class="text-center login-title">Sign in</h1>
             <div class="account-wall">

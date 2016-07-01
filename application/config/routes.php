@@ -56,6 +56,7 @@ $route['home'] = 'home';
 
 $route['register'] = 'register';
 $route['verifyregister']= 'verifyregister';
+$route['verifyregister/resend_verification_mail']= 'verifyregister/resend_verification_mail';
 
 $route['email'] = 'sendMail/sendTestMail';
 $route['verifyemail']= 'verifyemail';

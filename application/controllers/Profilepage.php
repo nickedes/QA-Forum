@@ -5,6 +5,7 @@
 		function __construct()
 		{
 			parent::__construct();
+			// when session is not set or user is not verified ->send to login page
 			if(!isset($this->session->userdata['email']))
 			{
 				redirect('login');

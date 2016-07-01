@@ -17,10 +17,11 @@
 			$session_data = array(
 				'user_id' => $data['user_id'],
 				'email' => $data['email'],
-				'is_active' => $data['is_active'],
+				'is_active' => (int)$data['is_active'],
 				'name'=> $data['name'],
 				'mobileno' => $data['mobileno'],
-				'about' => $data['about']
+				'about' => $data['about'],
+				'hash_key' => $data['hash_key']
 				);
 			// load user data in session
 			$this->CI->session->set_userdata($session_data);

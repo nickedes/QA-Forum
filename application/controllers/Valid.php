@@ -30,16 +30,20 @@ class valid extends CI_Controller{
                 if($this->users->check($data)== TRUE)
                 {
                     // get user data to create session
-                    $sess_data = $this->users->getuser($data['email']);
-                    // set session
-                    $this->sessionlibrary->set_session($sess_data[0]);
-                    
+                    $sess_data = $this->users->getuser($data['email'])[0];
+                    // only if user is verified
+                    if($sess_data['is_active'] == '1')
+                    {
+                        // set session
+                        $this->sessionlibrary->set_session($sess_data);
+                        // Login is successful
+                    }
                     $response = array(
                         'email' => $this->input->post('email'),
                         'password' => $this->input->post('password'),
-                        'success' => 1
+                        'success' => 1,
+                        'is_active' => (int)$sess_data['is_active']
                     );
-
                 }
                 else
                 { 

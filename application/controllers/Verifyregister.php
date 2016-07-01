@@ -120,7 +120,29 @@
                // echo '<br />';
                // echo $this->email->print_debugger();
 			return $result;
+		}
 
+		function resend_verification_mail()
+		{
+			$user_details = $this->Users->userexist('email', $_POST['email']);
+			$username = $user_details[0]['name'];
+			$address = $_POST['email'];
+			$hash_key = $user_details[0]['hash_key'];
+			$is_active = $this->session->userdata('is_active');
+
+			// response to ajax call.
+			$response = array();
+
+			// send verification link to user
+			if($this->send_verification_mail($username,$address,$hash_key))
+			{
+				$response['success'] = 1; 
+			}
+			else
+			{
+				$response['message'] = "Unable to send verification mail";
+			}
+			echo json_encode($response);
 		}
 	}
 	?>
