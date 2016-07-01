@@ -66,6 +66,7 @@
 			$data = array(
 				'name'=> $_POST['name'],
 				'email' => $this->session->userdata('email'),
+				'user_id' => $this->session->userdata('user_id'),
 				'mobileno' => $_POST['mobileno'],
 				'password' => md5($_POST['password']),
 				'about' => $_POST['about']

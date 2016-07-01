@@ -33,6 +33,7 @@
 					$tags = array();
 					try 
 					{
+						var_dump($this->session->userdata());
 						foreach ($_POST as $key => $value) {
 					// let us check whether the request consists of tags
 					// echo "key is ".$key
@@ -57,17 +58,17 @@
 					{
 						//show error messages.	
 					}
-
 					$data = array(
 						$title,
 						$description,
 						//Todo: User_id from session 
 						$this->session->userdata('user_id')
 						);
-
+					var_dump($data);
 					$request = $this->Questions->insert($data);
 					if ($request[0]==1)
 					{
+					echo "here";
 						echo "the Question is entered successfully.";
 						$q_id = $request[1];
 							// doubt : should load here or not

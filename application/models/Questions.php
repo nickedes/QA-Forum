@@ -164,10 +164,9 @@
 			$user_id = "'".$user_id."'";
 			$query = "select * from questions where user_id = ".$user_id." order by creation_time DESC" ;
 			$record_per_page=3;
-		//	echo $query."$$$$$$".$record_per_page;
 			$new_query = $this->pagingclass->paging($query,$record_per_page);
-echo $new_query;
-		$sql = $this->conn_id->prepare($new_query);
+			// echo $new_query;
+			$sql = $this->conn_id->prepare($new_query);
 			$sql->execute();
 			//$result = $sql->fetchALL(PDO::FETCH_ASSOC);
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
@@ -184,7 +183,7 @@ echo $new_query;
 			else
 			{
 				return 0;
-			}return $r;
+			}
 		}
 	}
 	?>
