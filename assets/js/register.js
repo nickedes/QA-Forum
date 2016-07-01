@@ -5,7 +5,10 @@ $(document).ready(function () {
     $("#register_form").validate({
         // Specify the validation rules
         rules: {
-            name: "required",
+            name: {
+                required: true,
+                name_validator: true
+            },
 
             email: {
                 required: true,
@@ -13,8 +16,8 @@ $(document).ready(function () {
                 email_validator: true
             },
             mobileno: {
-                required: true
-                // exactlength: 10
+                required: true,
+                mobile_validator: true
             },
             password: {
                 required: true,
@@ -29,24 +32,25 @@ $(document).ready(function () {
         // Specify the validation error messages
         messages: {
 
-            name: "Please enter your name",
+            name: {
+                required :'<br><div class="alert alert-danger">Please enter your names</div>'
+            },
             email: {
                 required :'<br><div class="alert alert-danger">Please enter a email address</div>',
                 email: '<br><div class="alert alert-danger">Please enter a valid email address</div>'
             },
             mobileno: {
-                required: "mobile no. is required"
+                required: '<br><div class="alert alert-danger">Please enter your mobile no.</div>'
                 // exactlength: "The mobile no. should be of 10 characters"
             },
             password: {
-                required: 'Password is required',
-                minlength: 'The password should be of 6 characters in length'
+                required: '<br><div class="alert alert-danger">Please enter a Password</div>',
+                minlength: '<br><div class="alert alert-danger">The password should be of 6 characters in length</div>'
             },
             confirm_password: {
-                required: 'Confirm password is required',
-                equalTo: 'The confirm password should match password.'
+                required: '<br><div class="alert alert-danger">Confirm password is required</div>',
+                equalTo: '<br><div class="alert alert-danger">The confirm password should match password.</div>'
             }
-
         },
         
         submitHandler: function(form) {

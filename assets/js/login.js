@@ -10,14 +10,20 @@ $(document).ready(function () {
             password: "required",
             email: {
                 required: true,
-                email: true
-            }
+                email: true,
+                email_validator: true
+            },
         },
         
         // Specify the validation error messages
         messages: {
-            password: "Please enter your password",
-            email: "Please enter a valid email address",
+            password: {
+                required: '<br><div class="alert alert-danger">Please enter a Password</div>'
+            },
+            email: {
+                required :'<br><div class="alert alert-danger">Please enter a email address</div>',
+                email: '<br><div class="alert alert-danger">Please enter a valid email address</div>'
+            }
         },
         
         submitHandler: function(form) {

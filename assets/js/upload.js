@@ -11,11 +11,11 @@ $(document).ready(function () {
         
         // Specify the validation error messages
         messages: {
-            userfile:"Please enter a valid file"
+            userfile:'<br><div class="alert alert-danger col-sm-2">Please upload a file</div>'
         },
         
         submitHandler: function(form) {
-            $('#upload_error').html('<br><div class="alert alert-info col-sm-6">Uploading...</div>');
+            $('#upload_error').html('<br><div class="alert alert-info">Uploading...</div>');
             var formData = new FormData();
             formData.append('userfile', $('input[type=file]')[0].files[0]);
             $.ajax

@@ -8,7 +8,7 @@
 
 					<label class="btn btn-deafult btn-file"></label><input type="file" name="userfile" id="userfile"/>
 					<div class="row">
-						<div id="upload_error"></div>
+						<div id="upload_error" class="col-sm-4"></div>
 					</div>
 					<br>
 					<button class="btn btn-success" type="submit" name="submit" value="upload">Upload</button>

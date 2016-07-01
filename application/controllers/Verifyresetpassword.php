@@ -16,11 +16,17 @@
 			if ( isset($_GET['key']))
 			{
 				$hash_key = $_GET['key'];
-				$this->Users->check_hash_key($hash_key);
-				$email= $_GET['email'];
-				$this->load->view('templates/header');
-				$this->load->view('resetpassword',array('email'=>$email));
-				$this->load->view('templates/footer');
+				if($this->Users->check_hash_key($hash_key))
+				{
+					$email= $_GET['email'];
+					$this->load->view('templates/header');
+					$this->load->view('resetpassword',array('email'=>$email));
+					$this->load->view('templates/footer');
+				}
+				else
+				{
+					echo "Wrong hash key.";
+				}
 			}
 			else
 			{
