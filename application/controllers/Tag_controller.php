@@ -38,11 +38,14 @@
 					$relation = $this->follows->check($data);
 					$users = $this->follows->count($data['tag_id']);
 					$questions = $this->question_tags->get_ByTagID($data['tag_id']);
+
 					$ques_data = array();
 					if($questions)
-						$ques_data = $this->questions->get_sorted($questions);
+						$ques_data = $this->questions->get_sorted($questions['result']);
 					$data = array(
 						'result' => $result,
+						'tag_query' => $questions['query'],
+						'tag_record_per_page' => $questions['record_per_page'],
 						'relation' => $relation,
 						'users' => $users,
 						'questions' => $ques_data,
