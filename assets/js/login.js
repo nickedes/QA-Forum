@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $(function() {
     $('#resend_link').hide();
+    $('#success_send').hide();
     highlight_errors_validate();
     // Setup form validation on the element
     $("#login_form").validate({
@@ -34,16 +35,14 @@ $(document).ready(function () {
                         // user is not verified
                         if(!data.is_active)
                         {
-                            $('#resend_error').html('<div class="alert alert-danger col-sm-8">You have not verified. Please verify'+
-                                '</div><br>');
                             $('#resend_link').show();
-                      }     
-                      else
-                      {
-
-                        // When user is active and login is successful -> redirect to home.
-                        window.location.href = "home";
-                    }
+                            $('#success_send').hide();
+                        }     
+                        else
+                        {
+                            // When user is active and login is successful -> redirect to home.
+                            window.location.href = "home";
+                        }
                 }
                 else
                 {
@@ -122,7 +121,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function(data){
                 if(data.success)
-                    console.log("calling");                
+                {
+                    $('#resend_link').hide();
+                    $('#success_send').show();
+
+                }               
             },
             error: function(data){
                 console.log(data);

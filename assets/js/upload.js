@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $(function() {
 
-    highlight_errors_validate();
+        highlight_errors_validate();
     // Setup form validation on the element
     $("#upload_form").validate({
         // Specify the validation rules
@@ -16,15 +16,21 @@ $(document).ready(function () {
         
         submitHandler: function(form) {
             $('#upload_error').html('<br><div class="alert alert-info col-sm-6">Uploading...</div>');
-            $.ajax({  
+            var formData = new FormData();
+            formData.append('userfile', $('input[type=file]')[0].files[0]);
+            $.ajax
+            ({  
                 type: 'POST',
                 url: $(form).attr('action'),
-                data: $(form).serialize(),
+                data:  formData,
                 dataType : 'json',
+                enctype: 'multipart/form-data',
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function(data) {
-
                     if (data.success){
-                        $('#upload_error').html('Image has been uploaded successfully.');
+                        $('#upload_error').html('<br><div class="alert alert-success">Image has been uploaded successfully.');
 
                         setTimeout(function(){
                             $('#upload_error').empty();
@@ -33,7 +39,7 @@ $(document).ready(function () {
                     }
                     else
                     {
-                        $('#upload_error').text(data.message);
+                        $('#upload_error').html('<div class="alert alert-danger col-sm-6">'+data.message+'</div>');
                     }
                 },
                 error: function(data) {

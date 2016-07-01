@@ -9,7 +9,8 @@ $(document).ready(function () {
 
             email: {
                 required: true,
-                email: true
+                email: true,
+                email_validator: true
             },
             mobileno: {
                 required: true
@@ -30,8 +31,8 @@ $(document).ready(function () {
 
             name: "Please enter your name",
             email: {
-                required :"Please enter a email address",
-                email: "Please enter a valid email address"
+                required :'<br><div class="alert alert-danger">Please enter a email address</div>',
+                email: '<br><div class="alert alert-danger">Please enter a valid email address</div>'
             },
             mobileno: {
                 required: "mobile no. is required"

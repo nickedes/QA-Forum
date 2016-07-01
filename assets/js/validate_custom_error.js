@@ -17,3 +17,21 @@ function highlight_errors_validate() {
         }
     });
     }
+
+jQuery.validator.addMethod("email_validator", function(value, element){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(value)) {
+        return true;   // PASS validation otherwise
+    } else {
+        return false;  // FAIL validation when REGEX matches
+    };
+}, '<br><div class="alert alert-danger">Please enter a valid email address</div>');
+
+jQuery.validator.addMethod("email_validator", function(value, element){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(value)) {
+        return true;   // PASS validation otherwise
+    } else {
+        return false;  // FAIL validation when REGEX matches
+    };
+}, '<br><div class="alert alert-danger">Please enter a valid email address</div>');

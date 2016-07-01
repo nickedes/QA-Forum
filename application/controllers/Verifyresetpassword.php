@@ -14,12 +14,13 @@
 		function index()
 		{
 			if ( isset($_GET['key']))
-			{echo "hellllllloooo";
+			{
 				$hash_key = $_GET['key'];
-				echo "hash_key is:" .$hash_key;
 				$this->Users->check_hash_key($hash_key);
 				$email= $_GET['email'];
+				$this->load->view('templates/header');
 				$this->load->view('resetpassword',array('email'=>$email));
+				$this->load->view('templates/footer');
 			}
 			else
 			{
@@ -27,6 +28,4 @@
 			}
 		}
 	}
-
-
-	?>
+?>
