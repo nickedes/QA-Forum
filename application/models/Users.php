@@ -59,7 +59,6 @@
 			$sql = $this->conn_id->prepare("UPDATE users SET profilepic = ".$value." where user_id = ?");
 			$sql->execute(array($r[0]['user_id']));
 			$affected_rows = $sql->rowCount();
-			echo $affected_rows;
 			return $affected_rows;
 		}
 

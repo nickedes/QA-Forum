@@ -5,16 +5,17 @@
 	 }
 	 $this->load->library('form_validation');
 	 echo validation_errors();
-     // if($this->session->userdata('is_active'))
-     var_dump($this->session->userdata('is_active'));
- ?>
+?>
 	<div class="container">
     <div class="row">
-        <div>
-            <span id="resend_error"></span>
-            <button class="btn btn-success" id="resend_link">Send</button>
-        </div>
         <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="row">
+                <div class="alert alert-danger col-sm-8" id="resend_link">You have not verified. Please verify
+                <!-- <span id="resend_error"></span> -->
+                    <button class="btn btn-success" id="resend_link">Send</button>
+                </div>
+                <div class="alert alert-success" id="success_send">Link sent successfully.</div>
+            </div>
             <h1 class="text-center login-title">Sign in</h1>
             <div class="account-wall">
                 <form class="form-signin" method="POST" action="valid" id="login_form">

@@ -70,6 +70,7 @@ $route['question/get'] = 'question_controller/get';
 $route['question/get/(:num)'] = 'question_controller/get/$1';
 
 $route['upload'] = 'upload';
+$route['verifyupload/uploadImage'] = 'verifyupload/uploadImage';
 
 $route['tag'] = 'tag_controller';
 $route['tag/get'] = 'tag_controller/get';
