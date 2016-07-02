@@ -4,7 +4,6 @@ var i = 1;
 $('#addTag').click(function (e) {
 	i++;
 	console.log("Add tag is clicked.");
-	$('#tags').append("<input type='text' name='tag" + i + "' />");
-
+	$('#tags').append("<br><input type='text' class='form-control' placeholder='tag' name='tag" + i + "' id='tag" + i + "' />");
 	e.preventDefault();  
 });

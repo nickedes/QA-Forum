@@ -14,100 +14,90 @@
 			$this->load->model('Questions');
 			$this->load->model('Users');
 			$this->load->model('Answers');
+			$this->load->model('Tags');
+			$this->load->model('Question_tags');
+					
 		}
 		function index()
 		{
-			if (isset($_POST['submit']))
+		
+			$this->load->view('templates/header');
+			$this->load->view('question');
+			$this->load->view('templates/footer');
+		}
+
+		function post_question()
+		{
+			// Validations here
+			// TODO: Add validations in a Libraray.
+
+			$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean|max_length[50]');
+
+			$this->form_validation->set_rules('description', 'Question Description', 'trim|required|xss_clean');
+
+			$this->form_validation->set_rules('tag1', 'Tag 1', 'trim|required|min_length[1]');
+
+			$response = array('success' => 0);
+			if($this->form_validation->run() == TRUE)
 			{
-				// Validations here
-				// TODO: Add validations in a Libraray.
-
-				$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean|max_length[50]');
-
-				$this->form_validation->set_rules('description', 'Question Description', 'trim|required|xss_clean');
-
-				$this->form_validation->set_rules('tag1', 'Tag 1', 'trim|required|min_length[1]');
-
-				if($this->form_validation->run() == TRUE)
+				$tags = array();
+				try 
 				{
-					$tags = array();
-					try 
-					{
-						var_dump($this->session->userdata());
-						foreach ($_POST as $key => $value) {
-					// let us check whether the request consists of tags
-					// echo "key is ".$key
-
-							if (0 === strpos($key, 'tag')) {
-								array_push($tags, $value);
-
-							}
-							elseif (0 === strpos($key,'description')) {
-								$description = $value;
-							}
-							elseif (0 === strpos($key,'title')) {
-								$title = $value;
-							}
-
-							else {
-								echo "Something is wrong with the post parameters.";
-							}
+					foreach ($_POST as $key => $value) {
+						// let us check whether the request consists of tags
+						if (0 === strpos($key, 'tag')) {
+							array_push($tags, $value);
 						}
-					} 
-					catch (Exception $e) 
-					{
-						//show error messages.	
-					}
-					$data = array(
-						$title,
-						$description,
-						//Todo: User_id from session 
-						$this->session->userdata('user_id')
-						);
-					var_dump($data);
-					$request = $this->Questions->insert($data);
-					if ($request[0]==1)
-					{
-					echo "here";
-						echo "the Question is entered successfully.";
-						$q_id = $request[1];
-							// doubt : should load here or not
-						$this->load->model('Tags');
-						$this->load->model('Question_tags');
-							// Todo : insert new tags in tags table.
-						foreach ($tags as $tag) {
-							$tag_id = $this->Tags->get_tagid($tag);
-
-							// if no tag id -> insert in table
-							if(!$tag_id)
-							{
-								$request = $this->Tags->insert($tag);
-								if($request[0] == 1) // if tags inserted.
-								{
-									echo "tags inserted";
-									
-									$tag_id = $request[1];
-								}
-							}
-							if($this->Question_tags->insert($q_id, $tag_id))
-							{
-								echo "tags - question relation done.";
-							}
+						elseif (0 === strpos($key,'description')) {
+							$description = $value;
+						}
+						elseif (0 === strpos($key,'title')) {
+							$title = $value;
 						}
 					}
+				} 
+				catch (Exception $e) 
+				{
+					$response['message'] = "Something is wrong with the post parameters.";
 				}
-				else
+				$data = array(
+					$title,
+					$description,
+					$this->session->userdata('user_id')
+					);
+				$request = $this->Questions->insert($data);
+				if ($request[0]==1)
 				{
-					// echo "Question post failed";
-					echo "string";
-					$this->load->view('question');
+					$response['success'] = 1;
+					$response['message'] = "The Question is posted successfully.";
+					$q_id = $request[1];
+					// for each tag insert new tags in tags table.
+					// if tag already, then only make relation b/w ques and tag
+					foreach ($tags as $tag) {
+						$tag_id = $this->Tags->get_tagid($tag);
+						// if no tag id -> insert in table
+						if(!$tag_id)
+						{
+							$request = $this->Tags->insert($tag);
+							if($request[0] == 1) // if tags inserted.
+							{
+								$response['tag'] = "New tags inserted";
+								$tag_id = $request[1];
+							}
+						}
+						if($this->Question_tags->insert($q_id, $tag_id))
+						{
+							$response['question_tag'] = "Tags and the question are now related";
+						}
+					}
 				}
 			}
 			else
 			{
-				// echo ;
-				$this->load->view('question');
+				$response['title'] = form_error('title');
+				$response['description'] = form_error('description');
 			}
+			echo json_encode($response);
 		}
 		function get($id = NULL)
 		{

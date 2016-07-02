@@ -40,7 +40,7 @@ $(document).ready(function () {
                     $('#password_error').html('');
                     if (data.success){
                         // when password reset success
-                        $('#form_error').html('<br><div class="alert alert-success">'+ data.message +'</div>')
+                        $('#form_error').html('<br><div class="alert alert-success">'+ data.message +'</div>');
                         // reset is successful -> redirect to home after 3 secs.
                         setTimeout(function(){
                                 $('#form_error').empty();
@@ -51,7 +51,7 @@ $(document).ready(function () {
                     {
                         if(data.message != null)
                         {
-                            $('#form_error').text(data.message);
+                            $('#form_error').html('<br><div class="alert alert-danger">'+ data.message +'</div>');
                         }
                         else
                         {

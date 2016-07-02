@@ -3,8 +3,6 @@
 	 {
 	 	redirect('profilepage/self');
 	 }
-	 $this->load->library('form_validation');
-	 echo validation_errors();
 ?>
 	<div class="container">
     <div class="row">
