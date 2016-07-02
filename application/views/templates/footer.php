@@ -15,4 +15,5 @@
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/resetpassword.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/addtags.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/question.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/addanswer.js"></script>
 </html>

@@ -115,8 +115,11 @@
 					$user_details = $this->Users->get($result[0]['user_id']);
 					// answer users
 					$answer_users = array();
-					foreach ($answers as $answer) {
-						$answer_users[$answer['a_id']] = $this->Users->get($answer['user_id']);
+					if($answers)
+					{
+						foreach ($answers as $answer) {
+							$answer_users[$answer['a_id']] = $this->Users->get($answer['user_id']);
+						}
 					}
 					$data = array(
 						'result' => $result,
@@ -124,13 +127,14 @@
 						'user_details' => $user_details,
 						'answer_users' => $answer_users
 						);
+					$this->load->view('templates/header');
 					$this->load->view('question_details', $data);
-					// var_dump($result);
+					$this->load->view('templates/footer');
 				}
 			}
 			else
 			{
-				$this->Questions->get();
+				redirect('login');
 			}
 		}
 	}
