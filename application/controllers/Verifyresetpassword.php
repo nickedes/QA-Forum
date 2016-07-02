@@ -13,25 +13,27 @@
 
 		function index()
 		{
-			if ( isset($_GET['key']))
+			$this->load->view('templates/header');
+			if (isset($_GET['key']))
 			{
 				$hash_key = $_GET['key'];
 				if($this->Users->check_hash_key($hash_key))
 				{
 					$email= $_GET['email'];
-					$this->load->view('templates/header');
+					
+					// $this->load->view('templates/header');
 					$this->load->view('resetpassword',array('email'=>$email));
-					$this->load->view('templates/footer');
 				}
 				else
 				{
-					echo "Wrong hash key.";
+					echo '<br><div class="alert alert-danger text-center">Wrong hash key</div>';
 				}
 			}
 			else
 			{
-				echo "Something is not working fine here.";
+				echo '<br><div class="alert alert-danger text-center">No key Found</div>';
 			}
+			$this->load->view('templates/footer');
 		}
 	}
 ?>

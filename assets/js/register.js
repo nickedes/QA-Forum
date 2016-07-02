@@ -74,9 +74,8 @@ $(document).ready(function () {
                         {
                             console.log("Verification link sent to" + data.email);
                             
-                                // console.log(data.success);
                             $('#form_error').html('<br><div class="alert alert-success">' + data.success_message + '</div>');
-
+                            // redirect after 3 secs to upload image page
                             setTimeout(function(){
                                 $('#form_error').empty();
                                 window.location.href = "upload";

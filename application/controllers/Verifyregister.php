@@ -44,8 +44,11 @@
 						);
 
 					$response = array('success' => 0);
+					// check if email id already exists or not
 					$email_exists = $this->Users->userexist('email', $this->input->post('email'));
+					// check if mobile no. already exists or not
 					$mobile_exists = $this->Users->userexist('mobileno', $this->input->post('mobileno'));
+					// when both email and mobile are unique
 					if($email_exists == FALSE && $mobile_exists == FALSE)
 					{
 						// insert data in database.

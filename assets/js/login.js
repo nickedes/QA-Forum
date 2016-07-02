@@ -76,12 +76,19 @@ $(document).ready(function () {
     $("#forgotpassword_form").validate({
         // Specify the validation rules
         rules: {
-            forgotpassword_email: "required"
+            forgotpassword_email: {
+                required: true,
+                email: true,
+                email_validator: true
+            }
         },
         
         // Specify the validation error messages
         messages: {
-            email: "Please enter a valid email address"
+            email: {
+                required :'<br><div class="alert alert-danger">Please enter a email address</div>',
+                email: '<br><div class="alert alert-danger">Please enter a valid email address</div>'
+            }
         },
         
         submitHandler: function(form) {
