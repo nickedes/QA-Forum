@@ -46,7 +46,7 @@
 			// load self-profile page
 			$this->load->view('templates/header');
 			$this->load->view('selfprofile',$data);
-			// $this->load->view('templates/footer');
+			$this->load->view('templates/footer');
 		}		
 
 		function update_details()
@@ -59,7 +59,6 @@
 			}
 			elseif( $formSubmit == 'logout')
 			{
-				echo "ABout to logout !!!";
 				$this->session->unset_userdata('email');
 				session_destroy();
 				redirect('login', 'refresh');
@@ -95,10 +94,16 @@
 
 			$data = array(
 				'user_details' => $user_details,
-				'questions' => $questions,
-				'answers' => $answers,
+				'questions' => $questions['result'],
+				'ques_query' => $questions['query'],
+				'ques_record_per_page' => $questions['record_per_page'],
+				'answers' => $answers['result'],
+				'ans_query' => $answers['query'],
+				'ans_record_per_page' => $answers['record_per_page'],
 				'tags' => $tags
 				);
+			$this->load->view('templates/header');
 			$this->load->view('publicprofile',$data);
+			// $this->load->view('templates/footer');
 		}
 	}
