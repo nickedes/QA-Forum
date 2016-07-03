@@ -15,9 +15,11 @@ $('#unfollow').click(function (e) {
             $("#unfollow").attr("disabled", true);
             $("#follow").attr("disabled", false);
             $("#users").val($("#users").val()-1);
-            console.log($("#users").val());
-            console.log(response);
-            location.reload();
+            $("#form_error").html('<br><div class="alert alert-info text-center">You Unfollowed this Tag</div>');
+            setTimeout(function(){
+                $('#form_error').empty();
+                // location.reload();
+            }, 3000);
         },
         error: function(response) {
             console.log(response);

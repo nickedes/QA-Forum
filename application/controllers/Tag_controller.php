@@ -13,7 +13,6 @@
 			$this->load->model('question_tags');
 		}
 
-
 		function get($id = NULL)
 		{
 			if ($id != NULL)
@@ -37,7 +36,7 @@
 						);
 					$relation = $this->follows->check($data);
 					$users = $this->follows->count($data['tag_id']);
-					$questions = $this->question_tags->get_ByTagID($data['tag_id']);
+					$questions = $this->question_tags->get_ByTagID($data['tag_id']);	
 					$ques_data = array();
 					if($questions)
 						$ques_data = $this->questions->get_sorted($questions);
@@ -48,7 +47,9 @@
 						'questions' => $ques_data,
 						'user_id' => $user_id
 						);
+						$this->load->view('templates/header');
 						$this->load->view('tag_details', $data);
+						$this->load->view('templates/footer');
 					}
 				}
 			}
