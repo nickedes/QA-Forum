@@ -74,23 +74,23 @@
         </div>
     </div>
 </div>
-<h1>Activities</h1>
 <div class="container">
+    <h2>Activities</h2>
     <!-- Info about qustions posted by user -->
     <?php
         if($ques_res){
             echo "<h2>Questions</h2>";
+            echo "<div class='header'>";
             foreach($ques_res as $ques_res) {
-                echo "<div class='header'>";
                 echo "<h4>";
                 $qid = $ques_res['q_id'];
                 $link= site_url('question/get/'.$qid);
                 echo "Q. <a href='$link'>"."<strong>Title : ".$ques_res['title']."</strong><br></a>";
                 echo "</h4>";
-                echo "</div>";
                 echo "<span class='name'>Asked by: <a href=".site_url()."/profile/get/".$ques_res['q_id'].">".$ques_res['name']."</a></br></span>";
                 echo $ques_res['creation_time']."<br>";
             } 
+            echo "</div>";
         }
         else
             echo "<h3>No Questions posted.</h3>";
@@ -101,16 +101,17 @@
         if($ans_res)
         {    
             echo "<h2>Answers</h2>";
+            echo "<div class='header'>";
             foreach($ans_res as $ans_res) {
+                echo "<h4>";
                 $qid = $ans_res['q_id'];
                 $link= site_url('question/get/'.$qid);
                 echo "<a href='$link'>"."<strong>Title : ".$ans_res['title']."</strong><br></a>";
-                echo "Description : ".$ans_res['description']."<br>";
-                echo "Creation time: ".$ans_res['creation_time']."<br> ";
-
+                echo "</h4>";
                 echo "<strong>Answer : ".$ans_res['answer_text']."</strong><br>";
-                echo "Answer time: ".$ans_res['answer_time']."<br> <br>";
+                echo "Answer time: ".$ans_res['answer_time']."<br>";
             }
+            echo "</div>";
         }
         else
             echo "<h3>No answers posted.</h3>";

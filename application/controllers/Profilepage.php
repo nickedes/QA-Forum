@@ -46,13 +46,12 @@
 			// load self-profile page
 			$this->load->view('templates/header');
 			$this->load->view('selfprofile',$data);
-			// $this->load->view('templates/footer');
+			$this->load->view('templates/footer');
 		}		
 
 		function update_details()
 		{	
 			$formSubmit = $this->input->post('submitform');
-			var_dump($formSubmit);
 			if($formSubmit == 'cancel')
 			{
 				$this->load->helper('url');
@@ -77,7 +76,12 @@
 				);
 			$this->sessionlibrary->set_session($data);
 			// $this->session->set_userdata($data);
-			$this->users->edit_details($data);
+			$response = array('success' => 0);
+			if($this->users->edit_details($data))
+			{	
+				$response['success'] = 1;
+			}
+			echo json_encode($response);
 		}
 
 		function get($user_id)
