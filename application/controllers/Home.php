@@ -15,6 +15,7 @@ class Home extends  CI_Controller {
 		$this->load->model('answers');
 		$this->load->model('questions');
 		$this->load->model('pagingclass');
+		$this->load->library('Sessionlibrary');
 	}
 
 	function index() {
@@ -68,21 +69,17 @@ class Home extends  CI_Controller {
 			//$this->load->helper('url');
 			redirect('profilepage/self');
 		}
-		else 
-			if ( $formSubmit == 'logout')
-			{
-				echo "ABout to logout !!!";
-				$this->session->unset_userdata('email');
-				session_destroy();
-			//$this->load->helper('url');
-				redirect('login', 'refresh');
-			}
-			else if( $formSubmit == 'question' )
-			{
-			//$this->load->helper('url');
-				redirect('question_controller');
-			}
+		else if( $formSubmit == 'question' )
+		{
+		//$this->load->helper('url');
+			redirect('question_controller');
+		}
 
+		}
+		function logout()
+		{
+			$this->sessionlibrary->destroy_session();
+			redirect('home');
 		}
 	}
 

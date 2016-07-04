@@ -7,6 +7,21 @@
 	<h4><b>Title:</b> <?php echo $result[0]['title'] ?></h4>
 	<h4><b>Description:</b> <?php echo $result[0]['description'] ?></h4>
 	</div>
+	<div class="list-group col-sm-2">
+		<a href="#" class="list-group-item active">
+		<span class="glyphicon glyphicon-tag"></span>Tags
+    	</a>
+    	<?php
+    		foreach ($tags as $tag) {
+    			$tag_link = site_url('/tag/get/'.$tag['tag_id']);
+    	?>
+    		<a href=<?php echo $tag_link; ?> class="list-group-item">
+        	<span class="glyphicon glyphicon-link"></span><?php echo $tag['name']; ?>
+        	</a>
+        <?php
+    		}
+    	?>
+    </div>
 	<form method="POST" action="<?php echo site_url(); ?>/answer/post_answer" id="post_answer_form">
 		<div class="text-center">
 		<textarea name="answer" id="answer" rows="3" cols="100" placeholder="Post Answer"></textarea>
@@ -21,7 +36,7 @@
 	</form>
 	<?php
 		if($answers)
-		{
+		{	
 			echo "<br><h4><b>Answers:</b></h4><div>";
 			foreach ($answers as $answer) {
 				$user_details = $answer_users[$answer['a_id']];

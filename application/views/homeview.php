@@ -11,7 +11,6 @@
 		echo form_open('home/butn_redirection');
 	?>
 
-	<button name="submitform" value="logout">LOGOUT</button>
 	<button name="submitform" value="edit">Edit Profile</button>
 	<button name="submitform" value="question">Ask a Question</button>
 

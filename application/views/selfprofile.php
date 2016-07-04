@@ -14,7 +14,6 @@
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <br>
             <form class="form-horizontal" id="myprofile_form" method="POST" action="update_details" role="form">
-            <button name="submitform" value="logout">LOGOUT</button>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Name:</label>
                     <div class="col-lg-8">

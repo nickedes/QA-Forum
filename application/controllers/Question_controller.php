@@ -113,6 +113,8 @@
 					$answers = $this->Answers->get_byQId($id);
 					// data of profile photo and name
 					$user_details = $this->Users->get($result[0]['user_id']);
+					// tags
+					$tags = $this->Question_tags->get_byQ($id);
 					// answer users
 					$answer_users = array();
 					if($answers)
@@ -125,6 +127,7 @@
 						'result' => $result,
 						'answers' => $answers,
 						'user_details' => $user_details,
+						'tags' => $tags,
 						'answer_users' => $answer_users
 						);
 					$this->load->view('templates/header');
