@@ -46,12 +46,13 @@
 			// load self-profile page
 			$this->load->view('templates/header');
 			$this->load->view('selfprofile',$data);
-			$this->load->view('templates/footer');
+			// $this->load->view('templates/footer');
 		}		
 
 		function update_details()
 		{	
 			$formSubmit = $this->input->post('submitform');
+			var_dump($formSubmit);
 			if($formSubmit == 'cancel')
 			{
 				$this->load->helper('url');
@@ -63,12 +64,15 @@
 				session_destroy();
 				redirect('login', 'refresh');
 			}
+			// get details from submit form of save changes
 			$data = array(
 				'name'=> $_POST['name'],
 				'email' => $this->session->userdata('email'),
 				'user_id' => $this->session->userdata('user_id'),
 				'mobileno' => $_POST['mobileno'],
-				'password' => md5($_POST['password']),
+				// 'password' => md5($_POST['password']),
+				'is_active' => $this->session->userdata('is_active'),
+				'hash_key' => $this->session->userdata('hash_key'),
 				'about' => $_POST['about']
 				);
 			$this->sessionlibrary->set_session($data);
