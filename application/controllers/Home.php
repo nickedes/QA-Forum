@@ -30,9 +30,6 @@ class Home extends  CI_Controller {
 		// $records_per_page=3;
        //// $rec_questions = $this->pagingclass->paging($query,$records_per_page);
 
-
-
-
 		$int_questions= $this->questions->get_all_interestedq($this->session->userdata['user_id']);
 		$ans_count= $this->answers->get_anscount();
 

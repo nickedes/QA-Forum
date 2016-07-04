@@ -7,7 +7,6 @@
     <?php
         echo "Welcome ".$this->session->userdata['name'];
         $this->load->library('form_validation');
-        $this->load->model('pagingclass');
         echo validation_errors(); 
         echo form_open('home/butn_redirection');
     ?>
@@ -15,12 +14,12 @@
     <button name="submitform" value="logout">LOGOUT</button>
     <button name="submitform" value="edit">Edit Profile</button>
     <button name="submitform" value="question">Ask a Question</button>
-
+    
     <h2>Recent Questions</h2>
 
     <?php
     foreach($rec_questions as $rec_question) {
-       // print_r($rec_question);
+
         $q_id = $rec_question['q_id'];
         $userid = $rec_question['user_id'];
         $userlink = site_url('profile/get/'.$userid);
@@ -51,8 +50,6 @@
     <h2>My Interests</h2>
     <?php
     foreach($int_questions as $int_question) {
-      // print_r($int_question);
-        //echo $int_query."$".$int_record_per_page;
        $q_id = $int_question['q_id'];
        // $tagid = $int_question['tag_id'];
        // $link1=  site_url('tag/get/'.$tagid);

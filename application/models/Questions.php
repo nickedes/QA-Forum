@@ -123,8 +123,11 @@
 			$query = "SELECT * FROM follows as f INNER JOIN question_tags as qt INNER JOIN questions as q WHERE qt.tag_id = f.tag_id and qt.q_id = q.q_id and f.user_id = ".(int)$user_id." order by q.creation_time DESC";
 			$record_per_page=2;
 			$new_query = $this->pagingclass->paging($query,$record_per_page);
+
+//echo $this->pagingclass->paginglink($query,$record_per_page);
 			$sql = $this->conn_id->prepare($new_query);
 			$sql->execute();
+			//$result = $sql->fetchALL(PDO::FETCH_ASSOC);
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
 			{
 				$data = array(
@@ -132,6 +135,8 @@
 					'record_per_page' => $record_per_page,
 					'result' => $result
 					);
+
+				//print_r($result);
 				return $data;
 			}
 			else
@@ -179,7 +184,7 @@
 			else
 			{
 				return 0;
-			}return $r;
+			}
 		}
 	}
 	?>

@@ -8,52 +8,51 @@ class Forgotpassword extends CI_Controller {
 		
 			$this->load->model('Users');
 			$this->load->library('email');
-			$this->load->library('Validation');
+			$this->load->library('form_validation');
 	}
 
 	function index()
 	{
-		$this->load->view('forgot_pass');
-		if (isset($_POST['forgot_submit']))
+		if (isset($_POST['forgotpassword_email']))
 		{
-   			// $this->form_validation->set_rules('forgot_email', 'Forgot_Email', 'valid_email|trim|required');
-			if ($this->validation->Email($_POST['forgot_email']) == TRUE)
+			// set rules for form validations
+   			$this->form_validation->set_rules('forgotpassword_email', 'Email', 'valid_email|trim|required|xss_clean');
+			// response of the controller
+			$response = array();
+			$response['success'] = 0;
+			if ($this->form_validation->run() == TRUE)
 			{
-				$em = $_POST['forgot_email'];
-
-			 		// generating a random hash key for the activation of the link.
-				$r = $this->Users->userexist($em);
+				$email = $_POST['forgotpassword_email'];
+				$r = $this->Users->userexist('email', $email);
 				if( $r != FALSE) 
 				{
-					echo "user already exists<br>";
-					
           	
-					if ($this -> send_verification_mail($r[0]['name'],$em,$r[0]['hash_key']))
-						{
-							echo "The mail has been sent to your email ".$em.". Please verify your email to proceed.";
-						}
-						else
-						{
-							echo "Something went wrong while sending you a mail.";
-						}
+					if ($this -> send_verification_mail($r[0]['name'],$email,$r[0]['hash_key']))
+					{
+						$response['success'] = 1;
+						$response['success_message'] = 'Email sent : Reset password';
+						
+					}
+					else
+					{
+						$response['message'] = 'Unable to send email. Please try later.';
+					}
 				}
 				else
-					echo "Enter registered email id";
-			
+				{	
+					$response['message'] = "Email id doesn't exist.";
+				}
 			}
-
 			else
 			{
-				echo "not working";
-				//$this->load->view('forgotpassword');
+				$response['message'] = form_error('forgotpassword_email');
 			}
-
 		}
 		else
-		{echo "Errrrrorrrrrr!!!!!!!!!!!!!";
-			//$this->load->view('forgotpassword');
+		{
+			$response['message'] = "Not a valid request.";
 		}
-
+		echo json_encode($response);
 	}
 
 

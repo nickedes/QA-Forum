@@ -75,15 +75,16 @@
 			return $statement->execute(array(':user_id' => $user_id));
 		}
 
-		function userexist($email) //for forgot password
+		// to check if user exists or not
+		function userexist($field, $value)
 		{
-			$email = "'".$email."'";
+			$value = "'".$value."'";
 			
-			$sql = $this->conn_id->query("select * from users where email = ".$email );
+			$sql = $this->conn_id->query("select * from users where ".$field." = ".$value );
 				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 			if(!empty($r))
 			{
-				$sql = $this->conn_id->query("select name,hash_key from users where email = ".$email );
+				$sql = $this->conn_id->query("select name,hash_key from users where ".$field." = ".$value );
 				$r = $sql->fetchALL(PDO::FETCH_ASSOC);
 				return $r;
 			}

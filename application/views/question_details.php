@@ -9,7 +9,6 @@
 	 ?>
 	<h1>Title: <?php echo $result[0]['title'] ?></h1>
 	<h2>Description: <?php echo $result[0]['description'] ?></h2>
-	<h3>Created by: <?php echo $result[0]['user_id'] ?></h3>
 	<form method="POST" action="<?php echo site_url(); ?>/answer/post_answer" id="post_answer">
 		<textarea name="textarea" id="answer" rows="10" cols="30">Post Answer</textarea>
 		<!-- Get session user id -->
@@ -24,7 +23,8 @@
 		{
 			echo "<div>";
 			foreach ($answers as $answer) {
-				echo "User : ".$answer['user_id']."<br>";
+				$user_details = $answer_users[$answer['a_id']];
+				$this->load->view('thumbnail_view.php', array('user_details' => $user_details));
 				echo "Answered at : ".$answer['answer_time']."<br>";
 				echo "Answer: ".$answer['answer_text']."<br> <br>";
 			}

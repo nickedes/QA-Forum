@@ -1,5 +1,5 @@
 <html>
-<head><h2>Forgot Password???</h2></head>
+<head><h2>Forgot Password</h2></head>
 <body>
 	<form method="POST" action="forgotpassword">
 	<p>Enter email address for verification link </p>

@@ -33,6 +33,7 @@
 					$tags = array();
 					try 
 					{
+						var_dump($this->session->userdata());
 						foreach ($_POST as $key => $value) {
 					// let us check whether the request consists of tags
 					// echo "key is ".$key
@@ -57,17 +58,17 @@
 					{
 						//show error messages.	
 					}
-
 					$data = array(
 						$title,
 						$description,
 						//Todo: User_id from session 
 						$this->session->userdata('user_id')
 						);
-
+					var_dump($data);
 					$request = $this->Questions->insert($data);
 					if ($request[0]==1)
 					{
+					echo "here";
 						echo "the Question is entered successfully.";
 						$q_id = $request[1];
 							// doubt : should load here or not
@@ -121,12 +122,17 @@
 				{
 					$answers = $this->Answers->get_byQId($id);
 					// data of profile photo and name
-					$user_pic = $this->Users->get($result[0]['user_id']);
+					$user_details = $this->Users->get($result[0]['user_id']);
+					// answer users
+					$answer_users = array();
+					foreach ($answers as $answer) {
+						$answer_users[$answer['a_id']] = $this->Users->get($answer['user_id']);
+					}
 					$data = array(
 						'result' => $result,
 						'answers' => $answers,
-						// 'profile' => $pic_path,
-						'user_pic' => $user_pic
+						'user_details' => $user_details,
+						'answer_users' => $answer_users
 						);
 					$this->load->view('question_details', $data);
 					// var_dump($result);

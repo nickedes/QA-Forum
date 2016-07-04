@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>QA-Forum</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -16,7 +17,6 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">Forum</a>
-    </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -24,9 +24,14 @@
         <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="#">About</a></li>
       </ul>
+        <?php
+        $this->load->library('form_validation');
+        echo validation_errors(); 
+        echo form_open('search_controller');
+    ?>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" name="search" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>

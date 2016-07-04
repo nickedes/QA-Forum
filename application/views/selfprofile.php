@@ -10,14 +10,15 @@
         echo form_open('profilepage/update_details');
     ?>
         <button name="submitform" value="logout">LOGOUT</button>
-        User Name&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  : &nbsp; &nbsp;  <input type="text"  value="<?php echo $this->session->userdata['name'] ?>" name="name" ><br>
+        User Name&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  : &nbsp; &nbsp;  <input type="text"  value="<?php echo $user_details[0]['name'] ?>" name="name" ><br>
 
-        Email : <?php echo $this->session->userdata['email'] ?><br>
+        Email : <?php echo  $user_details[0]['email'] ?><br>
 
-        Mobile no.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; &nbsp; <input type="number"   name="mobileno" value="<?php echo $this->session->userdata['mobileno']?>" ><br>
+        Mobile no.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; &nbsp; <input type="number"   name="mobileno" value="<?php echo $user_details[0]['mobileno']?>" ><br>
 
-        Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; : &nbsp; &nbsp; <input type="password"  value="<?php echo $this->session->userdata['passwd'] ?>" name="password" ><br>
-        About Me&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; &nbsp; <input type="text"  value="<?php echo $this->session->userdata['about'] ?>"  name="about"><br><br>
+        <!-- removed password from session -->
+        Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; : &nbsp; &nbsp; <input type="password"  value="<?php echo $user_details[0]['passwd'] ?>" name="password" ><br>
+        About Me&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; &nbsp; <input type="text"  value="<?php echo $user_details[0]['about'] ?>"  name="about"><br><br>
 
         <button type="submit" name="submitform" value="save">Save changes</button>
         </form>
@@ -26,15 +27,19 @@
 <h1>Activities</h1>
 <div>
     <!-- Info about qustions posted by user -->
-    <h2>Questions</h2>
     <?php
-        foreach($ques_res as $ques_res) {
-            $qid = $ques_res['q_id'];
-            $link= site_url('question/get/'.$qid);
-            echo "<a href='$link'>"."<strong>Title : ".$ques_res['title']."</strong><br></a>";
-            echo "Description : ".$ques_res['description']."<br>";
-            echo "Creation time: ".$ques_res['creation_time']."<br> <br>";
-        } 
+        if($ques_res){
+        echo "<h2>Questions</h2>";
+            foreach($ques_res as $ques_res) {
+                $qid = $ques_res['q_id'];
+                $link= site_url('question/get/'.$qid);
+                echo "<a href='$link'>"."<strong>Title : ".$ques_res['title']."</strong><br></a>";
+                echo "Description : ".$ques_res['description']."<br>";
+                echo "Creation time: ".$ques_res['creation_time']."<br> <br>";
+            } 
+        }
+        else
+            echo "<h3>No Questions posted.</h3>";
         echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
 
 
@@ -42,19 +47,24 @@
 </div>
 <div>
     <!-- Displays info about answers by user -->
-    <h2>Answers</h2>
     <?php
-        foreach($ans_res as $ans_res) {
-            $qid = $ans_res['q_id'];
-            $link= site_url('question/get/'.$qid);
-            echo "<a href='$link'>"."<strong>Title : ".$ans_res['title']."</strong><br></a>";
-            echo "Description : ".$ans_res['description']."<br>";
-            echo "Creation time: ".$ans_res['creation_time']."<br> ";
+        if($ans_res)
+        {    
+            echo "<h2>Answers</h2>";
+            foreach($ans_res as $ans_res) {
+                $qid = $ans_res['q_id'];
+                $link= site_url('question/get/'.$qid);
+                echo "<a href='$link'>"."<strong>Title : ".$ans_res['title']."</strong><br></a>";
+                echo "Description : ".$ans_res['description']."<br>";
+                echo "Creation time: ".$ans_res['creation_time']."<br> ";
 
-            echo "<strong>Answer : ".$ans_res['answer_text']."</strong><br>";
-            echo "Answer time: ".$ans_res['answer_time']."<br> <br>";
+                echo "<strong>Answer : ".$ans_res['answer_text']."</strong><br>";
+                echo "Answer time: ".$ans_res['answer_time']."<br> <br>";
+            }
         }
-          echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+        else
+            echo "<h3>No answers posted.</h3>";
+        echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
     
     ?>
 </div>
