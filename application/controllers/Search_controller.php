@@ -5,7 +5,7 @@ class Search_controller extends  CI_Controller {
 	function __construct() {
 		parent::__construct();
 		//echo "yes";
-		
+	    header('Access-Control-Allow-Origin: *');
 		$this->load->helper('url');
 		$this->load->model('users');
 		$this->load->model('tags');
