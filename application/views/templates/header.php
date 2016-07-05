@@ -26,15 +26,15 @@
       <ul class="nav navbar-nav">
         <li><a href="<?php echo site_url();?>/home">Home</a></li>
         <li><a href="<?php echo site_url();?>/profilepage/self">Profile page</a></li>
-        <li><a href="<?php echo site_url();?>/logout">Logout</a></li>
         <li><a href="<?php echo site_url();?>/question">Post question</a></li>
+        <li><form method="GET" action="search_controller">
+        <!-- <div class="form-group"> -->
+        <input type="text" class="form-control"  id="basics" name="search" placeholder="Search">
+        &nbsp;<button type="submit" class="btn btn-default">Submit</button>
+        <!-- </div> -->
+        </form></li>
+        <li><a href="<?php echo site_url();?>/logout">Logout</a></li>
       </ul>
-     <form method="GET" action="search_controller">
-      <div class="form-group">
-          <input type="text" class="form-control"  id="basics" name="search" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

@@ -21,7 +21,6 @@
 	<?php
 		if($questions)
 		{ //print_r($questions);
-			var_dump($users);
 			echo "<b>Questions : </b><br><br>";
 			foreach ($questions as $q) {
 				$qid = $q['q_id'];
