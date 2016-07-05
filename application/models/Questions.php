@@ -48,7 +48,7 @@
 			$query = "SELECT * from questions order by creation_time DESC";
 			$record_per_page=2;
 			$new_query = $this->pagingclass->paging($query,$record_per_page);
-      		$sql = $this->conn_id->prepare($new_query);
+			$sql = $this->conn_id->prepare($new_query);
 
 			$sql->execute();
 
@@ -159,8 +159,9 @@
 			$user_id = "'".$user_id."'";
 			$query = "select * from questions as q JOIN users as u where q.user_id = u.user_id and u.user_id = ".$user_id." order by q.creation_time DESC" ;
 			$record_per_page=3;
+		//	echo $query."$$$$$$".$record_per_page;
 			$new_query = $this->pagingclass->paging($query,$record_per_page);
-			// echo $new_query;
+//echo $new_query;
 			$sql = $this->conn_id->prepare($new_query);
 			$sql->execute();
 			//$result = $sql->fetchALL(PDO::FETCH_ASSOC);

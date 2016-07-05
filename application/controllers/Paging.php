@@ -1,4 +1,20 @@
 <?php
+class Paging extends CI_Controller
+	{
+		
+		function __construct()	
+		{
+			parent::__construct();
+			$this->load->model('Answers');
+			$this->load->model('Questions');
+			$this->load->model('Users');
+			$this->load->library('email');
+		}
+		function index()
+		{
+			echo "in";
+		}
+
 include_once("dbconfig.php");
 ?>
 <link rel="stylesheet" href="style.css" type="text/css" />

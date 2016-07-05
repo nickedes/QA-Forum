@@ -1,4 +1,12 @@
 <?php 
+// print_r($response);
+//
+    /*echo $resp['name']." ".$resp['tag_name'].$resp['title']."<br>";
+    # code...
+}
+ echo $response[0]['name'];
+ echo $numFound;
+ */
 	 if(isset($this->session->userdata['email']))
 	 {
 	 	redirect('profilepage/self');

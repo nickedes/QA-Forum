@@ -66,6 +66,8 @@ $route['profile'] = 'profilepage';
 $route['profile/get'] = 'profilepage/get';
 $route['profile/get/(:num)'] = 'profilepage/get/$1';
 
+$route['search'] = 'search_controller';
+
 $route['question'] = 'question_controller';
 $route['question/post_question'] = 'question_controller/post_question';
 $route['question/get'] = 'question_controller/get';
