@@ -58,13 +58,10 @@ $data = array(
 	);
 
 
-print_r($data);
 
 //echo "<br><br>";
 
 //print_r($data['response']);
-
-echo "<br>";
 
 
 $this->load->view('templates/header');
@@ -74,6 +71,19 @@ $this->load->view('templates/footer');
 
 
 
+}
+
+
+function return_array()
+{
+	echo "yes";
+	$sql = $this->conn_id->query("select name from tags ");
+			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+			//if($r)
+			print_r($r);
+				echo json_encode($r);
+			//else
+			//	return 0;
 }
 
 ?>

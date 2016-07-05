@@ -37,8 +37,9 @@
 			'ans_res' => $answers['result'],
 			'ans_query' => $answers['query'],
 			'ans_rec_record_per_page' => $answers['record_per_page'],
-
-			'tags' => $tags,
+				'tags' => $tags['result'],
+				'tag_query' => $tags['query'],
+				'tag_record_per_page' => $tags['record_per_page'],
 			'user_id' => $user_id,
 			'user_details' => $user_details
 			);
@@ -91,27 +92,35 @@
 			{
 				redirect('profilepage/self');
 			}
-			// Get user details
+
 			$user_details = $this->users->get($user_id);
-			// Get all questions asked by this user
+			
+
 			$questions = $this->questions->get_questions($user_id);
 			// Get all answers given this user
 			$answers = $this->answers->get_answers($user_id);
 			// Get all tags followed by this user
 			$tags = $this->follows->get_tags($user_id);
-
+			// Get user details
+			
 			$data = array(
-				'user_details' => $user_details,
-				'questions' => $questions['result'],
-				'ques_query' => $questions['query'],
-				'ques_record_per_page' => $questions['record_per_page'],
-				'answers' => $answers['result'],
-				'ans_query' => $answers['query'],
-				'ans_record_per_page' => $answers['record_per_page'],
-				'tags' => $tags
-				);
+			'questions' => $questions['result'],
+			'ques_query' => $questions['query'],
+			'ques_rec_record_per_page' => $questions['record_per_page'],
+			'answers' => $answers['result'],
+			'ans_query' => $answers['query'],
+			'ans_rec_record_per_page' => $answers['record_per_page'],
+			'tags' => $tags['result'],
+			'tag_query' => $tags['query'],
+			'tag_record_per_page' => $tags['record_per_page'],
+			//'user_id' => $user_id,
+			'user_details' => $user_details
+			);
+
+			// Get user details
+		
 			$this->load->view('templates/header');
 			$this->load->view('publicprofile',$data);
-			// $this->load->view('templates/footer');
+			 $this->load->view('templates/footer');
 		}
 	}

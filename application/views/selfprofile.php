@@ -78,6 +78,7 @@
     <!-- Info about qustions posted by user -->
     <?php
         if($ques_res){
+//print_r($questions);
             echo "<h2>Questions</h2>";
             echo "<div class='header'>";
             foreach($ques_res as $ques_res) {
@@ -90,11 +91,12 @@
                 echo $ques_res['creation_time']."<br>";
             } 
             echo "</div>";
+         echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
+  
         }
         else
             echo "<h3>No Questions posted.</h3>";
-        echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
-    ?>
+         ?>
     <!-- Displays info about answers by user -->
     <?php
         if($ans_res)
@@ -111,11 +113,12 @@
                 echo "Answer time: ".$ans_res['answer_time']."<br>";
             }
             echo "</div>";
+              echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+  
         }
         else
             echo "<h3>No answers posted.</h3>";
-        echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
-    
+        
     ?>
 </div>
 <div>
@@ -126,23 +129,27 @@
         <div class="col-md-4 col-sm-6 col-xs-12">
                     <?php
                         if($tags)
-                        {
+                        {//print_r($tags);
                             foreach($tags as $tag) {
                                 $tag_id = $tag['tag_id'];
                                 $link = site_url('tag/get/'.$tag_id);
                             ?>
-                            <a href="<?php echo $link;?>">
-                            <strong><?php echo $tag['name'];?></strong>
-                            </a>
                             <form method='POST' id='follow_unfollow' action="<?php echo site_url(); ?>/follow">
                             <input type='hidden' id='user_id' name='user_id' value="<?php echo $user_id; ?>">
                             <input type='hidden' id='tag_id' name='tag_id' value="<?php echo $tag_id; ?>">
+                            <a href="<?php echo $link;?>">
+                            <span class="glyphicon glyphicon-link"></span><strong><?php echo $tag['name'];?></strong>
+                            </a>
                             &nbsp;&nbsp;&nbsp;
                             <button type="submit" class="btn btn-danger" id="unfollow" name="name" value="unfollow">Unfollow</button>
                             </form>
                             <br><br>
                         <?php
+                         
+
                             }
+                             echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page);
+  
                         }
                         else
                         {

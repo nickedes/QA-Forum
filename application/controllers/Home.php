@@ -6,7 +6,6 @@ class Home extends  CI_Controller {
 		parent::__construct();
 		if(!isset($this->session->userdata['email']))
 		{
-			$this->load->helper('url');
 			redirect('login');
 		}
 		$this->load->helper('url');

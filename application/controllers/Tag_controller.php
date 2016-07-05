@@ -7,6 +7,10 @@
 		function __construct()
 		{
 			parent::__construct();
+			if(!isset($this->session->userdata['user_id']))
+			{
+				redirect('login');
+			}
 			$this->load->model('tags');
 			$this->load->model('follows');
 			$this->load->model('questions');

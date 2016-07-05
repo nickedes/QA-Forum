@@ -24,6 +24,8 @@
 						echo "Description : ".$question['description']."<br>";
 						echo "Creation time: ".$question['creation_time']."<br> <br>";
 					}  
+					 echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
+  
 				}
 				else
 				{
@@ -45,6 +47,8 @@
 						echo "<strong>Answer : ".$answer['answer_text']."</strong><br>";
 						echo "Answer time: ".$answer['answer_time']."<br> <br>";
 					} 
+					 echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+  
 				}
 				else
 				{
@@ -62,6 +66,8 @@
 						$link= site_url('tag/get/'.$tag_id);
 						echo "<a href='$link'>"."<strong>".$tag['name']."</strong><br><br></a>";
 					} 
+					 echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page);
+  
 				}
 				else
 				{

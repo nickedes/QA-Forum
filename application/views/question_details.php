@@ -15,9 +15,10 @@
     		foreach ($tags as $tag) {
     			$tag_link = site_url('/tag/get/'.$tag['tag_id']);
     	?>
-    		<a href=<?php echo $tag_link; ?> class="list-group-item">
+    		<a href="<?php echo $tag_link; ?>">
+    		<div class="list-group-item">
         	<span class="glyphicon glyphicon-link"></span><?php echo $tag['name']; ?>
-        	</a>
+        	</div></a>
         <?php
     		}
     	?>
@@ -35,6 +36,7 @@
 		</div>
 	</form>
 	<?php
+	//print_r($answers);
 		if($answers)
 		{	
 			echo "<br><h4><b>Answers:</b></h4><div>";
@@ -45,6 +47,8 @@
 				echo "Answer: ".$answer['answer_text']."<br> <br>";
 			}
 			echo "</div>";
+			 echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+  
 		}
 		else
 		{

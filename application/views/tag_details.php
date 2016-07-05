@@ -31,6 +31,7 @@
 		        echo "Creation time: ".$q['creation_time']."<br><br>";
       		}
 		echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page);
+		
 		}
 		else
 		{

@@ -49,5 +49,18 @@
 				return 0;	
 			}
 		}
+
+		function get_byQ($q_id)
+		{
+			try {
+				$sql = $this->conn_id->query("select * from question_tags as q JOIN tags as t where t.tag_id = q.tag_id and q.q_id = ".$q_id);
+				if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
+					return $result;
+				else
+					return 0;				
+			} catch (PDOException $e) {
+				return 0;	
+			}
+		}
 	}
 	?>
