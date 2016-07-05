@@ -6,7 +6,7 @@
 			$this->load->view('thumbnail_view.php');
 			?>
 			<div>
-				<b>Email</b> : <?php echo $user_details[0]['email'] ?><br>
+				<br><b>Email</b> : <?php echo $user_details[0]['email'] ?><br>
 				<b>About User</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; &nbsp; <?php echo $user_details[0]['about'] ?><br><br>
 			</div>
 			</div>
@@ -17,13 +17,17 @@
 				if($questions)
 				{
 					echo "<h2>Questions</h2>";
+					echo "<div class='header'>";
 					foreach($questions as $question) {
+						echo "<h4>";
 						$qid = $question['q_id'];
 						$link= site_url('question/get/'.$qid);
-						echo "<a href='$link'>"."<strong>Title : ".$question['title']."</strong><br></a>";
+						echo "Q. <a href='$link'>"."<strong>Title : ".$question['title']."</strong><br></a>";
+						echo "</h4>";
 						echo "Description : ".$question['description']."<br>";
-						echo "Creation time: ".$question['creation_time']."<br> <br>";
-					}  
+						echo "Creation time: ".$question['creation_time']."<br>";
+					}
+					echo "</div>";  
 				}
 				else
 				{
@@ -36,15 +40,19 @@
 				if($answers)
 				{
 					echo "<h2>Answers</h2>";
+            		echo "<div class='header'>";
 					foreach($answers as $answer) {
+						echo "<h4>";
 						$qid = $answer['q_id'];
 						$link= site_url('question/get/'.$qid);
 						echo "<a href='$link'>"."<strong>Title : ".$answer['title']."</strong><br></a>";
+						echo "</h4>";
 						echo "Description : ".$answer['description']."<br>";
-						echo "Creation time: ".$answer['creation_time']."<br> ";
+						// echo "Creation time: ".$answer['creation_time']."<br> ";
 						echo "<strong>Answer : ".$answer['answer_text']."</strong><br>";
 						echo "Answer time: ".$answer['answer_time']."<br> <br>";
 					} 
+					echo "</div>";
 				}
 				else
 				{
@@ -53,14 +61,18 @@
 				?>
 			</div>
 			<div>
-				<h2>Tags</h2>
 				<?php
 				if($tags)
 				{
+						echo "<br><div class='list-group col-sm-2'>
+								<a href='#' class='list-group-item active'>
+								<span class='glyphicon glyphicon-tag'></span>Tags Followed
+						    	</a>";
 					foreach($tags as $tag) {
 						$tag_id = $tag['tag_id'];
 						$link= site_url('tag/get/'.$tag_id);
-						echo "<a href='$link'>"."<strong>".$tag['name']."</strong><br><br></a>";
+						echo "<a href='$link'><div class='list-group-item'>
+        					<span class='glyphicon glyphicon-link'></span>".$tag['name']."</div></a>";
 					} 
 				}
 				else
@@ -69,3 +81,4 @@
 				}
 				?> 
 			</div>
+</div>
