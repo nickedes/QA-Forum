@@ -59,7 +59,6 @@
 			$sql = $this->conn_id->prepare("UPDATE users SET profilepic = ".$value." where user_id = ?");
 			$sql->execute(array($r[0]['user_id']));
 			$affected_rows = $sql->rowCount();
-			echo $affected_rows;
 			return $affected_rows;
 		}
 
@@ -104,23 +103,27 @@
 			{
 				if ( $row['is_active'] == 1 )
 				{
-					echo "You are already a verified user.";
+					// echo "You are already a verified user.";
+					return 1;
 				}
 				else
 				{
 					if ( $this->verify_success($row['user_id']) == TRUE )
 					{
-						echo "Now you are verified user.";
+						// echo "Now you are verified user.";
+						return 1;
 					}
 					else
 					{
-						echo "Something went wrong man.";
+						// echo "Something went wrong man.";
+						return 0;
 					}
 				}
 			}
 			else
 			{
-				echo "Looks like the key doesn't exist.";
+				// echo "Looks like the key doesn't exist.";
+				return 0;
 			}
 		}
 

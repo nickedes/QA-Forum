@@ -3,7 +3,9 @@
 <head>
 	<title>QA-Forum</title>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/easy-autocomplete.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/easy-autocomplete.themes.min.css">
+ 
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -24,14 +26,9 @@
         <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="#">About</a></li>
       </ul>
-        <?php
-        $this->load->library('form_validation');
-        echo validation_errors(); 
-        echo form_open('search_controller');
-    ?>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" name="search" placeholder="Search">
+     <form method="GET" action="search_controller">
+      <div class="form-group">
+          <input type="text" class="form-control"  id="basics" name="search" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>

@@ -13,7 +13,6 @@
 			$this->load->model('question_tags');
 		}
 
-
 		function get($id = NULL)
 		{
 			if ($id != NULL)
@@ -37,8 +36,12 @@
 						);
 					$relation = $this->follows->check($data);
 					$users = $this->follows->count($data['tag_id']);
+<<<<<<< HEAD
 					$questions = $this->question_tags->get_ByTagID($data['tag_id']);
 
+=======
+					$questions = $this->question_tags->get_ByTagID($data['tag_id']);	
+>>>>>>> 3d2b826a1c6bc356d461d76f85e05808b886542d
 					$ques_data = array();
 					if($questions)
 						$ques_data = $this->questions->get_sorted($questions['result']);

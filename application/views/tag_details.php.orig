@@ -25,12 +25,23 @@
 			echo "<b>Questions : </b><br><br>";
 			foreach ($questions as $q) {
 				$qid = $q['q_id'];
+<<<<<<< HEAD
+ $link= site_url('question/get/'.$qid);
+
+        echo "<a href='$link'>"."<strong>Title : ".$q['title']."</strong><br></a>";
+        echo "Description : ".$q['description']."<br>";
+        echo "Creation time: ".$q['creation_time']."<br><br>";
+      }
+       echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page);
+
+
+=======
 				$link= site_url('question/get/'.$qid);
 		        echo "<a href='$link'>"."<strong>Title : ".$q['title']."</strong><br></a>";
 		        echo "Description : ".$q['description']."<br>";
 		        echo "Creation time: ".$q['creation_time']."<br><br>";
       		}
-		echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page);
+>>>>>>> 3d2b826a1c6bc356d461d76f85e05808b886542d
 		}
 		else
 		{

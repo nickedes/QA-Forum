@@ -44,8 +44,11 @@
 						);
 
 					$response = array('success' => 0);
+					// check if email id already exists or not
 					$email_exists = $this->Users->userexist('email', $this->input->post('email'));
+					// check if mobile no. already exists or not
 					$mobile_exists = $this->Users->userexist('mobileno', $this->input->post('mobileno'));
+					// when both email and mobile are unique
 					if($email_exists == FALSE && $mobile_exists == FALSE)
 					{
 						// insert data in database.
@@ -120,7 +123,29 @@
                // echo '<br />';
                // echo $this->email->print_debugger();
 			return $result;
+		}
 
+		function resend_verification_mail()
+		{
+			$user_details = $this->Users->userexist('email', $_POST['email']);
+			$username = $user_details[0]['name'];
+			$address = $_POST['email'];
+			$hash_key = $user_details[0]['hash_key'];
+			$is_active = $this->session->userdata('is_active');
+
+			// response to ajax call.
+			$response = array();
+
+			// send verification link to user
+			if($this->send_verification_mail($username,$address,$hash_key))
+			{
+				$response['success'] = 1; 
+			}
+			else
+			{
+				$response['message'] = "Unable to send verification mail";
+			}
+			echo json_encode($response);
 		}
 	}
 	?>

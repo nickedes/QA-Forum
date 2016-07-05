@@ -2,7 +2,7 @@
 	/**
 	* This class takes care of verifying the email id
 	*/
-	class updatepassword extends CI_Controller
+	class Updatepassword extends CI_Controller
 	{
 		
 		function __construct()
@@ -14,31 +14,44 @@
 
 		function index()
 		{
-		/*	echo "aaaya?";
-			echo $_POST['new_pass'];
-			$data= array('value' => $_POST['new_pass'],
-				'email' => $_POST['hidden_email']
-				);
-			$this->users->update_password($data);*/
-
-			$this->form_validation->set_rules('password', 'Password', 'trim|required');
-			$this->form_validation->set_rules('password1', 'Password', 'trim|required|matches[password]');//add matches at application level also
-			if($this->form_validation->run() == TRUE)
+			if(($this->input->post('email') != NULL) && ($this->input->post('password') != NULL))
 			{
-				if($this->Users->reset_pass($this->input->post('email'),$this->input->post('password'))==TRUE)
+				// validation rules
+				$this->form_validation->set_rules('password', 'Password', 'trim|required');
+				$this->form_validation->set_rules('confirm_password', 'Password', 'trim|required|matches[password]');
+
+				// to save response of the controller in this array
+				$response = array();
+				// given a default value; means unsuccessful reset password
+				$response['success'] = 0;
+				// when the above validations are satisfied
+				if($this->form_validation->run() == TRUE)
 				{
-					echo "Password Reset Successfull";
+					// update password in db
+					if($this->Users->reset_pass($this->input->post('email'),$this->input->post('password'))==TRUE)
+					{
+						$response['success'] = 1;
+						$response['message'] = 'Password Reset Successful';
+					}
+					else
+					{
+						$response['message'] = "Unable to reset password in db. Something went wrong";
+					}
 				}
 				else
 				{
-					echo "Something went wrong while resetting.";
+					// take form vaidation error messages when form validations false
+					$response['password'] = form_error('password');
+					$response['confirm_password'] = form_error('confirm_password');
 				}
+				echo json_encode($response);
 			}
 			else
 			{
+				$this->load->view('templates/header');
 				$this->load->view('resetpassword',array('email'=>$this->input->post('email')));
+				$this->load->view('templates/footer');
 			}
-
 		}
 	}
 

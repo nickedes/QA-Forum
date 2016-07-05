@@ -56,6 +56,7 @@ $route['home'] = 'home';
 
 $route['register'] = 'register';
 $route['verifyregister']= 'verifyregister';
+$route['verifyregister/resend_verification_mail']= 'verifyregister/resend_verification_mail';
 
 $route['email'] = 'sendMail/sendTestMail';
 $route['verifyemail']= 'verifyemail';
@@ -67,10 +68,12 @@ $route['profile/get/(:num)'] = 'profilepage/get/$1';
 $route['search'] = 'search_controller';
 
 $route['question'] = 'question_controller';
+$route['question/post_question'] = 'question_controller/post_question';
 $route['question/get'] = 'question_controller/get';
 $route['question/get/(:num)'] = 'question_controller/get/$1';
 
 $route['upload'] = 'upload';
+$route['verifyupload/uploadImage'] = 'verifyupload/uploadImage';
 
 $route['tag'] = 'tag_controller';
 $route['tag/get'] = 'tag_controller/get';

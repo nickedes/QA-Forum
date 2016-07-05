@@ -1,20 +1,20 @@
-<h3> Image Upload </h3>
-<div id="container">
- 
-<?php 
-	$this->load->helper('form');
-	echo  form_open_multipart('upload/uploadImage');
-?>
+<div id="container-fluid">
+	<div class="row ">
 
-<input type="file" name="userfile" />
- 
-<button class="btn btn-success" type="submit" name="submit">
-<i class="fa fa-upload fa-2x" aria-hidden="true"></i>
-</button>
- 
-<?php echo form_close();?>
- 
+		<div class="col-sm-offset-4">
+			<form method="post" id="upload_form" action="verifyupload/uploadImage" enctype="multipart/form-data">
+				<div class="row">
+					<h3>Upload Your Image</h3>
+
+					<label class="btn btn-deafult btn-file"></label><input type="file" name="userfile" id="userfile"/>
+					<div class="row">
+						<div id="upload_error" class="col-sm-4"></div>
+					</div>
+					<br>
+					<button class="btn btn-success" type="submit" name="submit" value="upload">Upload</button>
+					<div class="btn btn-info" id="skip_upload">Skip</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
- 
-</body>
-</html>

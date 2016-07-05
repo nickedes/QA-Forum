@@ -19,13 +19,14 @@
 		}
 		function post_answer()
 		{
+			$response = array('success' => 0);				
 			if(isset($_POST['user_id']))
 			{
 				$data = array($_POST['q_id'], $_POST['user_id'], $_POST['answer']);
-				// var_dump($data);
+				
 				if($this->Answers->insert($data))
 				{
-					echo "Answer: Success";
+					$response['success'] = 1;
 					// Get question details by Question id.
 					$question = $this->Questions->get($_POST['q_id']);
 
@@ -37,7 +38,7 @@
 					
 					$email_list = array();
 					$user_id = $question[0]['user_id'];
-					echo $user_id;
+					// echo $user_id;
 					if($_POST['user_id'] != $user_id)
 					{
 						// get user details by user id.
@@ -67,21 +68,15 @@
 						->message($message)
 						->send();
 					}
-					$json_message = array(
-						'success' => true,
-						'data' => $user_id,
-						'emails' => $email_list
-						);
-					echo json_encode($json_message);
-
 				}
 				else
-					echo "Answer: Failure";
+					$response['message'] = 'Answered couldnot be posted';
 			}
 			else
 			{
-				echo ":(";
+				$response['message'] = 'Something is wrong with post parameters';
 			}
+			echo json_encode($response);
 		}
 	}
 ?>

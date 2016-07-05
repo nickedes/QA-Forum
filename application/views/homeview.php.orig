@@ -11,11 +11,19 @@
 		echo form_open('home/butn_redirection');
 	?>
 
+<<<<<<< HEAD
+    <button name="submitform" value="logout">LOGOUT</button>
+    <button name="submitform" value="edit">Edit Profile</button>
+    <button name="submitform" value="question">Ask a Question</button>
+    
+    <h2>Recent Questions</h2>
+=======
 	<button name="submitform" value="logout">LOGOUT</button>
 	<button name="submitform" value="edit">Edit Profile</button>
 	<button name="submitform" value="question">Ask a Question</button>
 
 	<h2>Recent Questions</h2>
+>>>>>>> 3d2b826a1c6bc356d461d76f85e05808b886542d
 
 	<?php
 	foreach($rec_questions as $rec_question) {

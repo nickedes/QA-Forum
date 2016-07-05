@@ -38,13 +38,9 @@
 			$sql = $this->conn_id->prepare("SELECT * FROM questions WHERE q_id IN ($questionMarks) order by creation_time DESC");
 			$sql->execute($q_ids);
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
-			{
-				// print_r($result);
 				return $result;
-			}
 			else
 				return 0;
-			return 0;
 		}
 
 		function get_allq_sorted()
@@ -65,7 +61,6 @@
 					'result' => $result
 					);
 
-				//print_r($result);
 				return $data;
 			}
 			else

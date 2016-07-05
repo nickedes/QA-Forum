@@ -16,8 +16,12 @@ $('#follow').click(function (e) {
         	$("#follow").attr("disabled", true);
         	$("#unfollow").attr("disabled", false);
             $("#users").val(parseInt($("#users").val()) + 1);
-            console.log($("#users").val());
-            console.log(response);
+            $("#form_error").html('<br><div class="alert alert-success text-center">You Followed this Tag</div>');
+            setTimeout(function(){
+                $('#form_error').empty();
+                // no need of refresh
+                // location.reload();
+            }, 3000);
         },
         error: function(response) {
             console.log(response);

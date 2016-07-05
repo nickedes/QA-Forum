@@ -1,33 +1,54 @@
-$('#answer_submit').click(function (e) {
-	
-	var answer = $('#answer').val();
-	var user_id = $('#user_id').val();
-	var q_id = $('#q_id').val();
-
-	// ajax call 
-	$.ajax({
-        type: "POST",
-        url: $('#post_answer').attr('action'),
-        data: {
-            answer: answer,
-            q_id: q_id,
-            user_id: user_id
+$(document).ready(function () {
+    $(function() {
+    highlight_errors_validate();
+    $('#post_answer_form').validate({
+        // Specify the validation rules
+        rules: {
+            answer: "required"
         },
-        success: function(response) {
-        	if(response)
-        	{
-        		var text = "User : " + user_id + "<br>" + "Answer: " + answer + "<br>";
-        		// jQuery("div#result").html(text);
-                //$("#answer").val('Post Answer');
-                location.reload();
-        	}
-            console.log(response);
+        
+        // Specify the validation error messages
+        messages: {
+            answer: {
+                required: '<br><div class="alert alert-danger">Please post an answer</div>'
+            }
         },
-        error: function(response) {
-            console.log(response);
-            // alert("Fail");
-        }
+        
+        submitHandler: function(form) {
+            $.ajax({  
+                type: 'POST',
+                url: $(form).attr('action'),
+                data: $(form).serialize(),
+                dataType : 'json',
+                success: function(data) {
+                    $('#form_error').html('');
+                    $('#answer_error').html('');
+                    if (data.success){
+                        $('#form_error').html('<br><div class="alert alert-success text-center">Answer posted successfully</div><br>');
+                        setTimeout(function(){
+                            $('#form_error').empty();
+                            location.reload();
+                            }, 3000);
+                    }
+                    else
+                    {
+                        if(data.message != null)
+                        {
+                            $('#form_error').text(data.message);
+                        }
+                        else
+                        {
+                            if(typeof(data.answer) != "undefined" && data.answer != "" )
+                                $('#answer_error').html('<br><div class="alert alert-danger">' + data.answer + '</div>');
+                        }
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+            return false;
+        },
+    });
 });
-
-	e.preventDefault();
-})
+});

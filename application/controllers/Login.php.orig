@@ -4,12 +4,20 @@ class login extends CI_Controller{
 
 	function __construct()
 	{
-
+<<<<<<< HEAD
+		
 
 		parent::__construct();
 		if(isset($this->session->userdata['email']))
 		{
+			$this->load->helper('url');
+			redirect('profilepage/self');
+=======
+		parent::__construct();
+		if(isset($this->session->userdata['email']))
+		{
 		 	redirect('profilepage/self');
+>>>>>>> 3d2b826a1c6bc356d461d76f85e05808b886542d
 		}
 	}
 
