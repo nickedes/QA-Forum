@@ -1,9 +1,9 @@
-	<div class="navbar navbar-default navbar-bottom">
-        <div class="container">
+<footer class="footer">	
+	<div class="container-fluid">
 			<p class="navbar-text pull-left">© 2016 - Site Built By Rahul, Nikhil
 			</p>
         </div>
-	</div>
+</footer>
 </body>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>

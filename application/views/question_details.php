@@ -15,9 +15,10 @@
     		foreach ($tags as $tag) {
     			$tag_link = site_url('/tag/get/'.$tag['tag_id']);
     	?>
-    		<a href=<?php echo $tag_link; ?> class="list-group-item">
+    		<a href="<?php echo $tag_link; ?>">
+    		<div class="list-group-item">
         	<span class="glyphicon glyphicon-link"></span><?php echo $tag['name']; ?>
-        	</a>
+        	</div></a>
         <?php
     		}
     	?>

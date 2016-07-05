@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>QA-Forum</title>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -15,7 +15,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Forum</a>
+      <a class="navbar-brand">Forum</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

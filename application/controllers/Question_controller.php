@@ -9,6 +9,10 @@
 		{
 
 			parent::__construct();
+			if(!isset($this->session->userdata['user_id']))
+			{
+				redirect('login');
+			}
 			$this->load->helper(array('form'));
 			$this->load->library('form_validation');
 			$this->load->model('Questions');

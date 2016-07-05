@@ -131,12 +131,12 @@
                                 $tag_id = $tag['tag_id'];
                                 $link = site_url('tag/get/'.$tag_id);
                             ?>
-                            <a href="<?php echo $link;?>">
-                            <strong><?php echo $tag['name'];?></strong>
-                            </a>
                             <form method='POST' id='follow_unfollow' action="<?php echo site_url(); ?>/follow">
                             <input type='hidden' id='user_id' name='user_id' value="<?php echo $user_id; ?>">
                             <input type='hidden' id='tag_id' name='tag_id' value="<?php echo $tag_id; ?>">
+                            <a href="<?php echo $link;?>">
+                            <span class="glyphicon glyphicon-link"></span><strong><?php echo $tag['name'];?></strong>
+                            </a>
                             &nbsp;&nbsp;&nbsp;
                             <button type="submit" class="btn btn-danger" id="unfollow" name="name" value="unfollow">Unfollow</button>
                             </form>
