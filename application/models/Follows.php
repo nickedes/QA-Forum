@@ -7,7 +7,7 @@
 		
 		function __construct()
 		{	
-			parent::__construct('tags', 'tag_id');
+			parent::__construct('follows', 'user_id');
 		}
 
 		function insert($data)
@@ -40,6 +40,7 @@
 		{
 			try
 			{
+				echo "DELETE FROM follows WHERE tag_id = '".$data['tag_id']."' and user_id = '".$data['user_id']."'";
 				$sql = $this->conn_id->prepare("DELETE FROM follows WHERE tag_id = '".$data['tag_id']."' and user_id = '".$data['user_id']."'");
 				$sql->execute();
 				$affected_rows = $sql->rowCount();
@@ -73,7 +74,7 @@
 		{
 
 			$query = "SELECT f.user_id, f.tag_id, t.name FROM follows as f ";
-			$query .= "INNER JOIN tags AS t ON f.tag_id = t.tag_id ";
+			$query .= "INNER JOIN tags AS t ON f.tag_id = t.tag_id WHERE f.user_id = ".$user_id;
 			$sql = $this->conn_id->prepare($query);
 			$sql->execute();
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);

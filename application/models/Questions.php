@@ -157,7 +157,7 @@
 		function get_questions($user_id)
 		{
 			$user_id = "'".$user_id."'";
-			$query = "select * from questions where user_id = ".$user_id." order by creation_time DESC" ;
+			$query = "select * from questions as q JOIN users as u where q.user_id = u.user_id and u.user_id = ".$user_id." order by q.creation_time DESC" ;
 			$record_per_page=3;
 		//	echo $query."$$$$$$".$record_per_page;
 			$new_query = $this->pagingclass->paging($query,$record_per_page);

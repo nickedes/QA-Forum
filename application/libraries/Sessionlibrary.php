@@ -27,5 +27,11 @@
 			$this->CI->session->set_userdata($session_data);
 			return TRUE;
 		}
+
+		public function destroy_session()
+		{
+			$this->CI->session->unset_userdata();
+			session_destroy();
+		}
 	}
 ?>

@@ -147,10 +147,8 @@
 
 		function edit_details($data)
 		{
-			////echo "haa aaya";
 			//echo $this->session->userdata['email'];
-			 $email = $this->session->userdata['email'];
-			//print_r($data);
+			$email = $this->session->userdata['email'];
 			$value = "'".$data['name']."'";
 			$sql = $this->conn_id->prepare("UPDATE users SET name = ".$value." where email = ?");
 			$sql->execute(array($email));
@@ -159,15 +157,11 @@
 			$sql = $this->conn_id->prepare("UPDATE users SET mobileno = ".$value." where email = ?");
 			$sql->execute(array($email));
 
-			$value = "'".$data['password']."'";
-			$sql = $this->conn_id->prepare("UPDATE users SET password = ".$value." where email = ?");
-			$sql->execute(array($email));
-
 			$value = "'".$data['about']."'";
 			$sql = $this->conn_id->prepare("UPDATE users SET about = ".$value." where email = ?");
 			$sql->execute(array($email));
-			echo "Profile Details Updated";
-			
+			// echo "Profile Details Updated";
+			return true;
 		}
 
 		function get_Pic($id)

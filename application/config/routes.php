@@ -53,6 +53,7 @@ $route['profile_self_view'] = 'profile_self_view';
 
 $route['users'] = 'users';
 $route['home'] = 'home';
+$route['logout'] = 'home/logout';
 
 $route['register'] = 'register';
 $route['verifyregister']= 'verifyregister';
