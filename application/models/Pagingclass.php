@@ -12,23 +12,23 @@ function index()
 {
 
 }
-function paging($query,$records_per_page)
+function paging($query,$records_per_page,$str)
 {
-  $starting_position=0;
-  if(isset($_GET["page_no"]))
+   $starting_position=0;
+  if(isset($_GET[$str]))
   {
-   $starting_position=($_GET["page_no"]-1)*$records_per_page;
+   $starting_position=($_GET[$str]-1)*$records_per_page;
  }
  $query2=$query." limit $starting_position,$records_per_page";
  return $query2;
 }
 
-public function paginglink($query,$records_per_page)
+public function paginglink($query,$records_per_page,$str)
 {    
 
- // echo $query ."<br>".$records_per_page."<br><br>";
   
   $self = $_SERVER['PHP_SELF'];
+  //echo $self;
   
   $stmt = $this->conn_id->prepare($query);
   $r=$stmt->execute();
@@ -42,32 +42,32 @@ public function paginglink($query,$records_per_page)
             //echo $total_no_of_pages;
     echo "Page bar:  ";
     $current_page=1;
-    if(isset($_GET["page_no"]))
+    if(isset($_GET[$str]))
     {
-     $current_page=$_GET["page_no"];
+       $current_page=$_GET[$str];
    }
    if($current_page!=1)
    {
-     $previous =$current_page-1;
-     echo "<a href='".$self."?page_no=1'>First</a>&nbsp;&nbsp;";
-     echo "<a href='".$self."?page_no=".$previous."'>Previous</a>&nbsp;&nbsp;";
+    $previous =$current_page-1;
+     echo "<a href='".$self."?".$str."=1'>First</a>&nbsp;&nbsp;";
+     echo "<a href='".$self."?".$str."=".$previous."'>Previous</a>&nbsp;&nbsp;";
    }
    for($i=1;$i<=$total_no_of_pages;$i++)
    {
     if($i==$current_page)
     {
-      echo "<strong><a href='".$self."?page_no=".$i."' style='color:red;text-decoration:none'>".$i."</a></strong>&nbsp;&nbsp;";
+      echo "<strong><a href='".$self."?".$str."=".$i."' style='color:red;text-decoration:none'>".$i."</a></strong>&nbsp;&nbsp;";
     }
     else
     {
-      echo "<a href='".$self."?page_no=".$i."'>".$i."</a>&nbsp;&nbsp;";
+      echo "<a href='".$self."?".$str."=".$i."'>".$i."</a>&nbsp;&nbsp;";
     }
   }
   if($current_page!=$total_no_of_pages)
   {
     $next=$current_page+1;
-    echo "<a href='".$self."?page_no=".$next."'>Next</a>&nbsp;&nbsp;";
-    echo "<a href='".$self."?page_no=".$total_no_of_pages."'>Last</a>&nbsp;&nbsp;";
+    echo "<a href='".$self."?".$str."=".$next."'>Next</a>&nbsp;&nbsp;";
+    echo "<a href='".$self."?".$str."=".$total_no_of_pages."'>Last</a>&nbsp;&nbsp;";
   }
 }
 

@@ -76,10 +76,19 @@
 <div class="container">
     <h2>Activities</h2>
     <!-- Info about qustions posted by user -->
+    <div id="content">
+        <br><ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+            <li class="active"><a href="#questions" data-toggle="tab">Questions</a></li>
+            <li><a href="#answers" data-toggle="tab">Answers</a></li>
+            <li><a href="#tags" data-toggle="tab">Followed Tags</a></li>
+       
+        </ul>
+        <div id="my-tab-content" class="tab-content">
+            <br><div class="tab-pane active" id="questions">
+       
     <?php
         if($ques_res){
 //print_r($questions);
-            echo "<h2>Questions</h2>";
             echo "<div class='header'>";
             foreach($ques_res as $ques_res) {
                 echo "<h4>";
@@ -89,19 +98,22 @@
                 echo "</h4>";
                 echo "<span class='name'>Asked by: <a href=".site_url()."/profile/get/".$ques_res['q_id'].">".$ques_res['name']."</a></br></span>";
                 echo $ques_res['creation_time']."<br>";
+                echo "<hr>";
             } 
             echo "</div>";
-         echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
+         echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page,"ques");
   
         }
         else
             echo "<h3>No Questions posted.</h3>";
          ?>
+         </div>
+           <div class="tab-pane" id="answers">
+          
     <!-- Displays info about answers by user -->
     <?php
         if($ans_res)
         {    
-            echo "<h2>Answers</h2>";
             echo "<div class='header'>";
             foreach($ans_res as $ans_res) {
                 echo "<h4>";
@@ -111,9 +123,10 @@
                 echo "</h4>";
                 echo "<strong>Answer : ".$ans_res['answer_text']."</strong><br>";
                 echo "Answer time: ".$ans_res['answer_time']."<br>";
+                echo "<hr>";
             }
             echo "</div>";
-              echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+              echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page,"ans");
   
         }
         else
@@ -121,11 +134,11 @@
         
     ?>
 </div>
-<div>
+  <div class="tab-pane" id="tags">
+          
     <!-- Displays info about tags user follows -->
 <div class="container">
-    <h2 class="page-header">Tags Followed</h2>
-    <div class="row">
+      <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12">
                     <?php
                         if($tags)
@@ -146,9 +159,9 @@
                             <br><br>
                         <?php
                          
-
+                            echo "<hr>";
                             }
-                             echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page);
+                             echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page,"tags");
   
                         }
                         else
@@ -157,7 +170,12 @@
                         }
                         ?>
         </div>
+        </div>
     </div>
 </div>
+</div>
+</div>
+</div>
+
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/unfollow.js"></script>

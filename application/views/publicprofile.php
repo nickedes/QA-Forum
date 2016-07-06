@@ -65,77 +65,101 @@
 
 			</div>
 			</div>
-			<h1>Activities</h1>
-			<div>
-				<?php
-				if($questions)
-				{
-					echo "<h2>Questions</h2>";
-					echo "<div class='header'>";
-					foreach($questions as $question) {
-						echo "<h4>";
-						$qid = $question['q_id'];
-						$link= site_url('question/get/'.$qid);
-						echo "Q. <a href='$link'>"."<strong>Title : ".$question['title']."</strong><br></a>";
-						echo "</h4>";
-						echo "Description : ".$question['description']."<br>";
-						echo "Creation time: ".$question['creation_time']."<br>";
-					}
-					echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
-					echo "</div>";
-				}
-				else
-				{
-					echo "<h2>No questions</h2>";
-				}
-				?>
-			</div>
-			<div>
-				<?php
-				if($answers)
-				{
-					echo "<h2>Answers</h2>";
-            		echo "<div class='header'>";
-					foreach($answers as $answer) {
-						echo "<h4>";
-						$qid = $answer['q_id'];
-						$link= site_url('question/get/'.$qid);
-						echo "<a href='$link'>"."<strong>Title : ".$answer['title']."</strong><br></a>";
-						echo "</h4>";
-						echo "Description : ".$answer['description']."<br>";
-						// echo "Creation time: ".$answer['creation_time']."<br> ";
-						echo "<strong>Answer : ".$answer['answer_text']."</strong><br>";
-						echo "Answer time: ".$answer['answer_time']."<br> <br>";
-					} 
-					echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
-					echo "</div>";
-				}
-				else
-				{
-					echo "<h2>No answers</h2>";
-				}
-				?>
-			</div>
-			<div>
-				<h2>Tags</h2>
-				<?php
-				if($tags)
-				{
-					echo "<br><div class='list-group col-sm-2'>
-							<a href='#' class='list-group-item active'>
-							<span class='glyphicon glyphicon-tag'></span>Tags Followed
-					    	</a>";
-					foreach($tags as $tag) {
-						$tag_id = $tag['tag_id'];
-						$link= site_url('tag/get/'.$tag_id);
-						echo "<a href='$link'><div class='list-group-item'>
-        					<span class='glyphicon glyphicon-link'></span>".$tag['name']."</div></a>";
-					}
-					echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page); 
-				}
-				else
-				{
-					echo "<h2>No tags</h2>";
-				}
-				?> 
-			</div>
+	<div class="container">
+    <h2>Activities</h2>
+    <!-- Info about qustions posted by user -->
+    <div id="content">
+        <br><ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+            <li class="active"><a href="#questions" data-toggle="tab">Questions</a></li>
+            <li><a href="#answers" data-toggle="tab">Answers</a></li>
+            <li><a href="#tags" data-toggle="tab">Followed Tags</a></li>
+       
+        </ul>
+        <div id="my-tab-content" class="tab-content">
+            <br><div class="tab-pane active" id="questions">
+       
+    <?php
+        if($ques_res){
+//print_r($questions);
+            echo "<div class='header'>";
+            foreach($ques_res as $ques_res) {
+                echo "<h4>";
+                $qid = $ques_res['q_id'];
+                $link= site_url('question/get/'.$qid);
+                echo "Q. <a href='$link'>"."<strong>Title : ".$ques_res['title']."</strong><br></a>";
+                echo "</h4>";
+                echo "<span class='name'>Asked by: <a href=".site_url()."/profile/get/".$ques_res['q_id'].">".$ques_res['name']."</a></br></span>";
+                echo $ques_res['creation_time']."<br>";
+                echo "<hr>";
+            } 
+            echo "</div>";
+         echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page,"ques");
+  
+        }
+        else
+            echo "<h3>No Questions posted.</h3>";
+         ?>
+         </div>
+           <div class="tab-pane" id="answers">
+          
+    <!-- Displays info about answers by user -->
+    <?php
+        if($ans_res)
+        {    
+            echo "<div class='header'>";
+            foreach($ans_res as $ans_res) {
+                echo "<h4>";
+                $qid = $ans_res['q_id'];
+                $link= site_url('question/get/'.$qid);
+                echo "<a href='$link'>"."<strong>Title : ".$ans_res['title']."</strong><br></a>";
+                echo "</h4>";
+                echo "<strong>Answer : ".$ans_res['answer_text']."</strong><br>";
+                echo "Answer time: ".$ans_res['answer_time']."<br>";
+                echo "<hr>";
+            }
+            echo "</div>";
+              echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page,"ans");
+  
+        }
+        else
+            echo "<h3>No answers posted.</h3>";
+        
+    ?>
+</div>
+  <div class="tab-pane" id="tags">
+          
+    <!-- Displays info about tags user follows -->
+<div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+                    <?php
+                        if($tags)
+                        {//print_r($tags);
+                            foreach($tags as $tag) {
+                                $tag_id = $tag['tag_id'];
+                                $link = site_url('tag/get/'.$tag_id);
+                            ?>
+                              <a href="<?php echo $link;?>">
+                            <span class="glyphicon glyphicon-link"></span><strong><?php echo $tag['name'];?></strong>
+                            </a>
+                             <br><br>
+                        <?php
+                         
+                            echo "<hr>";
+                            }
+                             echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page,"tags");
+  
+                        }
+                        else
+                        {
+                            echo "<h3>No tags followed</h3>";
+                        }
+                        ?>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+

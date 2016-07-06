@@ -76,7 +76,7 @@
 			$query = "SELECT f.user_id, f.tag_id, t.name FROM follows as f ";
 			$query .= "INNER JOIN tags AS t ON f.tag_id = t.tag_id WHERE f.user_id = ".$user_id;
 			$record_per_page=3;
-			$new_query = $this->pagingclass->paging($query,$record_per_page);
+			$new_query = $this->pagingclass->paging($query,$record_per_page,"tags");
 			$sql = $this->conn_id->prepare($new_query);
 			$sql->execute();
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
