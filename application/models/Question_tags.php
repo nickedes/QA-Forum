@@ -49,7 +49,7 @@
 				return 0;	
 			}
 		}
-		
+
 		function get_byQ($q_id)
 		{
 			try {

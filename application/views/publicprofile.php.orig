@@ -79,10 +79,16 @@
 						echo "Q. <a href='$link'>"."<strong>Title : ".$question['title']."</strong><br></a>";
 						echo "</h4>";
 						echo "Description : ".$question['description']."<br>";
+<<<<<<< HEAD
 						echo "Creation time: ".$question['creation_time']."<br>";
 					}
-					echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
-					echo "</div>";
+					echo "</div>";  
+=======
+						echo "Creation time: ".$question['creation_time']."<br> <br>";
+					}  
+					 echo $this->pagingclass->paginglink($ques_query,$ques_rec_record_per_page);
+  
+>>>>>>> e92370d8c4cc70df349e78b24a845c5a5e9038df
 				}
 				else
 				{
@@ -107,8 +113,12 @@
 						echo "<strong>Answer : ".$answer['answer_text']."</strong><br>";
 						echo "Answer time: ".$answer['answer_time']."<br> <br>";
 					} 
-					echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+<<<<<<< HEAD
 					echo "</div>";
+=======
+					 echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+  
+>>>>>>> e92370d8c4cc70df349e78b24a845c5a5e9038df
 				}
 				else
 				{
@@ -117,7 +127,6 @@
 				?>
 			</div>
 			<div>
-				<h2>Tags</h2>
 				<?php
 				if($tags)
 				{
@@ -130,8 +139,9 @@
 						$link= site_url('tag/get/'.$tag_id);
 						echo "<a href='$link'><div class='list-group-item'>
         					<span class='glyphicon glyphicon-link'></span>".$tag['name']."</div></a>";
-					}
-					echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page); 
+					} 
+					 echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page);
+  
 				}
 				else
 				{
@@ -139,3 +149,4 @@
 				}
 				?> 
 			</div>
+</div>

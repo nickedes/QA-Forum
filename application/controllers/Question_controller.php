@@ -123,13 +123,15 @@
 					$answer_users = array();
 					if($answers)
 					{
-						foreach ($answers as $answer) {
+						foreach ($answers['result'] as $answer) { //print_r($answer);
 							$answer_users[$answer['a_id']] = $this->Users->get($answer['user_id']);
 						}
 					}
 					$data = array(
 						'result' => $result,
-						'answers' => $answers,
+						'answers' => $answers['result'],
+						'ans_query' => $answers['query'],
+						'ans_rec_record_per_page' => $answers['record_per_page'],
 						'user_details' => $user_details,
 						'tags' => $tags,
 						'answer_users' => $answer_users

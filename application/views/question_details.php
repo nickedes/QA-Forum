@@ -36,6 +36,7 @@
 		</div>
 	</form>
 	<?php
+	//print_r($answers);
 		if($answers)
 		{	
 			echo "<br><h4><b>Answers:</b></h4><div>";
@@ -46,6 +47,8 @@
 				echo "Answer: ".$answer['answer_text']."<br> <br>";
 			}
 			echo "</div>";
+			 echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+  
 		}
 		else
 		{
