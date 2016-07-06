@@ -1,8 +1,7 @@
 <div id="container-fluid">
 	<div class="row ">
-
-		<div class="col-sm-offset-4">
-			<form method="post" id="upload_form" action="verifyupload/uploadImage" enctype="multipart/form-data">
+		<div class="<?php if ( !isset($is_profile)) {echo "col-sm-offset-4";} ?>">
+			<form method="post" id="upload_form" action="<?php echo site_url()?>/verifyupload/uploadImage" enctype="multipart/form-data">
 				<div class="row">
 					<h3>Upload Your Image</h3>
 
@@ -12,7 +11,13 @@
 					</div>
 					<br>
 					<button class="btn btn-success" type="submit" name="submit" value="upload">Upload</button>
+					<?php if ( !isset($is_profile) )
+					{
+					?>
 					<div class="btn btn-info" id="skip_upload">Skip</div>
+					<?php
+					}
+					?>
 				</div>
 			</form>
 		</div>

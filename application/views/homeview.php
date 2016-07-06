@@ -82,9 +82,10 @@
         					<span class='glyphicon glyphicon-link'></span>".$tag_details[$tag]."</div></a>";
 						}
 						echo "</div>";
-						echo "Description : ".$int_question['description']."<br>";
-						echo "Creation time: ".$int_question['creation_time']."<br>";
-						echo "Asked by : ".$users[$int_question['user_id']]."<br>";
+						echo "<b>Description : </b>".$int_question['description']."<br>";
+						echo "<b>Creation time: </b>".$int_question['creation_time']."<br>";
+						$userlink = site_url('profile/get/'.$int_question['user_id']);
+						echo "<b>Asked by : </b><a href='$userlink'>".$users[$int_question['user_id']]."</a><br>";
 
 						if(!isset($answers[$q_id]))
 							echo "Answers(0)<br><br><br>";

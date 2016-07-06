@@ -18,7 +18,7 @@ $('#unfollow').click(function (e) {
             $("#form_error").html('<br><div class="alert alert-info text-center">You Unfollowed this Tag</div>');
             setTimeout(function(){
                 $('#form_error').empty();
-                // location.reload();
+                location.reload();
             }, 3000);
         },
         error: function(response) {
