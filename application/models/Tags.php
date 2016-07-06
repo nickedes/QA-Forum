@@ -34,5 +34,23 @@
 			else
 				return 0;
 		}
+
+		function tag_set()
+		{
+			$sql = $this->conn_id->query("select name from tags ");
+			$result = $sql->fetchALL(PDO::FETCH_ASSOC);
+	         $tagname = array();
+	         foreach ($result as $res) {
+	         	array_push($tagname, $res['name']);
+							
+	         }
+	        /* print_r($result);
+		    echo "<br><br>";
+		    print_r($tagname);
+	         	echo "<br><br>";
+
+*/
+	         	return $tagname;
+		}
 	}
 ?>

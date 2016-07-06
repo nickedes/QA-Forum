@@ -1,38 +1,33 @@
 
 
- // var options = {
-// 	data: ["Web Development", "Web D", "Health", "exercise", "gyming`"],
-// 	list: {
-// 		match: {
-// 			enabled: true
-// 		}
-// 	}
-// };
+$("#basics").ready(function () {
+   var newdata = [];
+   var tags = [];
 
+$.ajax({  
+    type: 'GET',
+    crossDomain: true,
 
-
-// $("#basics").easyAutocomplete(options);
-
-
-$(document).ready(function () {
-
-   // var newdata = new array();
-
-   $.ajax({  
-                type: 'POST',
-                 crossDomain: true,
-           
-                url: "http://localhost/codeigniter/index.php/search_controller/return_array",
-                 dataType : 'json',
-                success: function(data) {
-                     console.log(data);
-                 //    newdata = json_decode(data);
-                  }
-                  // ,
-                // error: function(data) {
-                //     console.log(data);
-                // }
+    url: "search_controller/get",
+    dataType : 'json',
+    success: function(data) {
+                    tags = data.value;
+                    var options = {
+                       data: tags,
+                       list: {
+                          match: {
+                              enabled: true
+                          }
+                      }
+                  };
+                  $("#basics").easyAutocomplete(options);
+                   $("#tag1").easyAutocomplete(options);
+                  
+                   },
+                error: function(data) {
+                    console.log(data);
+                }
             });
-            return false;
-         });
-	
+return false;
+});
+

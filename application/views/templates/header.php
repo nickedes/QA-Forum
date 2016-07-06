@@ -29,12 +29,14 @@
         <li><a href="<?php echo site_url();?>/logout">Logout</a></li>
         <li><a href="<?php echo site_url();?>/question">Post question</a></li>
       </ul>
+      </div>
+      <div>
      <form method="GET" action="search_controller">
       <div class="form-group">
           <input type="text" class="form-control"  id="basics" name="search" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-    </div><!-- /.navbar-collapse -->
+    </div> <!-- /.navbar-collapse --> 
   </div><!-- /.container-fluid -->
 </nav>
