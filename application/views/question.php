@@ -17,8 +17,8 @@
                     <label for="tag">Enter Tags</label>
                     <div class="form-group" id="tags">
                         <input type="text" class="form-control" placeholder="tag" name="tag1" id="tag1" >
-                        <div id="tag_error"></div>
                     </div>
+                    <div id="tag_error"></div>
                     <button class = "btn btn-sm btn-warning" id="addTag">add</button>
                     &nbsp;<button class="btn btn-lg btn-info" name="submit" type="submit">Post</button>
                     <div id="form_error"></div>
