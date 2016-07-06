@@ -1,6 +1,38 @@
 $(document).ready(function () {
     $(function() {
     highlight_errors_validate();
+    // function to add tags
+    var i = 1;
+    $('#addTag').click(function (e) {
+        i++;
+        console.log("add tag is clicked." + i);
+        // make sure that there is no empty field left there.
+        for (var j = 1; j < i ; j++) {
+            var tag_ids = '#tag' + j;
+            var is_empty_any_field = false;
+
+
+            if ( !$(tag_ids).val())
+            {
+                i--;
+                is_empty_any_field = true;
+                break;
+            }
+
+        }
+        // console.log
+        if ( !is_empty_any_field )
+        {
+            $("#tag_error").empty();
+            $('#tags').append("<br><input type='text' class='form-control' placeholder='tag' id='tag" + i + "'' name='tag" + i + "' />");
+        }
+        else
+        {
+            $('#tag_error').html("<br><div class='alert alert-danger'>Please fill available fields to add extra fields.</div>");
+        }
+        e.preventDefault();  
+    });
+
     // Setup form validation on the element
     $("#post_question_form").validate({
         // Specify the validation rules
@@ -36,7 +68,7 @@ $(document).ready(function () {
                     $('#description_error').html('');
                     $('tag_error').html('');
                     if (data.success){
-                        console.log(data);
+                        $('#tag_error').hide();
                         // when question posted successfully
                         $('#form_error').html('<br><div class="alert alert-success">'+ data.message +'</div>');
                         if(data.tag != null)

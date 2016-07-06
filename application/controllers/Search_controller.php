@@ -49,7 +49,8 @@ class Search_controller extends  CI_Controller {
 		if($r=$this->tags->tag_set())
 		{
 			$response['success'] = 1;
-			$response['value'] = $r;
+			$response['taglinks'] = $r[0];
+			$response['tagnames'] = $r[1];
 		}
 		echo json_encode($response);
 	}

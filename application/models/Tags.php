@@ -37,20 +37,19 @@
 
 		function tag_set()
 		{
-			$sql = $this->conn_id->query("select name from tags ");
+			$sql = $this->conn_id->query("select * from tags");
 			$result = $sql->fetchALL(PDO::FETCH_ASSOC);
-	         $tagname = array();
+	        $tagname_link = array();
+			foreach ($result as $res) {
+				array_push($tagname_link, array('text' => $res['name'], 'website-link' => site_url().'/tag/get/'.$res['tag_id']));
+			}
+
+			$tagname = array();
 	         foreach ($result as $res) {
 	         	array_push($tagname, $res['name']);
 							
 	         }
-	        /* print_r($result);
-		    echo "<br><br>";
-		    print_r($tagname);
-	         	echo "<br><br>";
-
-*/
-	         	return $tagname;
+	        return array($tagname_link, $tagname);
 		}
 	}
 ?>
