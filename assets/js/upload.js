@@ -34,7 +34,7 @@ $(document).ready(function () {
 
                         setTimeout(function(){
                             $('#upload_error').empty();
-                            window.location.href = "login";
+                            window.location.href = "http://localhost/codeigniter/index.php/home";
                         }, 3000);
                     }
                     else

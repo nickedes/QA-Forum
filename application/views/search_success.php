@@ -6,9 +6,11 @@ foreach ($resp as $res) {
 	$tag_id = $res['id'];
     $link = site_url('tag/get/'.$tag_id);
     // echo $res['id']."<br>";
-    echo "<a href='$link'>"."<strong>".$res['name']."</strong><br><br></a>";
-          
-	# code...
+    ?>
+    <a href="<?php echo $link; ?>">
+    <div class="list-group-item"><span class="glyphicon glyphicon-link"></span>
+    <?php echo "<a href='$link'>"."<strong>".$res['name']."</strong><br><br></a>";
+    echo "</div><br>";
 }
 ?>
 </div>

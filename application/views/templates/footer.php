@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.easy-autocomplete.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/auto_suggester.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/pagination.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/validate.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/validate_custom_error.js"></script>

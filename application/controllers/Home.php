@@ -38,6 +38,11 @@ class Home extends  CI_Controller {
 		foreach ($get_tags as $tag) {
 			$tag_details[$tag['tag_id']] = $tag['name'];
 		}
+		$all_users = $this->users->get();
+		$users = array();
+		foreach ($all_users as $user) {
+			$users[$user['user_id']] = $user['name'];
+		}
 		$answers = array();
 		foreach ($ans_count as $key ) {
 			$answers[$key['q_id']] = $key['count'];
@@ -53,7 +58,8 @@ class Home extends  CI_Controller {
 			'ques_tags' => $ques_tags,
 			'ques_user_details' => $ques_user_details,
 			'tag_details' => $tag_details,
-			"answers" => $answers
+			"answers" => $answers,
+			'users' => $users
 			);
 		$this->load->view('templates/header');
 		$this->load->view('homeview',$r);

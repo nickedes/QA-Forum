@@ -34,7 +34,7 @@
 		{
 			// Validations here
 			// TODO: Add validations in a Libraray.
-		echo $_POST['name'];
+		echo $_POST['tag1'];
 
 			$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean|max_length[50]');
 
@@ -93,7 +93,7 @@
 							{
 								$response['tag'] = "New tags inserted";
 								$tag_id = $request[1];
-								$data = array(array( "id" => $tag_id, "name" => $_POST['name']));                                      
+								$data = array(array( "id" => $tag_id, "name" => $_POST['tag1']));                                      
 	$data_string = json_encode($data);
 	echo "i am here";
 		print_r($data_string);

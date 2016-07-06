@@ -92,9 +92,10 @@
 			{
 				redirect('profilepage/self');
 			}
-			// Get user details
+
 			$user_details = $this->users->get($user_id);
-			// Get all questions asked by this user
+			
+
 			$questions = $this->questions->get_questions($user_id);
 			// Get all answers given this user
 			$answers = $this->answers->get_answers($user_id);
@@ -115,9 +116,15 @@
 			//'user_id' => $user_id,
 			'user_details' => $user_details
 			);
+
+			// Get user details
 		
 			$this->load->view('templates/header');
 			$this->load->view('publicprofile',$data);
+<<<<<<< HEAD
+			$this->load->view('templates/footer');
+=======
 			 $this->load->view('templates/footer');
+>>>>>>> e92370d8c4cc70df349e78b24a845c5a5e9038df
 		}
 	}

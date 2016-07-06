@@ -7,13 +7,9 @@
 		
 		function __construct()
 		{	
-<<<<<<< HEAD
-			parent::__construct('tags');
+			parent::__construct('question_tags');
 			$this->load->model('pagingclass');
 
-=======
-			parent::__construct('question_tags', 'q_id');
->>>>>>> 74a0c09c1dfe5859dc17e316eb47f287ff49d5a1
 		}
 
 		function insert($q_id, $tag_id)
@@ -48,14 +44,16 @@
 					return $data;
 				}
 				else
-				{
-					return 0;
-				}				
+					return 0;				
 			} catch (PDOException $e) {
 				return 0;	
 			}
 		}
+<<<<<<< HEAD
+		
+=======
 
+>>>>>>> e92370d8c4cc70df349e78b24a845c5a5e9038df
 		function get_byQ($q_id)
 		{
 			try {
