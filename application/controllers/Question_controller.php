@@ -88,7 +88,7 @@
 							{
 								$response['tag'] = "New tags inserted";
 								$tag_id = $request[1];
-								$data = array(array( "id" => $tag_id, "name" => $_POST['tag1']));                                      
+								$data = array(array( "id" => $tag_id, "name" => $tag));     
 								$data_string = json_encode($data);
 								// echo "i am here";
 								$curl = curl_init();
@@ -104,7 +104,7 @@
 								curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
 								curl_setopt($curl, CURLOPT_SSLVERSION, 3);
 
-								echo curl_exec($curl);
+								curl_exec($curl);
 								curl_close($curl);
 							}
 						}

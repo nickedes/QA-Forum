@@ -31,7 +31,7 @@
       </ul>
       </div>
       <div>
-     <form method="GET" action="search_controller">
+     <form method="GET" action="<?php echo site_url();?>/search_controller">
       <div class="form-group">
           <input type="text" class="form-control"  id="basics" name="search" placeholder="Search">
         </div>

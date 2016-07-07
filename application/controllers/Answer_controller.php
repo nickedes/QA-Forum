@@ -49,7 +49,7 @@
 					
 					$answers = $this->Answers->get_byQId($_POST['q_id']);
 					
-					foreach ($answers as $answer) {
+					foreach ($answers['result'] as $answer) {
 						if($answer['user_id'] != $user_id)
 						{
 							$answer_user = $answer['user_id'];
