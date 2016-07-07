@@ -83,11 +83,6 @@
 						// if no tag id -> insert in table
 						if(!$tag_id)
 						{    //echo "rahul";
-    
-
-
-
-
 							$request = $this->Tags->insert($tag);
 							if($request[0] == 1) // if tags inserted.
 							{
@@ -96,7 +91,6 @@
 								$data = array(array( "id" => $tag_id, "name" => $_POST['tag1']));                                      
 								$data_string = json_encode($data);
 								// echo "i am here";
-								print_r($data_string);
 								$curl = curl_init();
 								curl_setopt($curl, CURLOPT_URL, "http://localhost:8983/solr/update?commit=true&wt=json&indent=true");
 								curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -105,17 +99,6 @@
 								//curl_setopt($curl, CURLOPT_POST, TRUE);
 								curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
 
-
-								curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-								curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-								curl_setopt($curl, CURLOPT_SSLVERSION, 3);
-
-								echo curl_exec($curl);
-								curl_close($curl);
-							}
-						}
-						if($this->Question_tags->insert($q_id, $tag_id))
-						{
 
 								curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 								curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
