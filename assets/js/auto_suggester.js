@@ -8,7 +8,7 @@ $.ajax({
 		type: 'GET',
 		crossDomain: true,
 
-		url: "search_controller/get",
+		url: "http://localhost/codeigniter/index.php/search_controller/get",
 		dataType : 'json',
 		success: function(data) {
 			var tag_links = {
