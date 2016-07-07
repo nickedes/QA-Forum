@@ -14,7 +14,7 @@
 		{
 			$query= "select * from answers where q_id = '".$q_id."' ORDER BY answer_time DESC";
 			$record_per_page=2;
-			$new_query = $this->pagingclass->paging($query,$record_per_page);
+			$new_query = $this->pagingclass->paging($query,$record_per_page,"ans");
 			$sql = $this->conn_id->prepare($new_query);
 
 			$sql->execute();
@@ -56,7 +56,7 @@
 			$query .= "INNER JOIN answers as a ON a.q_id=q.q_id  ";
 			$query .= "where a.user_id=".$user_id ;
 			$record_per_page=3;
-			$new_query = $this->pagingclass->paging($query,$record_per_page);
+			$new_query = $this->pagingclass->paging($query,$record_per_page,"ans");
 			$sql = $this->conn_id->prepare($new_query);
 			$sql->execute();
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))

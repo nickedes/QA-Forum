@@ -52,11 +52,12 @@
 						else
 							echo "Answers(".$answers[$q_id].")<br>";
 					echo "</div>";
+					echo "<hr>";
 					}
 	        	}
 	        	else
 	        		echo "<h3>No Questions posted.</h3>";
-					echo $this->pagingclass->paginglink($rec_query,$rec_record_per_page);
+					echo $this->pagingclass->paginglink($rec_query,$rec_record_per_page,"rec");
 				?>
 	        </div>
 	        <div class="tab-pane" id="my_interest">
@@ -92,6 +93,7 @@
 						else
 							echo "Answers(".$answers[$q_id].")<br><br><br>";
 						echo "</div>";
+						echo "<hr>";
 					}
 
 				}
@@ -99,7 +101,7 @@
 				{
 					echo "No questions";
 				}
-				echo $this->pagingclass->paginglink($int_query,$int_record_per_page)."<br><br><br><br>";
+				echo $this->pagingclass->paginglink($int_query,$int_record_per_page,"int")."<br><br><br><br>";
 				?>
 	        </div>
 	    </div>

@@ -39,15 +39,16 @@
 	//print_r($answers);
 		if($answers)
 		{	
-			echo "<br><h4><b>Answers:</b></h4><div>";
+			echo "<br><h4><b>Answers:</b></h4><div><br>";
 			foreach ($answers as $answer) {
 				$user_details = $answer_users[$answer['a_id']];
 				$this->load->view('thumbnail_view.php', array('user_details' => $user_details));
 				echo "Answered at : ".$answer['answer_time']."<br>";
 				echo "Answer: ".$answer['answer_text']."<br> <br>";
+				echo "<hr>";
 			}
 			echo "</div>";
-			 echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page);
+			 echo $this->pagingclass->paginglink($ans_query,$ans_rec_record_per_page,"ans");
   
 		}
 		else

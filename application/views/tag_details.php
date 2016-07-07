@@ -28,8 +28,9 @@
 		        echo "<a href='$link'>"."<strong>Title : ".$q['title']."</strong><br></a>";
 		        echo "Description : ".$q['description']."<br>";
 		        echo "Creation time: ".$q['creation_time']."<br><br>";
+		        echo "<hr>";
       		}
-		echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page);
+		echo $this->pagingclass->paginglink($tag_query,$tag_record_per_page,"tags");
 		
 		}
 		else

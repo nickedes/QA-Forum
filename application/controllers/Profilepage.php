@@ -103,10 +103,10 @@
 			// Get user details
 			
 			$data = array(
-			'questions' => $questions['result'],
+			'ques_res' => $questions['result'],
 			'ques_query' => $questions['query'],
 			'ques_rec_record_per_page' => $questions['record_per_page'],
-			'answers' => $answers['result'],
+			'ans_res' => $answers['result'],
 			'ans_query' => $answers['query'],
 			'ans_rec_record_per_page' => $answers['record_per_page'],
 			'tags' => $tags['result'],
