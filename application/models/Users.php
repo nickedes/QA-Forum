@@ -4,14 +4,10 @@
 	*/
 	class Users extends MY_Model
 	{
-
-		// private $table_name = "users";
 		function __construct()
 		{	
-
-			// parent::__construct($this->table_name);
+			// send tablename and primary key to base model
 			parent::__construct('users', 'user_id');
-			$this->load->library('Connection');
 		}
 
 		function insert($data)
@@ -92,8 +88,6 @@
 
 		}
 
-
-
 		function check_hash_key($hash_key)
 		{
 			$statement = $this->conn_id->prepare("select user_id,is_active from users where hash_key = :hash_key");
@@ -171,7 +165,6 @@
 			// print_r($r[0]);
 			return $r;
 		}
-
 
 		function questionpage($q_id)
 		{

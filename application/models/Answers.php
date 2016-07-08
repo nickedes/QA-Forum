@@ -13,13 +13,10 @@
 		function get_byQId($q_id)
 		{
 			$query= "select * from answers where q_id = '".$q_id."' ORDER BY answer_time DESC";
-			$record_per_page=2;
+			$record_per_page = 2;
 			$new_query = $this->pagingclass->paging($query,$record_per_page,"ans");
 			$sql = $this->conn_id->prepare($new_query);
-
 			$sql->execute();
-
-
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
 			{
 				$data = array(

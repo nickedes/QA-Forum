@@ -24,7 +24,7 @@ $(document).ready(function () {
         if ( !is_empty_any_field )
         {
             $("#tag_error").empty();
-            $('#tags').append("<br><input type='text' class='form-control' placeholder='tag' id='tag" + i + "'' name='tag" + i + "' />");
+            $('#tags').append("<br><input type='text' class='form-control required' placeholder='tag' id='tag" + i + "'' name='tag" + i + "' />");
         }
         else
         {

@@ -100,7 +100,6 @@
 			$answers = $this->answers->get_answers($user_id);
 			// Get all tags followed by this user
 			$tags = $this->follows->get_tags($user_id);
-			// Get user details
 			
 			$data = array(
 			'ques_res' => $questions['result'],
