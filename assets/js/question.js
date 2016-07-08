@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $(function() {
-    highlight_errors_validate();
-    // function to add tags
     var i = 1;
+    $(function() {
+        highlight_errors_validate();
+    // function to add tags
     $('#addTag').click(function (e) {
         i++;
         console.log("add tag is clicked." + i);
@@ -24,7 +24,7 @@ $(document).ready(function () {
         if ( !is_empty_any_field )
         {
             $("#tag_error").empty();
-            $('#tags').append("<br><input type='text' class='form-control' placeholder='tag' id='tag" + i + "'' name='tag" + i + "' />");
+            $('#tags').append("<br><input type='text' class='form-control required' placeholder='tag' id='tag" + i + "'' name='tag" + i + "' />");
         }
         else
         {
@@ -40,6 +40,7 @@ $(document).ready(function () {
             title: "required",
             description: "required",
             tag1: "required"
+            
         },
         
         // Specify the validation error messages
@@ -56,7 +57,8 @@ $(document).ready(function () {
         },
         
         submitHandler: function(form) {
-                    console.log('here');
+            console.log(i);
+            console.log('here');
             $.ajax({  
                 type: 'POST',
                 url: $(form).attr('action'),
@@ -75,9 +77,9 @@ $(document).ready(function () {
                             $('#tag_insert').html('<br><div class="alert alert-success">'+ data.tag +'</div>');
                         // post is successful -> redirect to home after 3 secs.
                         setTimeout(function(){
-                                $('#form_error').empty();
-                                $('#tag_insert').empty();
-                                window.location.href = "home";
+                            $('#form_error').empty();
+                            $('#tag_insert').empty();
+                                // window.location.href = "home";
                             }, 3000);
                     }
                     else
@@ -94,11 +96,11 @@ $(document).ready(function () {
                                 $('#description_error').html('<br><div class="alert alert-danger">' + data.description + '</div>');
                         }
                     }
-            },
-            error: function(data) {
-                console.log(data);
-            }
-        });
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
             return false;
         },
     });

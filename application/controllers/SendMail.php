@@ -37,7 +37,7 @@
             //$body = $this->email->full_html($subject, $message);
 
         $result = $this->email
-        ->from('jamiamentors@gmail.com')
+        ->from('infoedgementors@gmail.com')
                 ->to($address)
                 ->subject($subject)
                 ->message($body)

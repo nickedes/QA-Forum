@@ -1,6 +1,5 @@
-<h1>Welcome to Self profile</h1>
 <div class="container">
-    <h1 class="page-header">Profile</h1>
+    <h1 class="page-header">Self Profile</h1>
     <div class="row">
         <!-- left column -->
         <div class="col-md-4 col-sm-6 col-xs-12">
