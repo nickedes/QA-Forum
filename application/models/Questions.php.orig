@@ -23,7 +23,7 @@
 			}
 			catch (PDOException $e)
 			{
-				// Todo
+				return $e;
 			}
 		}
 

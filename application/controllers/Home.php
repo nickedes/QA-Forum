@@ -18,7 +18,7 @@ class Home extends  CI_Controller {
 	}
 
 	function index() {
-				// Get info about users and questions
+		// Get info about users and questions
 		$ques_user = $this->questions->get_ques_user();
 		$ques_user_details = array();
 		foreach ($ques_user as $q) {

@@ -4,8 +4,8 @@
 			<h3 ><b>Tag Name:</b> <?php echo $result[0]['name'] ?></h3>
 			<br>
 			<form method="POST" action="<?php echo site_url(); ?>/follow" id="follow_unfollow">
-			No. of users following :
-				<input id="users" value="<?php echo $users; ?>" disabled>
+			<b>No. of users following :</b>
+				<input id="users" size="4" value="<?php echo $users; ?>" disabled>
 				<input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>">
 				<input type="hidden" id="tag_id" name="tag_id" value="<?php echo $result[0]['tag_id'] ?>">
 				<br><br>
