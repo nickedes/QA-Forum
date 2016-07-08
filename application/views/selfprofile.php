@@ -72,18 +72,34 @@
         </div>
     </div>
 </div>
+
+<?php 
+  $q ="";
+  $a ="";
+   $t ="";
+  $url = $_SERVER['REQUEST_URI'];
+  //echo $url;
+  if (strpos($url, 'self?ques') != false) 
+    $q = "active";
+  else
+    if(strpos($url, 'self?ans') !=false)
+      $a= "active";
+  else
+   $t = "active";
+  ?>
+
 <div class="container">
     <h2>Activities</h2>
     <!-- Info about qustions posted by user -->
     <div id="content">
         <br><ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-            <li class="active"><a href="#questions" data-toggle="tab">Questions</a></li>
-            <li><a href="#answers" data-toggle="tab">Answers</a></li>
-            <li><a href="#tags" data-toggle="tab">Followed Tags</a></li>
+            <li class="<?php echo $q ?>"><a href="#questions" data-toggle="tab">Questions</a></li>
+            <li class="<?php echo $a ?>"><a href="#answers" data-toggle="tab">Answers</a></li>
+            <li class="<?php echo $t ?>"><a href="#tags" data-toggle="tab">Followed Tags</a></li>
        
         </ul>
         <div id="my-tab-content" class="tab-content">
-            <br><div class="tab-pane active" id="questions">
+            <br><div class="<?php echo 'tab-pane '.$q ?>"  id="questions">
        
     <?php
         if($ques_res){
@@ -107,7 +123,7 @@
             echo "<h3>No Questions posted.</h3>";
          ?>
          </div>
-           <div class="tab-pane" id="answers">
+           <div class="<?php echo 'tab-pane '.$a ?>"  id="answers">
           
     <!-- Displays info about answers by user -->
     <?php
@@ -133,7 +149,7 @@
         
     ?>
 </div>
-  <div class="tab-pane" id="tags">
+  <div class="<?php echo 'tab-pane '.$t ?>"  id="tags">
           
     <!-- Displays info about tags user follows -->
 <div class="container">

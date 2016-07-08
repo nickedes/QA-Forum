@@ -24,12 +24,28 @@
     <a class="navbar-brand" style="font-size: 20px;" href="#"><b>Forum</b></a>
   </div>
 
+  <?php 
+  $home ="";
+  $profile ="";
+   $post_question ="";
+  $url = $_SERVER['REQUEST_URI'];
+  //echo $url;
+  if (strpos($url, 'profilepage') != false) 
+    $profile = "active";
+  else
+    if(strpos($url, 'home') !=false)
+      $home= "active";
+  else
+    if(strpos($url,'question')!=false && strpos($url,'question/')== false)
+    $post_question="active";
+  ?>
+
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li  class="active"><a style="font-size: 17px;" href="<?php echo site_url();?>/home">Home</a></li>
-      <li><a style="font-size: 17px;" href="<?php echo site_url();?>/profilepage/self">Profile page</a></li>
-     <li><a style="font-size: 17px;" href="<?php echo site_url();?>/question">Post question</a></li>
+      <li  class="<?php echo $home ?>"><a style="font-size: 17px;" href="<?php echo site_url();?>/home">Home</a></li>
+      <li class="<?php echo $profile ?>"><a style="font-size: 17px;" href="<?php echo site_url();?>/profilepage/self">Profile page</a></li>
+     <li class="<?php echo $post_question ?>"><a style="font-size: 17px;" href="<?php echo site_url();?>/question">Post question</a></li>
       
     </ul>
     <div class="col-sm-3 col-md-3">
