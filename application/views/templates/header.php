@@ -21,7 +21,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" style="font-size: 20px;" href="#"><b>Forum</b></a>
+    <a class="navbar-brand" style="font-size: 20px;"><b>Forum</b></a>
   </div>
 
   <?php 

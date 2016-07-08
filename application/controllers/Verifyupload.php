@@ -36,7 +36,7 @@
 			   // print_r($file_info);
 			   // echo '</pre>';
 
-			   if($this->Users->update($file_info['file_name']))
+			   if($this->Users->update_pic($file_info['file_name']))
 			   {
 					$response['success'] = 1;
 					$response['message'] = "Profile pic uploaded successfully.";

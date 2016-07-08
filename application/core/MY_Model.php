@@ -9,7 +9,7 @@
 		// conn id is protected so that it can be accessible after being inherited
 		protected $conn_id;
 
-		function __construct($table_name, $primary_key = NULL) {
+		public function __construct($table_name, $primary_key = NULL) {
 			parent::__construct();
 			$this->table_name = $table_name;
 			$this->primary_key = $primary_key;
@@ -18,7 +18,7 @@
 		}
 
 		// Get information from table
-		function get($id = 0)
+		public function get($id = 0)
 		{
 			try 
 			{
@@ -41,7 +41,7 @@
 			}
 			catch (Exception $e) 
 			{
-				return 0;
+				return $e;
 			}
 		}
 	};
