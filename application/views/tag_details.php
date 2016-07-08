@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
-			<h4 class="text-center">Tag Detail page</h4>
-			<h1>Tag Name: <?php echo $result[0]['name'] ?></h1>
+        <div class="col-sm-6 col-md-4 col-md-offset-4 text-center">
+			<h3 ><b>Tag Name:</b> <?php echo $result[0]['name'] ?></h3>
+			<br>
 			<form method="POST" action="<?php echo site_url(); ?>/follow" id="follow_unfollow">
 			No. of users following :
 				<input id="users" value="<?php echo $users; ?>" disabled>
@@ -19,6 +19,7 @@
 	</div>
 	<br>
 	<?php
+	echo "<br><br>";
 		if($questions)
 		{ //print_r($questions);
 			echo "<b>Questions : </b><br><br>";

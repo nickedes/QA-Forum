@@ -32,7 +32,7 @@ class Answer_controller extends CI_Controller
 					$user_details = $this->Users->get($user_id);
 					array_push($email_list, $user_details[0]['email']);
 				}
-				
+
 				$answers = $this->Answers->get_byQId($_POST['q_id']);
 				foreach ($answers['result'] as $answer) {
 					if($answer['user_id'] != $user_id)
@@ -63,4 +63,5 @@ class Answer_controller extends CI_Controller
 		echo json_encode($response);
 	}
 }
+
 ?>

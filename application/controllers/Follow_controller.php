@@ -1,7 +1,5 @@
 <?php 
-	/**
-	* 
-	*/
+	
 	class Follow_controller extends CI_Controller
 	{
 		

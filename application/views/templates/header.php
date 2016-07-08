@@ -8,35 +8,53 @@
  
 </head>
 <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand">Forum</a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="<?php echo site_url();?>/home">Home</a></li>
-        <li><a href="<?php echo site_url();?>/profilepage/self">Profile page</a></li>
-        <li><a href="<?php echo site_url();?>/question">Post question</a></li>
-        <li><a href="<?php echo site_url();?>/logout">Logout</a></li>
-      </ul>
-      </div>
-      <div>
-     <form method="GET" action="<?php echo site_url();?>/search_controller">
-      <div class="form-group">
-          <input type="text" class="form-control"  id="basics" name="search" placeholder="Search">
+
+
+   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+<!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" style="font-size: 20px;" href="#"><b>Forum</b></a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li  class="active"><a style="font-size: 17px;" href="<?php echo site_url();?>/home">Home</a></li>
+      <li><a style="font-size: 17px;" href="<?php echo site_url();?>/profilepage/self">Profile page</a></li>
+     <li><a style="font-size: 17px;" href="<?php echo site_url();?>/question">Post question</a></li>
+      
+    </ul>
+    <div class="col-sm-3 col-md-3">
+        <form method="GET" class="navbar-form" role="search" action="<?php echo site_url();?>/search_controller">
+        <div class="input-group">
+                     <input type="text" class="form-control"  name="search" placeholder="Search"  id="basics">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+        </form>
+    </div>
+    <?php 
+      if(isset($this->session->userdata['user_id']))
+      {
+    ?>
+    <ul class="nav navbar-nav navbar-right" style="height:20px;">
+       <li><a href="<?php echo site_url();?>/logout"><button style="font-size: 15px; margin-top:-10px; margin-right:10px;" class="btn btn-danger">Logout
+       </button>
+       </a>
+       </li>
+    </ul>
+    <?php
+     } 
+    ?>
+  </div><!-- /.navbar-collapse -->
 </nav>
+<br><br><br>

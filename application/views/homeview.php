@@ -1,5 +1,5 @@
 <div class="container">
-<h3>Welcome to the Forum <?php echo $this->session->userdata['name']; ?></h3>
+<h3>Welcome to the Forum,  <?php echo $this->session->userdata['name']; ?></h3>
 	<?php
 		$this->load->library('form_validation');
 		echo validation_errors(); 
