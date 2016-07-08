@@ -26,8 +26,8 @@
       <ul class="nav navbar-nav">
         <li><a href="<?php echo site_url();?>/home">Home</a></li>
         <li><a href="<?php echo site_url();?>/profilepage/self">Profile page</a></li>
-        <li><a href="<?php echo site_url();?>/logout">Logout</a></li>
         <li><a href="<?php echo site_url();?>/question">Post question</a></li>
+        <li><a href="<?php echo site_url();?>/logout">Logout</a></li>
       </ul>
       </div>
       <div>

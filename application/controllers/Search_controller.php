@@ -4,7 +4,8 @@ class Search_controller extends  CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		//echo "yes";
+		if(!isset($this->session->userdata['user_id']))
+			redirect('login');
 		header('Access-Control-Allow-Origin: *');
 		$this->load->helper('url');
 		$this->load->model('users');

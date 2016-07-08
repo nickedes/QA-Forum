@@ -9,7 +9,6 @@
 		{	
 			parent::__construct('questions','q_id');
 			$this->load->model('pagingclass');
-
 		}
 
 		function insert($data)
@@ -157,14 +156,11 @@
 		function get_questions($user_id)
 		{
 			$user_id = "'".$user_id."'";
-			$query = "select * from questions as q JOIN users as u where q.user_id = u.user_id and u.user_id = ".$user_id." order by q.creation_time DESC" ;
+			$query = "select q.title, q.q_id, u.name, q.creation_time from questions as q JOIN users as u where q.user_id = u.user_id and u.user_id = ".$user_id." order by q.creation_time DESC" ;
 			$record_per_page=3;
-		//	echo $query."$$$$$$".$record_per_page;
 			$new_query = $this->pagingclass->paging($query,$record_per_page,"ques");
-//echo $new_query;
 			$sql = $this->conn_id->prepare($new_query);
 			$sql->execute();
-			//$result = $sql->fetchALL(PDO::FETCH_ASSOC);
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
 			{
 				$data = array(
@@ -172,8 +168,6 @@
 					'record_per_page' => $record_per_page,
 					'result' => $result
 					);
-
-				//print_r($result);
 				return $data;
 			}
 			else

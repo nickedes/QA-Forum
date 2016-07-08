@@ -5,7 +5,6 @@ $(document).ready(function () {
 		url: "http://127.0.0.1/codeigniter/index.php/search_controller/get",
 		dataType : 'json',
 		success: function(data) {
-			// console.log(data.taglinks);
 			var tag_links = {
 				data: data.taglinks,
 				getValue: "text",
@@ -39,7 +38,7 @@ $(document).ready(function () {
 			});
 		},
 		error: function(data) {
-				console.log(data);
+				// console.log(data);
 		}
 	});
 return false;
