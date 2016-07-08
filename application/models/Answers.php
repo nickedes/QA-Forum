@@ -1,6 +1,6 @@
 <?php 
 	/**
-	* 
+	* Answer model
 	*/
 	class Answers extends MY_Model
 	{

@@ -52,8 +52,8 @@
 		public function get_ques_user()
 		{
 			$query = "SELECT u.user_id,u.name,q.title,q.description, q.creation_time,q.q_id";
-			$query .= "FROM questions as q INNER JOIN users as u ON  q.user_id = u.user_id"; 
-			$query .= "order by q.creation_time DESC";
+			$query .= " FROM questions as q INNER JOIN users as u ON  q.user_id = u.user_id"; 
+			$query .= " order by q.creation_time DESC";
 			$sql = $this->conn_id->prepare($query);
 			$sql->execute();
 			if($result = $sql->fetchAll(PDO::FETCH_ASSOC))
@@ -121,7 +121,7 @@
 		{
 			$user_id = "'".$user_id."'";
 			$query = "select q.title, q.q_id, u.name, q.creation_time from questions as q";
-			$query .= "JOIN users as u where q.user_id = u.user_id and u.user_id";
+			$query .= " JOIN users as u where q.user_id = u.user_id and u.user_id";
 			$query .= " = ".$user_id." order by q.creation_time DESC" ;
 			$record_per_page=3;
 			$new_query = $this->pagingclass->paging($query,$record_per_page,"ques");
