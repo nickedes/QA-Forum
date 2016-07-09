@@ -1,5 +1,6 @@
 <div class="container">
-    <h1 class="page-header">Self Profile</h1>
+    <h1 class="text-center login-title">Self Profile</h1>
+    <hr>
     <div class="row">
         <!-- left column -->
         <div class="col-md-4 col-sm-6 col-xs-12">
@@ -158,6 +159,7 @@
                     <?php
                         if($tags)
                         {//print_r($tags);
+
                             foreach($tags as $tag) {
                                 $tag_id = $tag['tag_id'];
                                 $link = site_url('tag/get/'.$tag_id);

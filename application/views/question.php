@@ -1,7 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <br>
+        
             <h1 class="text-center login-title">Post Question</h1>
+            <hr>
             <div class="account-wall">
                 <form class="form-question-post" method="POST" action="question/post_question" id="post_question_form">
                     <div class="form-group">

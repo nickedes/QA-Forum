@@ -1,15 +1,8 @@
 <div class="container">
     <div class="row">
-        <!-- <div class="col-sm-6 col-md-4 col-md-offset-4">
-			<h3>Welcome to Public profile</h3> -->
-			
-			<!-- <div>
-				<br><b>Email</b> : <?php echo $user_details[0]['email'] ?><br>
-				<b>About User</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; &nbsp; <?php echo $user_details[0]['about'] ?><br><br>
-			</div> -->
-			<!-- <div class="container"> -->
-    <h1 class="page-header">Public Profile</h1>
-    <div class="row">
+      <h1 class="text-center login-title">Public Profile</h1>
+    <hr>
+     <div class="row">
         <!-- left column -->
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">

@@ -15,10 +15,10 @@ $(document).ready(function () {
 					}
 				},
 				list: {
-						match: {
-								enabled: true
-						}
-				}
+		match: {
+			enabled: true
+		}
+	}
 			};
 
 			var options = {
@@ -30,6 +30,8 @@ $(document).ready(function () {
 				}
 			};
 			$("#basics").easyAutocomplete(tag_links);
+			$("#basics1").easyAutocomplete(tag_links);
+			
 			$("#tag1").easyAutocomplete(options);
 			var i = 1;
 			$('#addTag').click(function (e) {

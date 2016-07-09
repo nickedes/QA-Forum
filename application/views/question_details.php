@@ -31,6 +31,7 @@
 		<input type="hidden" id="user_id" name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
 		<input type="hidden" id="q_id" name="q_id" value="<?php echo $result[0]['q_id'] ?>">
 		<br>
+		
 		<button class="btn btn-success" type="submit" id="answer_submit">Post Answer</button>
 		<div id="form_error"></div>
 		</div>

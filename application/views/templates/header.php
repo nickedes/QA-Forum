@@ -5,10 +5,26 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.css">
    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/easy-autocomplete.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/easy-autocomplete.themes.min.css">
+    <style>
+   
+  .navbar-default{
+      background-color:    #000000;
+  
+  }
+  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+/*BACKGROUND color for active*/
+background-color:   #A9A9A9;
+}
+
+  .navbar-collapse{
+    color:   #F8F8FF;
+   }
+    
+    </style>
  
 </head>
 <body>
-
 
 
    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -21,7 +37,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" style="font-size: 20px;"><b>Forum</b></a>
+    <a class="navbar-brand" style="font-size: 20px; color: #FF7F50" href="<?php echo site_url();?>/home"><b>Forum</b></a>
   </div>
 
   <?php 
@@ -43,10 +59,11 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li  class="<?php echo $home ?>"><a style="font-size: 17px;" href="<?php echo site_url();?>/home">Home</a></li>
-      <li class="<?php echo $profile ?>"><a style="font-size: 17px;" href="<?php echo site_url();?>/profilepage/self">Profile page</a></li>
-     <li class="<?php echo $post_question ?>"><a style="font-size: 17px;" href="<?php echo site_url();?>/question">Post question</a></li>
+      <li  class="<?php echo $home ?>"><a style="font-size: 17px;color:   #F0FFFF" href="<?php echo site_url();?>/home">Home</a></li>
+      <li class="<?php echo $profile ?>"><a style="font-size: 17px;color:   #F0FFFF" href="<?php echo site_url();?>/profilepage/self">Profile page</a></li>
+     <li class="<?php echo $post_question ?>"><a style="font-size: 17px;color:   #F0FFFF" href="<?php echo site_url();?>/question">Post question</a></li>
       
+     
     </ul>
     <div class="col-sm-3 col-md-3">
         <form method="GET" class="navbar-form" role="search" action="<?php echo site_url();?>/search_controller">
@@ -71,6 +88,7 @@
     <?php
      } 
     ?>
+    
   </div><!-- /.navbar-collapse -->
 </nav>
 <br><br><br>

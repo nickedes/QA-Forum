@@ -1,14 +1,12 @@
 <div class="container">
-	<h3>Welcome to the Forum,  <?php echo $this->session->userdata['name']; ?></h3>
+	<br><h2><b>Welcome to the Forum, </b><?php echo $this->session->userdata['name']; ?></h2>
+	<hr>
 	<?php
 	$this->load->library('form_validation');
 	echo validation_errors(); 
 	echo form_open('home/butn_redirection');
 	?>
-	<div class="text-center">
-		<button class="btn btn-info" name="submitform" value="edit">Edit Profile</button>
-		&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" name="submitform" value="question">Ask a Question</button>
-	</div>	
+	<br>	
 	<?php 
 	$rec ="";
 	$int ="";
@@ -35,7 +33,9 @@
 		{	
 			echo "<h2>Questions</h2>";
 			foreach($rec_questions as $rec_question) {
-				echo "<div class='header jumbotron'>";
+				echo "<div class='jumbotron vertical-center'>";
+				echo "<div class='container '>";
+
 
 				$q_id = $rec_question['q_id'];
 				$userid = $rec_question['user_id'];
@@ -65,6 +65,7 @@
 				else
 					echo "Answers(".$answers[$q_id].")<br>";
 				echo "</div>";
+				echo "</div>";
 				echo "<hr>";
 			}
 		}
@@ -78,7 +79,8 @@
 		if($int_questions){
 			echo "<h2>Questions</h2>";
 			foreach($int_questions as $int_question) {
-				echo "<div class='header jumbotron'>";
+				echo "<div class='jumbotron vertical-center'>";
+				echo "<div class='container '>";
 				$q_id = $int_question['q_id'];
 						// $tagid = $int_question['tag_id'];
 						// $link1=  site_url('tag/get/'.$tagid);
@@ -105,6 +107,7 @@
 					echo "Answers(0)<br><br><br>";
 				else
 					echo "Answers(".$answers[$q_id].")<br><br><br>";
+				echo "</div>";
 				echo "</div>";
 				echo "<hr>";
 			}

@@ -17,7 +17,7 @@ class Search_controller extends  CI_Controller {
 
 	function index() {
 		$name= urlencode($_GET['search']);
-		$name= $name."*";
+		$name= "*".$name."*";
 		
 		$curl = curl_init();
 
