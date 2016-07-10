@@ -1,5 +1,5 @@
 <div class="container">
-	<br><h2><b>Welcome to the Forum, </b><?php echo $this->session->userdata['name']; ?></h2>
+	<br><br><h2><b>Welcome to the Forum, </b><?php echo $this->session->userdata['name']; ?></h2>
 	<hr>
 	<?php
 	$this->load->library('form_validation');
@@ -23,8 +23,8 @@
 	<!-- tab contents -->
 	<div id="content">
 		<br><ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-		<li class="<?php echo $rec ?>" ><a href="#recent" data-toggle="tab">Recent Questions</a></li>
-		<li class="<?php echo $int ?>"><a href="#my_interest" data-toggle="tab">My Interests</a></li>
+		<li class="<?php echo $rec ?>" style="font-size:15px" ><a href="#recent" data-toggle="tab">Recent Questions</a></li>
+		<li class="<?php echo $int ?>" style="font-size:15px"><a href="#my_interest" data-toggle="tab">My Interests</a></li>
 	</ul>
 	<div id="my-tab-content" class="tab-content">
 		<br><div class="<?php echo 'tab-pane '.$rec ?>"  id="recent">

@@ -10,6 +10,9 @@
             <!-- load upload image view, with an option that it is included in profile image file. -->
             <?php $this->load->view('upload',array('is_profile' => true)); ?>
         </div>
+
+        
+   
         <!-- edit form column -->
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <br>
@@ -37,9 +40,11 @@
                         <input class="form-control" id="mobileno" name="mobileno" value="<?php echo $user_details[0]['mobileno']; ?>" type="text">
                     </div>
                 </div>
+
                 <div class="row">
                     <div  class="col-lg-offset-3" id="mobileno_error"></div>
                 </div>
+               
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">About me:</label>
@@ -66,10 +71,30 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
                     <div class="col-md-8">
+
+ <a class="button" href="#popup1">Change Password</a>
+
+
                         <button class="btn btn-primary" value="save" type="submit" name="submitform">Save changes</button>
+                         <button class="btn btn-primary" value="cancel"  name="submitform">Cancel</button>
                     </div>
+                     
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div id="popup1" class="overlay">
+    <div class="popup">
+    <a class="close" href="#">&times;</a>
+    <br>
+
+       <div class="container">
+      Current Password: <input type="password" name="cur_pass" id = "cur_pass" ><br><br>
+       New Password:  &nbsp;&nbsp;&nbsp; &nbsp;<input type="password" name="new_pass" id = "new_pass" ><br><br>
+       Confirm Password: <input type="password" name="confirm_pass" id = "confirm_pass" ><br><br>
+       <button type="submit" >Save Changes</button>
         </div>
     </div>
 </div>

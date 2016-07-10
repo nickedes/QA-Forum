@@ -11,6 +11,11 @@ $(document).ready(function () {
             required: true,
             mobile_validator: true,
           },
+           password: {
+            required: true,
+             minlength: 6
+          },
+
           about: {
             required: true,
             minlength: 10
@@ -24,7 +29,13 @@ $(document).ready(function () {
       mobileno: {
         required: 'Mobile number is required',
         minlength: 'The mobile number should be of 10 characters.',
-        minlength: 'The mobile number should be of 10 characters.',
+      },
+
+      password:{
+        required: 'Password is required',
+        minlength: 'Password should be of 6 characters.',
+     
+
       },
 
       about: {

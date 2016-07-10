@@ -56,7 +56,7 @@
 			if($formSubmit == 'cancel')
 			{
 				$this->load->helper('url');
-				redirect('success');
+				redirect('profilepage/self');
 			}
 			elseif( $formSubmit == 'logout')
 			{
@@ -80,9 +80,21 @@
 			$response = array('success' => 0);
 			if($this->users->edit_details($data))
 			{	
-				$response['success'] = 1;
+				?>
+			  <script>	alert('Changes saved'); 
+			  window.location = '<?php echo site_url();?>/profilepage/self';
+			   </script>
+			  <?php
 			}
-			echo json_encode($response);
+			else
+			{
+				?>
+			  <script>	alert('Changes cannot be saved due to some error!!!'); 
+			  window.location = '<?php echo site_url();?>/profilepage/self';
+			   </script>
+			  <?php
+			}
+			//echo json_encode($response);
 		}
 
 		function get($user_id)

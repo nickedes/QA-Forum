@@ -5,8 +5,10 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.css">
    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/easy-autocomplete.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/easy-autocomplete.themes.min.css">
-    <style>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/style.css">
    
+    <style>  
+
   .navbar-default{
       background-color:    #000000;
   
@@ -65,16 +67,7 @@ background-color:   #A9A9A9;
       
      
     </ul>
-    <div class="col-sm-3 col-md-3">
-        <form method="GET" class="navbar-form" role="search" action="<?php echo site_url();?>/search_controller">
-        <div class="input-group">
-                     <input type="text" class="form-control"  name="search" placeholder="Search"  id="basics">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-        </div>
-        </form>
-    </div>
+    
     <?php 
       if(isset($this->session->userdata['user_id']))
       {
@@ -85,10 +78,19 @@ background-color:   #A9A9A9;
        </a>
        </li>
     </ul>
+    <div class="col-sm-3 col-md-3">
+        <form method="GET" class="navbar-form" role="search" action="<?php echo site_url();?>/search_controller">
+        <div class="input-group">
+                     <input type="text"  name="search" placeholder="Search"  id="basics">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>
     <?php
      } 
     ?>
-    
+
   </div><!-- /.navbar-collapse -->
-</nav>
-<br><br><br>
+</nav><br>
